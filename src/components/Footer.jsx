@@ -42,7 +42,7 @@ const Footer = () => {
               Privacy Policy
             </Link>
             {" | "}
-            <Link to="/termsandconditions" className="text-[#ffab00] hover:underline">
+            <Link to="/termsandconditions" className="text-[#ffa600] hover:underline">
               Terms & Conditions
             </Link>
             {" | "}
