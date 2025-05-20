@@ -18,6 +18,7 @@ import Blog from "./components/Blog";
 import Career from "./pages/Career";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsandConditions";
+import RefundPolicy from "./pages/Refundpolicy";
 
 const MainLayout = () => (
   <>
@@ -45,6 +46,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
+          <Roue path="/refundpolicy" element={<RefundPolicy />} />
         </Route>
 
         {/* Catch-All Route */}

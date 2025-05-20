@@ -46,8 +46,8 @@ const Footer = () => {
               Terms & Conditions
             </Link>
             {" | "}
-            <Link to="/help-centre" className="text-[#ffab00] hover:underline">
-              Help Centre
+            <Link to="/refundpolicy" className="text-[#ffab00] hover:underline">
+              Refund Policy
             </Link>
           </p>
         </div>
