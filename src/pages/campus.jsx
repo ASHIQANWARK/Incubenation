@@ -121,7 +121,7 @@ const FeatureCard = ({ icon, title, description }) => (
   </div>
 );
 
-const IncubeNationCampus = () => (
+const Campus = () => (
   <div>
     <HeaderSection />
     <Breadcrumbs />
@@ -130,4 +130,4 @@ const IncubeNationCampus = () => (
   </div>
 );
 
-export default IncubeNationCampus;
+export default Campus;
