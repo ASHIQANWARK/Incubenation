@@ -46,7 +46,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
-          <Roue path="/refundpolicy" element={<RefundPolicy />} />
+          <Route path="/refundpolicy" element={<RefundPolicy />} />
         </Route>
 
         {/* Catch-All Route */}
