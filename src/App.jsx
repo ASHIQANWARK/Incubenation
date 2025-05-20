@@ -10,9 +10,9 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
-import Center from "./pages/Center";
+import Center from "./pages/Centers";
 import Online from "./pages/Online"
-import Campus from "./pages/Campus";
+import Campus from "./pages/Campuss";
 import Business from "./pages/Business";
 import Blog from "./components/Blog";
 import Career from "./pages/Career";
@@ -38,7 +38,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/center" element={<Center />} />
+          <Route path="/center" element={<Center/>} />
           <Route path="/online" element={<Online />} />
           <Route path="/campus" element={<Campus />} />
           <Route path="/business" element={<Business />} />
