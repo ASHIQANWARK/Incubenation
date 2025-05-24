@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaChevronDown } from "react-icons/fa";
@@ -7,19 +7,30 @@ import logo from "../assets/images/incubenation1.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Toggle functions
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-
-  // Close dropdown when a link is clicked
   const closeDropdown = () => setIsDropdownOpen(false);
-
-  // Close mobile menu when a link is clicked
   const closeMobileMenu = () => setIsOpen(false);
 
   return (
-    <nav className="bg-[#061428] fixed w-full z-10">
+    <nav
+      className={`fixed w-full z-10 transition-all duration-300 ${
+        scrolled ? "bg-[#061428] shadow-md" : "bg-transparent"
+      }`}
+    >
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
         <div className="flex items-center space-x-2">

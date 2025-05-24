@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import HeroImage from "../assets/images/img3.png";
+import svg from "../assets/images/svg1.jpg";
 import IncubationNationIcon from "../assets/images/incubenation-DP-3.png";
+import onlinebg from "../assets/images/online.jpg";
+import centerbg from "../assets/images/img20.jpg"
 
 // Extracted data to keep component clean
 const focuses = [
@@ -12,6 +15,7 @@ const focuses = [
       "Encouraging and supporting individuals to become entrepreneurs through workshops, mentorship, and access to resources.",
     icon: IncubationNationIcon,
     link: "/center",
+    bgImage: centerbg,
   },
   {
     title: "Incubation Online",
@@ -19,6 +23,7 @@ const focuses = [
       "Providing resources, mentorship, and guidance to help startups grow, pivot, and scale in competitive markets.",
     icon: IncubationNationIcon,
     link: "/online",
+    bgImage: onlinebg,
   },
   {
     title: "Incubation Campus",
@@ -41,7 +46,11 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center px-6 py-16 lg:py-24">
       {/* Background Layer */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#061428] to-[#0b1c3a] h-3/4 w-full"></div>
+      <div
+        className="absolute inset-0 bg-cover bg-center h-3/4 w-full"
+        style={{ backgroundImage: `url(${svg})` }}
+      ></div>
+
       <div className="absolute bottom-0 bg-white h-1/4 w-full"></div>
 
       <div className="relative container mx-auto flex flex-col lg:flex-row items-center gap-12">
@@ -69,8 +78,7 @@ const Hero = () => {
           className="lg:w-1/2 text-center lg:text-left"
         >
           <h1 className="text-5xl lg:text-6xl font-extrabold leading-tight text-white">
-            Where Startups <span className="text-orange-600">Hatch</span>, Grow,{" "}
-            <br />
+            Where Startups <span className="text-orange-600">Hatch</span>, Grow, <br />
             <motion.span
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -106,6 +114,7 @@ const Hero = () => {
       <div className="relative mt-16 w-full px-4">
         <h2 className="text-4xl font-bold text-center mb-12 text-white">
           Our Programs
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#4fc3dc] to-[#f9a826] scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
         </h2>
 
         <motion.div
@@ -133,46 +142,48 @@ const Hero = () => {
                 rotate: 2,
                 boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
               }}
-              className={`flex flex-col h-full items-center bg-gradient-to-b from-[#061428] to-[#0b1c3a]  border-b-white shadow-lg p-6 transition-transform duration-300 hover:shadow-2xl relative min-h-[350px] lg:min-h-[400px]
-        ${
-          index % 2 === 0
-            ? "rounded-bl-[50px] rounded-tr-[50px]"
-            : "rounded-tl-[50px] rounded-br-[50px]"
-        }`}
+              className={`flex flex-col h-full items-center bg-cover bg-center border-b-white shadow-lg p-6 transition-transform duration-300 hover:shadow-2xl relative min-h-[350px] lg:min-h-[400px]
+                ${
+                  index % 2 === 0
+                    ? "rounded-bl-[50px] rounded-tr-[50px]"
+                    : "rounded-tl-[50px] rounded-br-[50px]"
+                }`}
+              style={{ backgroundImage: `url(${item.bgImage})` }}
             >
-              {/* Icon */}
-              <img
-                src={item.icon}
-                alt={`Icon for ${item.title}`}
-                className="w-16 h-16 mb-3"
-              />
+              {/* Dark overlay */}
+              <div className="absolute inset-0 bg-black/80 rounded-[inherit] z-0"></div>
 
-              {/* Title */}
-              <h3 className="text-2xl font-semibold text-white mt-4 text-center">
-                {item.title}
-              </h3>
+              {/* Content */}
+              <div className="relative z-10 flex flex-col items-center h-full w-full">
+                <img
+                  src={item.icon}
+                  alt={`Icon for ${item.title}`}
+                  className="w-16 h-16 mb-3"
+                />
 
-              {/* Description */}
-              <p className="text-white text-sm text-center mt-2 leading-relaxed flex-grow">
-                {item.description}
-              </p>
+                <h3 className="text-2xl font-semibold text-white mt-4 text-center">
+                  {item.title}
+                </h3>
 
-              {/* "Coming Soon" Badge */}
-              {item.tag && (
-                <span className="absolute top-2 right-2 bg-red-800 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
-                  {item.tag}
-                </span>
-              )}
+                <p className="text-white text-sm text-center mt-2 leading-relaxed flex-grow">
+                  {item.description}
+                </p>
 
-              {/* Learn More Button */}
-              <motion.div whileHover={{ scale: 1.1 }} className="mt-auto">
-                <Link
-                  to={item.link}
-                  className="mt-5 bg-green-600 text-white border border-gray-900 px-5 py-2 rounded-full shadow-md transition-transform duration-300 hover:text-orange-600 hover:border-orange-600"
-                >
-                  Learn More..
-                </Link>
-              </motion.div>
+                {item.tag && (
+                  <span className="absolute top-2 right-2 bg-red-800 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
+                    {item.tag}
+                  </span>
+                )}
+
+                <motion.div whileHover={{ scale: 1.1 }} className="mt-auto">
+                  <Link
+                    to={item.link}
+                    className="mt-5 bg-green-600 text-white border border-gray-900 px-5 py-2 rounded-full shadow-md transition-transform duration-300 hover:text-orange-600 hover:border-orange-600"
+                  >
+                    Learn More..
+                  </Link>
+                </motion.div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
