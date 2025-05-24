@@ -19,12 +19,6 @@ const Breadcrumbs = () => (
             </a>
           </li>
           <span>/</span>
-          <li>
-            <a href="/program" className="hover:text-[#061428]">
-              Program
-            </a>
-          </li>
-          <span>/</span>
           <li className="text-[#061428] font-semibold">IncubeNation Online</li>
         </ul>
       </nav>
