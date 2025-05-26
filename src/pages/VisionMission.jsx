@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Image2 from "../assets/images/startup (2).jpg";
 import Image3 from "../assets/images/startup.jpg";
 import "animate.css";
@@ -12,22 +13,37 @@ const VisionMission = () => {
   }, []);
 
   return (
-    <section className="relative py-20  overflow-hidden ">
+    <section className="relative py-20 overflow-hidden">
       <div className="container mx-auto px-6 lg:px-16 space-y-20">
         {/* About Section */}
-        <div className="text-center max-w-4xl mx-auto space-y-6 animate__animated animate__fadeInUp animate__slow">
-          <h2 className="text-4xl font-bold text-[#061428] ">
-            About IncubeNation
-          </h2>
-          <p className="text-lg text-gray-700">
-            IncubeNation Bengaluru is a startup incubator created by Ique
-            Ventures to support and develop early-stage startups. Our mission is
-            to empower entrepreneurs by providing them with the tools,
-            resources, and mentorship needed to build scalable businesses. We
-            offer a comprehensive range of services tailored to help startups
-            through every stage of their growth journey, from ideation to
-            successful market entry and expansion.
-          </p>
+        <div className="relative py-16 px-4 sm:px-8 md:px-12 bg-gray-50">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center rounded-2xl overflow-hidden shadow-xl">
+            {/* Left: Title */}
+            <motion.div
+              className="bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] text-white flex justify-center items-center p-8 md:p-12"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center leading-snug">
+                About <span className="text-yellow-400">Incubenation</span>
+              </h1>
+            </motion.div>
+
+            {/* Right: Description */}
+            <motion.div
+              className="bg-[#061428]  p-8 md:p-12 flex flex-col justify-center"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed">
+                <strong className="    text-[#00ffa6]">IncubeNation Bengaluru</strong> is a startup incubator created by <strong>Ique Ventures</strong> to support and develop early-stage startups. Our mission is to empower entrepreneurs by providing them with the tools, resources, and mentorship needed to build scalable businesses. We offer a comprehensive range of services tailored to help startups through every stage of their growth journey, from ideation to successful market entry and expansion.
+              </p>
+            </motion.div>
+          </div>
         </div>
 
         {/* Vision Section */}
