@@ -9,7 +9,6 @@ import ShefinImage from "../assets/images/shefin.jpg";
 import hashImage from "../assets/images/hashim.jpg";
 import abhiImage from "../assets/images/abhirami.jpg";
 import jinoImage from "../assets/images/jino.jpg";
-import abidImage from "../assets/images/abid.jpg";
 import shaazImage from "../assets/images/Shaaz.jpg";
 
 
@@ -18,7 +17,6 @@ const advisors = [
   { name: "Hashim", title: "CAREER CAFE (CEO)", image: hashImage },
   { name: "Abhirami", title: "FLYRAD (CEO)", image: abhiImage },
   { name: "Jino Joseph", title: "FRANCHISIFY (CEO)", image: jinoImage },
-  { name: "Sainul Abid k.A", title: "WAWU (CEO)", image: abidImage },
   { name: "Shaaz", title: "IqueCap", image: shaazImage },
 
 ];
