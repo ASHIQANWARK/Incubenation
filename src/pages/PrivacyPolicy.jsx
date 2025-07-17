@@ -50,7 +50,7 @@ const PrivacyPolicy = () => {
           <p className="text-gray-600">
             Email:{" "}
             <a href="mailto:contact@incubenation.com" className="text-blue-600 underline">
-              info@incubenation.com
+              contact@incubenation.com
             </a>
           </p>
           <p className="text-gray-600">

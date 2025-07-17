@@ -104,7 +104,7 @@ const Footer = () => {
         <div className="w-full flex justify-center md:justify-end">
           <iframe
             title="Google Maps"
-            src="https://www.google.com/maps?q=Koramangala,Bengaluru&output=embed"
+            src="https://share.google/ggHeqGsDg47CmzXNO"
             width="100%"
             height="180"
             className="rounded-lg shadow-lg max-w-md"

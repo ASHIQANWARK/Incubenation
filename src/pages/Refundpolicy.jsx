@@ -48,7 +48,7 @@ const RefundPolicy = () => {
           <p className="text-gray-600">
             Email:{" "}
             <a href="mailto:contact@incubenation.com" className="text-emerald-700 underline">
-              info@incubenation.com
+              contact@incubenation.com
             </a>
           </p>
           <p className="text-gray-600">

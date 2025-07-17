@@ -45,7 +45,7 @@ const Advisors = () => {
         {/* Section Heading */}
         <h2 className="text-4xl font-bold text-center text-[#0b081f] mb-12 ">
           Our Advisors
-          <User className="inline-block w-8 h-8 ml-2 text-[#05081e]" />
+          
         </h2>
 
         {/* Advisors Carousel */}

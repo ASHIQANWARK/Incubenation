@@ -39,7 +39,7 @@ const TermsAndConditions = () => {
               href="mailto:contact@incubenation.com"
               className="text-green-700 underline"
             >
-              ceo@incubenation.com
+              contact@incubenation.com
             </a>
           </p>
           <p className="text-gray-700">
