@@ -91,7 +91,7 @@ const Breadcrumbs = () => (
           </li>
           <span>/</span>
           <li className="font-semibold bg-gradient-to-b from-[#061428] to-[#0b1c3a] text-transparent bg-clip-text">
-            IncubeNation-Campus
+            IncubeNation
           </li>
         </ul>
       </nav>
@@ -120,7 +120,7 @@ const AboutPage = () => {
               every entrepreneur has the potential to succeed, and we’re here to
               make that success possible.
             </p>
-            <p>-INDUMATHI MURTHY -ceo, incubenation</p>
+            <p>-INDUMATHI MURTHY -ceo, IncubeNation</p>
           </div>
           <img
             src={ceo}

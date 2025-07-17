@@ -5,7 +5,7 @@ import {
   FaShieldAlt,
   FaChalkboardTeacher,
   FaUsersCog,
-  FaDollarSign,
+  FaRupeeSign,
   FaGlobe,
 } from "react-icons/fa";
 
@@ -15,7 +15,10 @@ const servicesData = [
   { icon: <FaShieldAlt />, title: "State-of-the-Art Infrastructure", description: "Modern office spaces with advanced amenities." },
   { icon: <FaChalkboardTeacher />, title: "Expert Mentorship", description: "Guidance from experienced industry professionals and mentors." },
   { icon: <FaUsersCog />, title: "Collaborative Ecosystem", description: "A thriving community of entrepreneurs, investors, and business leaders." },
-  { icon: <FaDollarSign />, title: "Affordable & Flexible Plans", description: "Cost-effective solutions with customizable membership options." },
+  { icon: <FaRupeeSign />,
+  title: "Affordable & Flexible Plans",
+  description: "Cost-effective solutions with customizable membership options."
+},
   { icon: <FaGlobe />, title: "Innovation-Driven Environment", description: "Encouraging a culture of creativity and technology-driven solutions." },
   { icon: <FaHandshake />, title: "Strong Industry Connect", description: "Partnerships with leading corporations, academic institutions, and government agencies." },
   { icon: <FaShieldAlt />, title: "24/7 Access & Security", description: "Round-the-clock access to facilities with high security." },

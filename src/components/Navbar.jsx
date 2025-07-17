@@ -15,7 +15,7 @@ const Navbar = () => {
   const closeMobileMenu = () => setIsOpen(false);
 
   return (
-    <nav className="fixed w-full z-10 bg-[#061428] ">
+    <nav className="fixed w-full z-50 bg-[#061428] shadow-md">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
         <div className="flex items-center space-x-2">

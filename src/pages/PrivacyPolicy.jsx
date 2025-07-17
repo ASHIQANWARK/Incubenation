@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen p-6 md:p-12">
       <motion.div
-        className="max-w-4xl mx-auto bg-white p-8 rounded-2xl "
+        className="max-w-4xl mx-auto bg-white p-8 rounded-2xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -49,8 +49,8 @@ const PrivacyPolicy = () => {
           <p className="mt-2 font-semibold text-gray-800">IncubeNation by Ique Ventures</p>
           <p className="text-gray-600">
             Email:{" "}
-            <a href="mailto:contact@incubenation.com" className="text-blue-600 underline">
-              contact@incubenation.com
+            <a href="mailto:contactus@incubenation.com" className="text-blue-600 underline">
+              contactus@incubenation.com
             </a>
           </p>
           <p className="text-gray-600">
@@ -146,7 +146,7 @@ const sections = [
         <li>We do not sell your data.</li>
         <li>
           We share it only with:
-          <ul className="list-disc list-inside ml-4 mt-1">
+          <ul className="list-[triangle] ml-6 mt-1 space-y-1">
             <li>Internal teams for processing</li>
             <li>Verified service providers and mentors</li>
             <li>Legal or regulatory bodies (if required)</li>

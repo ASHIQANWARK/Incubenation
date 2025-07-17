@@ -36,10 +36,10 @@ const TermsAndConditions = () => {
           <p className="text-gray-700">
             Email:{" "}
             <a
-              href="mailto:contact@incubenation.com"
+              href="mailto:contactus@incubenation.com"
               className="text-green-700 underline"
             >
-              contact@incubenation.com
+              contactus@incubenation.com
             </a>
           </p>
           <p className="text-gray-700">

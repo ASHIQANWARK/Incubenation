@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedin,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 import Logo from "../assets/images/incubenation1.png"; // Adjust the path as needed
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -21,7 +17,7 @@ const Footer = () => {
           />
         </div>
 
-        {/* Column 2: Address, Email, Privacy Policy, Terms & Help Centre */}
+        {/* Column 2: Address, Email, Links */}
         <div className="text-center md:text-left">
           <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
           <p className="text-gray-300">
@@ -31,21 +27,27 @@ const Footer = () => {
           <p className="text-gray-300 mt-2">
             Email:{" "}
             <a
-              href="mailto:ceo@incubenation.com"
+              href="mailto:contactus@incubenation.com"
               className="text-[#ffab00] hover:underline"
             >
-              contact@incubenation.com
+              contactus@incubenation.com
             </a>
           </p>
           <p className="text-gray-300 mt-2 space-x-2">
-            <Link to="/privacypolicy" className="text-[#ffab00] hover:underline">
+            <Link
+              to="/privacypolicy"
+              className="text-[#ffab00] hover:underline"
+            >
               Privacy Policy
-            </Link>
-            {" | "}
-            <Link to="/termsandconditions" className="text-[#ffa600] hover:underline">
+            </Link>{" "}
+            |{" "}
+            <Link
+              to="/termsandconditions"
+              className="text-[#ffa600] hover:underline"
+            >
               Terms & Conditions
-            </Link>
-            {" | "}
+            </Link>{" "}
+            |{" "}
             <Link to="/refundpolicy" className="text-[#ffab00] hover:underline">
               Refund Policy
             </Link>
@@ -58,16 +60,13 @@ const Footer = () => {
             Follow Us
           </h3>
           <div className="flex space-x-6">
-            {/* Facebook */}
             <a
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61572794128072"
               aria-label="Facebook"
               className="text-[#1358f9] transition duration-300 hover:scale-110 hover:opacity-80"
             >
               <FaFacebookF size={24} />
             </a>
-
-            {/* Instagram */}
             <a
               href="https://www.instagram.com/incubenation?igsh=MWRtbmxyZHNlYjhyMA=="
               aria-label="Instagram"
@@ -77,17 +76,13 @@ const Footer = () => {
             >
               <FaInstagram size={24} />
             </a>
-
-            {/* X / WhatsApp */}
             <a
-              href="#"
+              href="https://x.com/Incubenation"
               aria-label="X"
               className="text-[#2bf00c] transition duration-300 hover:scale-110 hover:opacity-80"
             >
               <FaX size={24} />
             </a>
-
-            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/company/incubenation"
               aria-label="LinkedIn"
@@ -103,13 +98,15 @@ const Footer = () => {
         {/* Column 4: Google Maps Location */}
         <div className="w-full flex justify-center md:justify-end">
           <iframe
-            title="Google Maps"
-            src="https://share.google/ggHeqGsDg47CmzXNO"
+            title="IncubeNation Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.002589143043!2d77.61409347585729!3d12.932496587385235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae151ec56f90a9%3A0xb9777b5aacf2cf0d!2sINCUBENATION%20By%20IQUE!5e0!3m2!1sen!2sin!4v1721206563000!5m2!1sen!2sin"
             width="100%"
-            height="180"
+            height="250"
             className="rounded-lg shadow-lg max-w-md"
             style={{ border: 0 }}
-            allowFullScreen
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
       </div>

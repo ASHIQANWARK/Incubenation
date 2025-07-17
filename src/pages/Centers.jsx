@@ -88,14 +88,14 @@ const MainContent = () => (
     />
     <div className="md:w-1/2">
       <h1 className="text-4xl font-extrabold text-[#061428] mb-4">
-        Welcome to Incubenation Center
+        Welcome to IncubeNation Center
       </h1>
       <p className="text-lg text-gray-700">
-        The Incubenation Center is a premier startup incubator dedicated to fostering innovation and entrepreneurship. We provide state-of-the-art coworking spaces, high-speed internet, modern facilities, and a thriving startup community. Our onsite mentoring program connects startups with industry experts, investors, and successful entrepreneurs for guidance and growth.
+        The IncubeNationCenter is a premier startup incubator dedicated to fostering innovation and entrepreneurship. We provide state-of-the-art coworking spaces, high-speed internet, modern facilities, and a thriving startup community. Our onsite mentoring program connects startups with industry experts, investors, and successful entrepreneurs for guidance and growth.
         <br />
         With structured accelerator programs, access to cutting-edge technology, and legal and financial advisory services, we empower startups to scale effectively. Recognized with multiple awards, Incubenation has helped numerous businesses secure funding and expand globally.
         <br />
-        Join Incubenation Center and take your startup to the next level! 🚀
+        Join IncubeNation Center and take your startup to the next level! 🚀
       </p>
     </div>
   </div>
@@ -104,7 +104,7 @@ const MainContent = () => (
 const FeatureSection = () => (
   <div className="container mx-auto px-6 py-16">
     <h2 className="text-3xl font-bold text-center mb-10 text-[#061428]">
-      Why Choose Incubenation Center?
+      Why Choose IncubeNation Center?
     </h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <FeatureCard icon={<FaBuilding />} title="Coworking Spaces" description="Modern workspaces for startups." />
