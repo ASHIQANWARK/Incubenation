@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaChevronDown } from "react-icons/fa";
@@ -7,30 +7,15 @@ import logo from "../assets/images/incubenation1.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
-  // Scroll detection
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Toggle functions
+  // Toggle handlers
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const closeDropdown = () => setIsDropdownOpen(false);
   const closeMobileMenu = () => setIsOpen(false);
 
   return (
-    <nav
-      className={`fixed w-full z-10 transition-all duration-300 ${
-        scrolled ? "bg-[#061428] shadow-md" : "bg-transparent"
-      }`}
-    >
+    <nav className="fixed w-full z-10 bg-[#061428] ">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
         <div className="flex items-center space-x-2">
@@ -48,19 +33,21 @@ const Navbar = () => {
             About
           </Link>
 
-          {/* Programs Dropdown */}
+          {/* Dropdown for Programs */}
           <div className="relative">
             <button
-              className="text-white hover:text-gray-300 flex items-center cursor-pointer"
+              className="text-white hover:text-gray-300 flex items-center"
               onClick={toggleDropdown}
             >
               Programs{" "}
               <FaChevronDown
-                className={`ml-1 ${isDropdownOpen ? "rotate-180" : ""}`}
+                className={`ml-1 transition-transform ${
+                  isDropdownOpen ? "rotate-180" : ""
+                }`}
               />
             </button>
             {isDropdownOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2">
+              <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 z-20">
                 {["center", "online", "campus", "business"].map((item) => (
                   <Link
                     key={item}
@@ -88,10 +75,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-white focus:outline-none"
-          >
+          <button onClick={toggleMenu} className="text-white focus:outline-none">
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
@@ -101,22 +85,14 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-white">
           <div className="flex flex-col space-y-2 p-4">
-            <Link
-              onClick={closeMobileMenu}
-              to="/"
-              className="text-black hover:text-gray-700"
-            >
+            <Link onClick={closeMobileMenu} to="/" className="text-black hover:text-gray-700">
               Home
             </Link>
-            <Link
-              onClick={closeMobileMenu}
-              to="/about"
-              className="text-black hover:text-gray-700"
-            >
+            <Link onClick={closeMobileMenu} to="/about" className="text-black hover:text-gray-700">
               About
             </Link>
 
-            {/* Mobile Dropdown for Programs */}
+            {/* Mobile Dropdown */}
             <div className="relative">
               <button
                 onClick={toggleDropdown}
@@ -124,7 +100,9 @@ const Navbar = () => {
               >
                 Programs{" "}
                 <FaChevronDown
-                  className={`ml-1 ${isDropdownOpen ? "rotate-180" : ""}`}
+                  className={`ml-1 transition-transform ${
+                    isDropdownOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
               {isDropdownOpen && (
@@ -137,35 +115,22 @@ const Navbar = () => {
                         closeDropdown();
                         closeMobileMenu();
                       }}
-                      className="block text-black hover:text-gray-700 text-left"
+                      className="block text-black hover:text-gray-700"
                     >
-                      Incubenation{" "}
-                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                      Incubenation {item.charAt(0).toUpperCase() + item.slice(1)}
                     </Link>
                   ))}
                 </div>
               )}
             </div>
 
-            <Link
-              onClick={closeMobileMenu}
-              to="/blog"
-              className="text-black hover:text-gray-700"
-            >
+            <Link onClick={closeMobileMenu} to="/blog" className="text-black hover:text-gray-700">
               Blog
             </Link>
-            <Link
-              onClick={closeMobileMenu}
-              to="/career"
-              className="text-black hover:text-gray-700"
-            >
+            <Link onClick={closeMobileMenu} to="/career" className="text-black hover:text-gray-700">
               Career
             </Link>
-            <Link
-              onClick={closeMobileMenu}
-              to="/contact"
-              className="text-black hover:text-gray-700"
-            >
+            <Link onClick={closeMobileMenu} to="/contact" className="text-black hover:text-gray-700">
               Contact
             </Link>
           </div>

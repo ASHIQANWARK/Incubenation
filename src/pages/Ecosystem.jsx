@@ -1,6 +1,7 @@
 import React from "react";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
+
 import CAP from "../assets/images/CAP.jpg";
 import careerCafe from "../assets/images/careercafe.jpg";
 import flyrad from "../assets/images/Flyrad.jpg";
@@ -9,7 +10,13 @@ import sib from "../assets/images/SIB.jpg";
 import ceosquare from "../assets/images/CEO Square.png";
 import akam from "../assets/images/akam-logo-green.png";
 import mainImage from "../assets/images/2image-removebg-preview.png";
-import { FaRocket, FaUsers, FaHandHoldingUsd, FaUniversity } from "react-icons/fa";
+
+import {
+  FaRocket,
+  FaUsers,
+  FaHandHoldingUsd,
+  FaUniversity,
+} from "react-icons/fa";
 
 const EcosystemSection = () => {
   const logos = [
@@ -33,7 +40,7 @@ const EcosystemSection = () => {
 
       {/* Scrolling Logos */}
       <div className="overflow-hidden w-full mb-14">
-        <div className="whitespace-nowrap animate-scroll flex gap-12">
+        <div className="flex whitespace-nowrap animate-scroll gap-12">
           {[...logos, ...logos].map((logo, index) => (
             <img
               key={index}

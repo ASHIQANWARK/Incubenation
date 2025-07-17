@@ -3,16 +3,16 @@ import { motion } from "framer-motion";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-emerald-950 flex items-center justify-center p-6 md:p-12">
+    <div className="min-h-screen p-6 md:p-12">
       <motion.div
-        className="max-w-4xl bg-white p-8 rounded-2xl shadow-xl"
+        className="max-w-4xl mx-auto bg-white p-8 rounded-2xl "
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         {/* Title */}
         <motion.h1
-          className="text-3xl md:text-4xl font-bold text-center text-emerald-900"
+          className="text-3xl md:text-4xl font-bold text-center text-gray-800"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -32,7 +32,7 @@ const PrivacyPolicy = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <h2 className="text-xl font-semibold text-emerald-600">{section.title}</h2>
+              <h2 className="text-xl font-semibold text-gray-700">{section.title}</h2>
               {section.content}
             </motion.div>
           ))}
@@ -46,9 +46,19 @@ const PrivacyPolicy = () => {
           transition={{ duration: 0.6 }}
         >
           <p className="text-gray-700">For questions or concerns regarding this Privacy Policy or your data, please contact:</p>
-          <p className="mt-2 font-semibold text-emerald-700">IncubeNation by Ique Ventures</p>
-          <p className="text-gray-600">Email: <a href="mailto:info@incubenation.com" className="text-emerald-700 underline">info@incubenation.com</a></p>
-          <p className="text-gray-600">Website: <a href="https://www.incubenation.com" className="text-emerald-700 underline">www.incubenation.com</a></p>
+          <p className="mt-2 font-semibold text-gray-800">IncubeNation by Ique Ventures</p>
+          <p className="text-gray-600">
+            Email:{" "}
+            <a href="mailto:contact@incubenation.com" className="text-blue-600 underline">
+              info@incubenation.com
+            </a>
+          </p>
+          <p className="text-gray-600">
+            Website:{" "}
+            <a href="https://www.incubenation.com" className="text-blue-600 underline">
+              www.incubenation.com
+            </a>
+          </p>
         </motion.div>
       </motion.div>
     </div>
@@ -59,15 +69,17 @@ const sections = [
   {
     title: "Compliance",
     content: (
-      <p className="text-gray-600">
+      <div className="text-gray-600">
         This Privacy Policy complies with:
         <ul className="list-disc list-inside mt-2">
           <li>The Information Technology Act, 2000</li>
           <li>The Digital Personal Data Protection Act, 2023</li>
           <li>Other relevant data protection laws in India</li>
         </ul>
-        We may revise this Policy periodically in response to legal updates or operational improvements.
-      </p>
+        <p className="mt-2">
+          We may revise this Policy periodically in response to legal updates or operational improvements.
+        </p>
+      </div>
     ),
   },
   {
@@ -132,7 +144,8 @@ const sections = [
     content: (
       <ul className="list-disc list-inside text-gray-600 space-y-2 mt-2">
         <li>We do not sell your data.</li>
-        <li>We share it only with:
+        <li>
+          We share it only with:
           <ul className="list-disc list-inside ml-4 mt-1">
             <li>Internal teams for processing</li>
             <li>Verified service providers and mentors</li>
