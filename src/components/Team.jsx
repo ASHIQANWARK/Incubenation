@@ -1,6 +1,6 @@
 import React from "react";
 import { User } from "lucide-react";
-import { FaInstagram, FaFacebook, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaInstagram, FaLinkedin } from "react-icons/fa6";
 
 // Correct Imports for Local Images
 import shafiImage from "../assets/images/IMG_3596.png";
