@@ -3,7 +3,7 @@ import { User } from "lucide-react";
 import { FaInstagram, FaLinkedin } from "react-icons/fa6";
 
 // Correct Imports for Local Images
-import shafiImage from "../assets/images/IMG_3596.png";
+import shafiImage from "../assets/images/shafi.jpg";
 import indumathiImage from "../assets/images/INDU MAAM.jpg"; 
 import arunImage from "../assets/images/arun.jpg";
 import varshaImage from "../assets/images/varsha.jpg";
