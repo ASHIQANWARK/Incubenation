@@ -40,7 +40,7 @@ const Contact = () => {
               </div>
               <div>
                 <h5 className="font-bold text-lg">Call Us</h5>
-                <p className="text-lg">+91-9035514814</p>
+                <p className="text-lg">+91-9035514812</p>
               </div>
             </div>
             <div className="flex items-center p-6 rounded-xl shadow-xl bg-white bg-opacity-40 backdrop-blur-md">
@@ -49,7 +49,7 @@ const Contact = () => {
               </div>
               <div>
                 <h5 className="font-bold text-lg">Email Us</h5>
-                <p className="text-lg">ceo@incubenation.com</p>
+                <p className="text-lg">contact@incubenation.com</p>
               </div>
             </div>
           </div>

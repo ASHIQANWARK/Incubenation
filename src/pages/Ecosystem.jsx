@@ -7,9 +7,8 @@ import flyrad from "../assets/images/Flyrad.jpg";
 import franchisify from "../assets/images/Franchisify.in (1).png";
 import sib from "../assets/images/SIB.jpg";
 import ceosquare from "../assets/images/CEO Square.png";
-
 import akam from "../assets/images/akam-logo-green.png";
-import mainImage from "../assets/images/2image-removebg-preview.png"; 
+import mainImage from "../assets/images/2image-removebg-preview.png";
 import { FaRocket, FaUsers, FaHandHoldingUsd, FaUniversity } from "react-icons/fa";
 
 const EcosystemSection = () => {
@@ -24,29 +23,30 @@ const EcosystemSection = () => {
   ];
 
   return (
-    <section className="py-16  px-10 flex flex-col items-center ">
+    <section className="py-16 px-6 flex flex-col items-center bg-white">
       {/* Header */}
-      <div className="text-center mb-10">
-        <h2 className="text-4xl font-bold text-gray-900 mb-6">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">
           100+ Projects and Companies Developed with Our Ecosystem
         </h2>
+      </div>
 
-        {/* Logo Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 justify-items-center mb-6">
-          {logos.map((logo, index) => (
-            <motion.img
+      {/* Scrolling Logos */}
+      <div className="overflow-hidden w-full mb-14">
+        <div className="whitespace-nowrap animate-scroll flex gap-12">
+          {[...logos, ...logos].map((logo, index) => (
+            <img
               key={index}
               src={logo.src}
               alt={logo.alt}
-              className="h-16 md:h-20 lg:h-24 transition-transform transform hover:scale-110"
-              whileHover={{ scale: 1.1 }}
+              className="h-16 md:h-20 lg:h-24 object-contain"
             />
           ))}
         </div>
       </div>
 
-      {/* Content Section: Image on Left, Counters on Right */}
-      <div className="flex flex-col md:flex-row items-center justify-between w-full">
+      {/* Content Section */}
+      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl">
         {/* Left Side - Image */}
         <motion.div
           className="md:w-1/2 flex justify-center"
@@ -54,7 +54,7 @@ const EcosystemSection = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <img src={mainImage} alt="Ecosystem" className="w-96 rounded-lg" />
+          <img src={mainImage} alt="Ecosystem" className="w-80 md:w-96 rounded-lg" />
         </motion.div>
 
         {/* Right Side - Animated Counters */}

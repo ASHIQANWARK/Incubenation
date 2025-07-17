@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ShefinImage from "../assets/images/shefin.jpg";
 import hashImage from "../assets/images/hashim.jpg";
 import abhiImage from "../assets/images/abhirami.jpg";
-import jinoImage from "../assets/images/jino.jpg";
+import jinoImage from "../assets/images/jino.jpg";                                                                                  
 import shaazImage from "../assets/images/Shaaz.jpg";
 
 

@@ -89,7 +89,7 @@ const FloatingButtons = () => {
               ))}
             </div>
             <a
-              href="https://wa.me/9035514814"
+              href="https://wa.me/9035514812"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-center bg-green-500 text-white py-2 rounded-lg mt-4 hover:bg-green-600 transition duration-300"

@@ -47,8 +47,8 @@ const Hero = () => {
     <section className="relative min-h-screen flex flex-col justify-center items-center px-6 py-16 lg:py-24">
       {/* Background Layer */}
       <div
-        className="absolute inset-0 bg-cover bg-center h-3/4 w-full"
-        style={{ backgroundImage: `url(${svg})` }}
+        className="absolute inset-0 bg-gradient-to-b from-[#061428] to-[#0b1c3a] bg-center h-3/4 w-full"
+        
       ></div>
 
       <div className="absolute bottom-0 bg-white h-1/4 w-full"></div>
@@ -148,10 +148,10 @@ const Hero = () => {
                     ? "rounded-bl-[50px] rounded-tr-[50px]"
                     : "rounded-tl-[50px] rounded-br-[50px]"
                 }`}
-              style={{ backgroundImage: `url(${item.bgImage})` }}
+              
             >
               {/* Dark overlay */}
-              <div className="absolute inset-0 bg-black/80 rounded-[inherit] z-0"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-[#061428] to-[#0b1c3a] rounded-[inherit] z-0"></div>
 
               {/* Content */}
               <div className="relative z-10 flex flex-col items-center h-full w-full">
@@ -178,7 +178,7 @@ const Hero = () => {
                 <motion.div whileHover={{ scale: 1.1 }} className="mt-auto">
                   <Link
                     to={item.link}
-                    className="mt-5 bg-green-600 text-white border border-gray-900 px-5 py-2 rounded-full shadow-md transition-transform duration-300 hover:text-orange-600 hover:border-orange-600"
+                    className="mt-5 bg-green-600 text-white border border-gray-900 px-5 py-2 rounded-full shadow-md transition-transform duration-300 hover:text-white-600 hover:border-white-600"
                   >
                     Learn More..
                   </Link>
