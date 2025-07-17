@@ -15,9 +15,7 @@ const team = [
     image: shafiImage,
     social: {
       instagram: "https://www.instagram.com/shafishoukath?igsh=MWM0Nnk5NDRtN2g3bA==",
-      twitter: "https://twitter.com/shafi",
       linkedin: "https://www.linkedin.com/in/shafi-shoukath/",
-      facebook: "https://facebook.com/shafi",
     },
   },
   {
@@ -26,9 +24,8 @@ const team = [
     image: indumathiImage,
     social: {
       instagram: "https://www.instagram.com/indumurthy.official?igsh=NXdkZDljZGxiNG03",
-      twitter: "https://twitter.com/indumathi",
       linkedin: "https://www.linkedin.com/in/indu-murthy/",
-      facebook: "https://facebook.com/indumathi",
+      
     },
   },
   {
@@ -36,10 +33,9 @@ const team = [
     role: "CFO",
     image: varshaImage,
     social: {
-      instagram: "https://instagram.com/varsha",
-      twitter: "https://twitter.com/varsha",
-      linkedin: "https://linkedin.com/in/varsha",
-      facebook: "https://facebook.com/varsha",
+      instagram: "https://www.instagram.com/varsha.sivanarayan?igsh=MW5hcGk0bTRiZnhvNQ== ",
+      linkedin: "https://www.linkedin.com/in/varsha-s-1775a5251?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      
     },
   },
   {
@@ -47,10 +43,9 @@ const team = [
     role: "CSO",
     image: arunImage,
     social: {
-      instagram: "https://instagram.com/arundas",
-      twitter: "https://twitter.com/arundas",
-      linkedin: "https://linkedin.com/in/arundas",
-      facebook: "https://facebook.com/arundas",
+      instagram: "https://www.instagram.com/arundas_janardhanan?igsh=MWJiMm5hMHE5dGk3Ng== ",
+      linkedin: "https://www.linkedin.com/in/arundas-janardhanan-mv-%E2%98%86-25a138176?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      
     },
   },
 ];
@@ -91,14 +86,8 @@ const Team = () => {
                 <a href={member.social.instagram} className="text-white hover:text-[#E1306C] transition" target="_blank" rel="noopener noreferrer">
                   <FaInstagram size={22} />
                 </a>
-                <a href={member.social.twitter} className="text-white hover:text-[#1DA1F2] transition" target="_blank" rel="noopener noreferrer">
-                  <FaXTwitter size={22} />
-                </a>
                 <a href={member.social.linkedin} className="text-white hover:text-[#0077B5] transition" target="_blank" rel="noopener noreferrer">
                   <FaLinkedin size={22} />
-                </a>
-                <a href={member.social.facebook} className="text-white hover:text-[#1877F2] transition" target="_blank" rel="noopener noreferrer">
-                  <FaFacebook size={22} />
                 </a>
               </div>
             </div>
