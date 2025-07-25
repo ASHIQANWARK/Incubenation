@@ -48,7 +48,7 @@ function App() {
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
           <Route path="/refundpolicy" element={<RefundPolicy />} />
         </Route>
-
+          <Analytics />
         {/* Catch-All Route */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
