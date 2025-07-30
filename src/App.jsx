@@ -1,6 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react"
+
 // Layout Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -48,7 +48,7 @@ function App() {
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
           <Route path="/refundpolicy" element={<RefundPolicy />} />
         </Route>
-          <Analytics />
+         
         {/* Catch-All Route */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
