@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import HeroImage from "../assets/images/img3.png";
-import svg from "../assets/images/svg1.jpg";
+import HeroImage from "../assets/images/hero3.png";
 import IncubationNationIcon from "../assets/images/incubenation-DP-3.png";
 import onlinebg from "../assets/images/online.jpg";
 import centerbg from "../assets/images/img20.jpg"
