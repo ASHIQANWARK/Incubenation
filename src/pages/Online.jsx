@@ -21,11 +21,11 @@ const HeaderSection = () => (
 
     <div className="container mx-auto px-6 relative z-10">
       <div className="max-w-4xl mx-auto text-center">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        <h3 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">
             IncubeNation Online
           </span>
-        </h1>
+        </h3>
         <p className="text-xl md:text-2xl text-blue-100 font-light max-w-3xl mx-auto">
           Empowering Founders Anytime, Anywhere with World-Class Digital
           Incubation
