@@ -1,71 +1,160 @@
 import React from "react";
 import Slider from "react-slick";
-import { User } from "lucide-react";
+import {  Award } from "lucide-react";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// Import images - make sure these paths are correct
 import ShefinImage from "../assets/images/shefin.jpg";
 import hashImage from "../assets/images/hashim.jpg";
 import abhiImage from "../assets/images/abhirami.jpg";
 import jinoImage from "../assets/images/jino.jpg";                                                                                  
 import shaazImage from "../assets/images/Shaaz.jpg";
-
+// Placeholder images for new members - replace with actual images when available
+import shubhamImage from "../assets/images/shubham.jpeg";
+import avinashImage from "../assets/images/Avinash.jpg";
+import vikrantImage from "../assets/images/Vikrant.jpeg";
+import kirtiImage from "../assets/images/kirti.jpeg"
 
 const advisors = [
-  { name: "Shefin", title: "STUDY IN BANGALORE (CEO)", image: ShefinImage },
-  { name: "Hashim", title: "CAREER CAFE (CEO)", image: hashImage },
-  { name: "Abhirami", title: "FLYRAD (CEO)", image: abhiImage },
-  { name: "Jino Joseph", title: "FRANCHISIFY (CEO)", image: jinoImage },
-  { name: "Shaaz", title: "IqueCap", image: shaazImage },
-
+  { 
+    name: "Kirti Yadavi", 
+    title: "Mentor, Wellness & Entrepreneurship", 
+    image: kirtiImage,
+    description: "A wellness entrepreneur and certified holistic nutritionist, Kirti combines 10+ years of corporate experience at IBM, Target, and AIG with her entrepreneurial journey of building KuKClean—an IIM Bangalore and IIMR incubated startup that also received an RKVY Raftaar grant. Known for her authenticity and community-driven approach, she brings real-world lessons of resilience, creativity, and innovation to mentor aspiring founders at Incubenation.",
+  },
+  { 
+    name: "Shubham Mehta", 
+    title: "Mentor, Fundraising & Strategy", 
+    image: shubhamImage,
+    description: "With 12+ years in the startup ecosystem, Shubham specializes in fundraising, growth, and strategy. Currently Fundraising & Strategy Lead at EMotorad, he has also worked with LoveLocal and Edelweiss, and actively mentors early-stage founders.",
+  },
+  { 
+    name: "Avinash G Nair", 
+    title: "Mentor, Marketing & Business Growth", 
+    image: avinashImage,
+    description: "CEO of eFoinix Solutions and Fractional CMO at ABM Innovations, brings 9+ years of expertise in marketing strategy, GTM planning, and business growth. He has mentored numerous startups across India and the Middle East, helping founders craft scalable models and achieve sustainable success.",
+  },
+  { 
+    name: "Vikrant", 
+    title: "Business Development & E-commerce Expert", 
+    image: vikrantImage,
+    description: "With 17+ years of experience across global brands like Whirlpool, Black+Decker, RhinoShield, and PopSockets, Vikrant is a seasoned leader in business development, P&L management, and e-commerce growth. Currently leading GoLoud as Eksa Gaming’s India partner, he brings deep expertise in scaling businesses, building distribution networks, and driving impactful growth.",
+  },
+  
+  { 
+    name: "Shaaz Bin Maharoof", 
+    title: "Mentor, IqueCap (FOUNDER, CEO)", 
+    image: shaazImage,
+    description: "Financial strategist and founder of IqueCap with extensive expertise in investment planning, capital management, and financial structuring for growing businesses. Shaaz specializes in helping startups secure funding, optimize financial operations, and develop sustainable growth strategies. His approach combines analytical rigor with practical business insights to create financially viable and scalable business models.",
+  },
+  { 
+    name: "Shefin", 
+    title: "Mentor, STUDY IN BANGALORE (CEO)", 
+    image: ShefinImage,
+    description: "Expert in educational consulting with over 10 years of experience helping students achieve their academic goals. As CEO of Study in Bangalore, Shefin has developed comprehensive educational pathways and career guidance programs that have helped thousands of students navigate higher education opportunities. Her expertise includes academic counseling, institution selection, and career planning for both domestic and international education markets.",
+  },
+  { 
+    name: "Hashim", 
+    title: "Mentor, CAREER CAFE (CEO)", 
+    image: hashImage,
+    description: "Career development specialist focused on creating pathways for professional growth and success. As CEO of Career Cafe, Hashim has built a platform that connects aspiring professionals with industry experts and career opportunities. His work encompasses career counseling, skill development programs, and corporate training initiatives that bridge the gap between education and employment across various industries.",
+  },
+  { 
+    name: "Jino Joseph", 
+    title: "Mentor, FRANCHISIFY (CEO)", 
+    image: jinoImage,
+    description: "Business expansion expert specializing in franchise models and scalable business strategies. As CEO of Franchisify, Jino has helped numerous brands establish successful franchise networks across India and internationally. His expertise includes franchise development, operational standardization, territory management, and growth strategy implementation for both established brands and emerging businesses looking to scale through franchising.",
+  },
+  { 
+    name: "Abhirami", 
+    title: "Mentor, FLYRAD (CEO)", 
+    image: abhiImage,
+    description: "Innovation-driven entrepreneur with a passion for technology solutions that transform industries. As CEO of Flyrad, Abhirami leads a team developing cutting-edge technological solutions for modern business challenges. Her expertise spans product development, technology implementation, digital transformation, and building scalable tech startups. She brings hands-on experience in navigating the complexities of tech entrepreneurship from ideation to market leadership.",
+  },
 ];
+  
+  
+  
+
 
 const Advisors = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 1000,
-    slidesToShow: 3,
+    speed: 800,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000, // Adjust speed for smoother scrolling
-    cssEase: "linear",
-    pauseOnHover: false,
+    autoplaySpeed: 3000,
+    cssEase: "ease-in-out",
+    pauseOnHover: true,
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 768, settings: { slidesToShow: 1 } }
+      { 
+        breakpoint: 1280, 
+        settings: { slidesToShow: 3 } 
+      },
+      { 
+        breakpoint: 1024, 
+        settings: { slidesToShow: 2 } 
+      },
+      { 
+        breakpoint: 640, 
+        settings: { slidesToShow: 1 } 
+      }
     ]
   };
-  
 
   return (
-    <div className="py-16 bg-white">
-      <div className="container mx-auto px-6">
+    <div className="py-12 bg-white">
+      <div className="container mx-auto px-3">
         {/* Section Heading */}
-        <h2 className="text-4xl font-bold text-center text-[#0b081f] mb-12 ">
-          Our Advisors
-          
-        </h2>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+            Our <span className="text-blue-600">Advisors</span>
+          </h2>
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">
+            Industry experts guiding our vision with their extensive experience and knowledge
+          </p>
+        </div>
 
         {/* Advisors Carousel */}
         <Slider {...settings}>
           {advisors.map((advisor, index) => (
-            <div key={index} className="px-4">
-              <div className="bg-gradient-to-b from-[#061428] to-[#0b1c3a] rounded-lg shadow-lg overflow-hidden p-6 flex flex-col items-center transition-all hover:shadow-2xl hover:scale-105">
-                {/* Profile Image */}
-                <div className="w-40 h-40 rounded-full overflow-hidden">
+            <div key={index} className="px-2 focus:outline-none">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg group h-full flex flex-col">
+                {/* Profile Image Container with Square Aspect Ratio */}
+                <div className="relative w-full pt-[100%] overflow-hidden bg-gray-200">
                   <img
                     src={advisor.image}
                     alt={advisor.name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => (e.target.src = "https://via.placeholder.com/200")}
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    onError={(e) => {
+                      e.target.src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80";
+                      e.target.className = "absolute inset-0 w-full h-full object-cover object-center";
+                    }}
                   />
+                  <div className="absolute top-2 right-2 bg-blue-500 rounded-full p-1 shadow-sm">
+                    <Award size={12} className="text-white" />
+                  </div>
                 </div>
+                
+                {/* Content Area */}
+                <div className="p-4 flex flex-col flex-grow">
+                  {/* Advisor Details */}
+                  <div className="text-center mb-3">
+                    <h3 className="text-lg font-bold text-gray-900 leading-tight">{advisor.name}</h3>
+                    <p className="text-xs text-blue-600 font-medium mt-1">{advisor.title}</p>
+                  </div>
 
-                {/* Advisor Details */}
-                <h3 className="text-lg font-semibold mt-4 text-white">{advisor.name}</h3>
-                <p className="text-sm text-gray-300 text-center mt-2">{advisor.title}</p>
+                  {/* Description */}
+                  <div className="mb-4 relative flex-grow">
+                    <p className="text-gray-600 text-xs italic text-center leading-tight">
+                      "{advisor.description}"
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
