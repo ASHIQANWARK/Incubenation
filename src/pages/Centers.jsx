@@ -23,7 +23,7 @@ import sib from "../assets/images/SIB.jpg";
 import ceosquare from "../assets/images/CEO Square.png";
 import lyec from "../assets/images/lyec.jpg";
 import akam from "../assets/images/akam-logo-green.png";
-import img20 from "../assets/images/img20.jpg";
+import img20 from "../assets/images/incube.jpg";
 import art1 from "../assets/images/art1.jpg";
 import art2 from "../assets/images/art2.jpg";
 import art4 from "../assets/images/art4.jpg";

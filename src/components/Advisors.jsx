@@ -5,12 +5,6 @@ import {  Award } from "lucide-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// Import images - make sure these paths are correct
-import ShefinImage from "../assets/images/shefin.jpg";
-import hashImage from "../assets/images/hashim.jpg";
-import abhiImage from "../assets/images/abhirami.jpg";
-import jinoImage from "../assets/images/jino.jpg";                                                                                  
-import shaazImage from "../assets/images/Shaaz.jpg";
 // Placeholder images for new members - replace with actual images when available
 import shubhamImage from "../assets/images/shubham.jpeg";
 import avinashImage from "../assets/images/Avinash.jpg";
@@ -37,42 +31,12 @@ const advisors = [
     description: "CEO of eFoinix Solutions and Fractional CMO at ABM Innovations, brings 9+ years of expertise in marketing strategy, GTM planning, and business growth. He has mentored numerous startups across India and the Middle East, helping founders craft scalable models and achieve sustainable success.",
   },
   { 
-    name: "Vikrant", 
+    name: "Vikrant Khanolkar", 
     title: "Business Development & E-commerce Expert", 
     image: vikrantImage,
     description: "With 17+ years of experience across global brands like Whirlpool, Black+Decker, RhinoShield, and PopSockets, Vikrant is a seasoned leader in business development, P&L management, and e-commerce growth. Currently leading GoLoud as Eksa Gaming’s India partner, he brings deep expertise in scaling businesses, building distribution networks, and driving impactful growth.",
   },
   
-  { 
-    name: "Shaaz Bin Maharoof", 
-    title: "Mentor, IqueCap (FOUNDER, CEO)", 
-    image: shaazImage,
-    description: "Financial strategist and founder of IqueCap with extensive expertise in investment planning, capital management, and financial structuring for growing businesses. Shaaz specializes in helping startups secure funding, optimize financial operations, and develop sustainable growth strategies. His approach combines analytical rigor with practical business insights to create financially viable and scalable business models.",
-  },
-  { 
-    name: "Shefin", 
-    title: "Mentor, STUDY IN BANGALORE (CEO)", 
-    image: ShefinImage,
-    description: "Expert in educational consulting with over 10 years of experience helping students achieve their academic goals. As CEO of Study in Bangalore, Shefin has developed comprehensive educational pathways and career guidance programs that have helped thousands of students navigate higher education opportunities. Her expertise includes academic counseling, institution selection, and career planning for both domestic and international education markets.",
-  },
-  { 
-    name: "Hashim", 
-    title: "Mentor, CAREER CAFE (CEO)", 
-    image: hashImage,
-    description: "Career development specialist focused on creating pathways for professional growth and success. As CEO of Career Cafe, Hashim has built a platform that connects aspiring professionals with industry experts and career opportunities. His work encompasses career counseling, skill development programs, and corporate training initiatives that bridge the gap between education and employment across various industries.",
-  },
-  { 
-    name: "Jino Joseph", 
-    title: "Mentor, FRANCHISIFY (CEO)", 
-    image: jinoImage,
-    description: "Business expansion expert specializing in franchise models and scalable business strategies. As CEO of Franchisify, Jino has helped numerous brands establish successful franchise networks across India and internationally. His expertise includes franchise development, operational standardization, territory management, and growth strategy implementation for both established brands and emerging businesses looking to scale through franchising.",
-  },
-  { 
-    name: "Abhirami", 
-    title: "Mentor, FLYRAD (CEO)", 
-    image: abhiImage,
-    description: "Innovation-driven entrepreneur with a passion for technology solutions that transform industries. As CEO of Flyrad, Abhirami leads a team developing cutting-edge technological solutions for modern business challenges. Her expertise spans product development, technology implementation, digital transformation, and building scalable tech startups. She brings hands-on experience in navigating the complexities of tech entrepreneurship from ideation to market leadership.",
-  },
 ];
   
   

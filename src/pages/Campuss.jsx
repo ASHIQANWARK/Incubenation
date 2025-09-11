@@ -6,7 +6,7 @@ import {
   FaUsersCog,
   FaUniversity,
 } from "react-icons/fa";
-import img20 from "../assets/images/img20.jpg"; // Ensure this path is correct
+import img20 from "../assets/images/incube.jpg"; // Ensure this path is correct
 
 const HeaderSection = () => (
   <div className="flex flex-col items-center justify-center text-center py-16 bg-gradient-to-b from-[#061428] to-[#0b1c3a] text-white">

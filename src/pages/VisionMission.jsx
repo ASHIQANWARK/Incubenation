@@ -1,6 +1,6 @@
 import React from "react";
-import Image2 from "../assets/images/startup (2).jpg";
-import Image3 from "../assets/images/startup.jpg";
+import Image2 from "../assets/images/img12.jpg";
+import Image3 from "../assets/images/img10.jpg";
 
 const VisionMission = () => {
   return (
@@ -23,11 +23,19 @@ const VisionMission = () => {
             <h2 className="text-2xl md:text-3xl font-semibold text-[#061428]">
               Transforming Vision into Value
             </h2>
-            <img
-              src={Image2}
-              alt="Office"
-              className="rounded-2xl w-full h-72 object-cover shadow-lg"
-            />
+            
+            {/* Image Container with Fixed Aspect Ratio */}
+            <div className="relative w-full aspect-video overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src={Image2}
+                alt="Office"
+                className="w-full h-full object-cover object-center"
+                onError={(e) => {
+                  e.target.src = "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+                }}
+              />
+            </div>
+            
             <p className="text-gray-700 text-lg leading-relaxed">
               IncubeNation Bengaluru is a startup incubator created by Ique Ventures to support and develop early-stage startups. Our mission is to empower entrepreneurs by providing them with the tools, resources, and mentorship needed to build scalable businesses. We offer a comprehensive range of services tailored to help startups through every stage of their growth journey, from ideation to successful market entry and expansion.
             </p>
@@ -53,11 +61,18 @@ const VisionMission = () => {
               <p className="text-gray-700 text-lg leading-relaxed mb-4">
                 Our mission is to empower startups by providing them with the tools, guidance, and resources needed to succeed. Through comprehensive incubation programs, expert mentorship, and a supportive community, we aim to turn entrepreneurial visions into impactful businesses that make a difference in the world.
               </p>
-              <img
-                src={Image3}
-                alt="Team Mission"
-                className="rounded-2xl w-full h-64 object-cover shadow-lg"
-              />
+              
+              {/* Image Container with Fixed Aspect Ratio */}
+              <div className="relative w-full aspect-video overflow-hidden rounded-2xl shadow-lg">
+                <img
+                  src={Image3}
+                  alt="Team Mission"
+                  className="w-full h-full object-cover object-center"
+                  onError={(e) => {
+                    e.target.src = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
