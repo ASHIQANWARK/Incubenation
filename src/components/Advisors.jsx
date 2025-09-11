@@ -19,7 +19,7 @@ import kirtiImage from "../assets/images/kirti.jpeg"
 
 const advisors = [
   { 
-    name: "Kirti Yadavi", 
+    name: "Kirti Yadav", 
     title: "Mentor, Wellness & Entrepreneurship", 
     image: kirtiImage,
     description: "A wellness entrepreneur and certified holistic nutritionist, Kirti combines 10+ years of corporate experience at IBM, Target, and AIG with her entrepreneurial journey of building KuKClean—an IIM Bangalore and IIMR incubated startup that also received an RKVY Raftaar grant. Known for her authenticity and community-driven approach, she brings real-world lessons of resilience, creativity, and innovation to mentor aspiring founders at Incubenation.",
