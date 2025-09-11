@@ -46,7 +46,7 @@ const Hero = () => {
     <section className="relative min-h-screen flex flex-col justify-center items-center px-6 py-16 lg:py-24">
       {/* Background Layer */}
       <div
-        className="absolute inset-0 bg-gradient-to-b from-[#061428] to-[#0b1c3a] bg-center h-3/4 w-full"
+        className="absolute inset-0 bg-gradient-to-br from-[#061428] via-[#0A2342] to-[#152C5E] bg-center h-3/4 w-full"
         
       ></div>
 
