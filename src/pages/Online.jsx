@@ -87,16 +87,13 @@ const MainContent = () => {
               isVisible ? "opacity-100 translate-y-0" : "translate-y-10 opacity-0"
             }`}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               IncubeNation Online – Empowering Founders Anytime, Anywhere
-            </h1>
+            </h3>
             <p className="text-lg text-gray-600 mb-4">
               IncubeNation Online is our digital-first program designed to make
               high-quality startup mentoring and entrepreneurship education
-              accessible to founders across India and beyond.
-            </p>
-            <p className="text-lg text-gray-600 mb-4">
-              It bridges the gap between structured learning and real-world
+              accessible to founders across India and beyond.It bridges the gap between structured learning and real-world
               application by combining:
             </p>
             <ul className="space-y-2 text-gray-600 mb-4 text-left inline-block">
