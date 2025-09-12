@@ -7,7 +7,7 @@ import ChatBot from "../components/ChatBot";
 import FAQ from "../pages/FAQ";
 import EcosystemSection from "./Ecosystem";
 import Offerings from "./Offerings";
-import LatestBlog from "./LatestBlog";
+
 import Testimonial from "./Testimonials";
 
 
@@ -23,7 +23,7 @@ const Home = () => {
       <Testimonial />
       <FAQ />
       <Team />
-      <LatestBlog />   
+       
       <ChatBot />
       
     </div>
