@@ -279,37 +279,35 @@ const Hero = () => {
             </motion.div>
           </div>
         </motion.div>
-
-        {/* Right: Hero Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="lg:w-1/2 flex justify-center relative"
-        >
-          <div className="relative w-full max-w-md">
-            {/* Floating container with glass effect */}
-            <motion.div 
-              initial={{ rotate: 0 }}
-              animate={{ rotate: 5 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute -inset-4 bg-[#2A3F80]"
-            />
-            
-            <div className="relative  overflow-hidden">
-              
-              <img
-                src={HeroImage}
-                alt="Incubation Hub - Startup Growth Platform"
-                className="w-full rounded-xl relative z-10"
-              />
-            </div>
-            
-            {/* Decorative elements */}
-            
-          </div>
-        </motion.div>
+{/* Right: Hero Image - Minimalist Luxury */}
+<motion.div
+  initial={{ opacity: 0, x: 50 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+  className="lg:w-1/2 flex justify-center relative"
+>
+  <div className="relative w-full max-w-2xl">
+    {/* Main image with elegant frame */}
+    <div className="relative group">
+      {/* Elegant border effect */}
+      <div className="absolute -inset-4  transform group-hover:scale-105 transition-transform duration-700"></div>
+      
+      {/* Image container */}
+      <div className="relative rounded-2xl overflow-hidden">
+        <img
+          src={HeroImage}
+          alt="Incubation Hub - Startup Growth Platform"
+          className="w-full h-auto max-h-[650px] object-cover object-center rounded-2xl transform group-hover:scale-102 transition-transform duration-1000"
+          loading="eager"
+        />
+      
       </div>
+    </div>
+    
+    
+  </div>
+</motion.div>
+</div>
 
       {/* Focus Areas Section */}
       <div className="relative mt-28 w-full max-w-7xl mx-auto px-4 z-10">

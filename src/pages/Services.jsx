@@ -63,15 +63,15 @@ const servicesData = [
 
 const Services = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-[#f8f9fc] to-[#e9ecf5]">
+    <section className="py-20 ">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-light text-[#1a2b4d] mb-4">
+          <h2 className="text-4xl md:text-5xl font-light text-[#ffffff] mb-4">
             Why Choose Us?
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[#d4af37] to-[#b8941f] mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-white max-w-2xl mx-auto">
             Discover the benefits of joining our community and why we stand out as the perfect place for startups and businesses.
           </p>
         </div>

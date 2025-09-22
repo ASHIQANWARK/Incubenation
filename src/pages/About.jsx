@@ -16,6 +16,9 @@ import award1 from "../assets/images/art17.jpg";
 import award2 from "../assets/images/art15.jpg";
 import award3 from "../assets/images/art14.jpg";
 
+// Import your background image
+import backgroundImage from "../assets/images/bg.jpg"; // Replace with your actual image path
+
 const awards = [
   {
     image: award1,
@@ -62,27 +65,26 @@ const AwardCarousel = () => {
   };
 
   return (
-    <div className="py-20 bg-white">
+    <div className="py-20  backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h3 className="text-4xl font-semibold text-gray-900 mb-4">Awards & Recognition</h3>
-     
+        <h3 className="text-4xl font-semibold text-white mb-4">Awards & Recognition</h3>
         
         <Slider {...sliderSettings} className="award-slider">
           {awards.map((award, index) => (
             <div key={index} className="px-4 focus:outline-none">
-              <div className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-full">
-                <div className="overflow-hidden h-64 flex items-center justify-center bg-gray-50">
+              <div className=" backdrop-blur-md rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-full border border-white/20">
+                <div className="overflow-hidden h-64 flex items-center justify-center bg-white">
                   <img
                     src={award.image}
                     alt={award.title}
                     className="w-full h-full object-contain transition-transform duration-500 hover:scale-105 p-4"
                   />
                 </div>
-                <div className="p-6 flex-grow flex flex-col">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">{award.title}</h4>
-                  <p className="text-gray-600 flex-grow">{award.description}</p>
-                  <div className="mt-4 pt-4 border-t border-gray-100 bg-[#341969]">
-                    <span className="text-sm text-[#ffffff] font-medium">2025 Achievement</span>
+                <div className="p-6 flex-grow flex flex-col bg-white">
+                  <h4 className="text-xl font-semibold text-black` mb-2">{award.title}</h4>
+                  <p className="text-gray-700 flex-grow">{award.description}</p>
+                  <div className="mt-4 pt-4 border-t border-gray-200/50 bg-gradient-to-r from-[#341969] to-[#4a2a8c]">
+                    <span className="text-sm text-white font-medium">2025 Achievement</span>
                   </div>
                 </div>
               </div>
@@ -95,10 +97,23 @@ const AwardCarousel = () => {
 };
 
 const About = () => (
-  <div className="relative py-28 bg-gradient-to-br from-[#0f1e3a] to-[#1a2b4d] text-white overflow-hidden">
+  <div 
+    className="relative py-28 text-white overflow-hidden min-h-[60vh] flex items-center"
+    style={{
+      backgroundImage: ` url(${backgroundImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      backgroundRepeat: 'no-repeat'
+    }}
+  >
+    {/* Overlay for better text readability */}
+    <div className="absolute inset-0 bg-black/20"></div>
+    
     <div className="absolute inset-0 opacity-10">
       <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2Utb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNIDAgMCBMIDYwIDYwIE0gNjAgMCBMIDAgNjAiLz48L2c+PC9zdmc+')]"></div>
     </div>
+    
     <div className="max-w-5xl mx-auto px-8 text-center relative z-10">
       <h2 className="text-5xl font-light tracking-wide mb-8">About Us</h2>
       <div className="w-20 h-1 bg-gradient-to-r from-[#d4af37] to-[#b8941f] mx-auto mb-10"></div>
@@ -113,39 +128,46 @@ const About = () => (
 );
 
 const Breadcrumbs = () => (
-  <div className="bg-gray-100 py-4 border-b border-gray-200">
+  <div 
+    className="py-6 relative"
+    style={{
+      backgroundImage: ` url(${backgroundImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}
+  >
     <div className="max-w-7xl mx-auto px-6">
-      <nav className="text-gray-600 text-sm">
-        <ul className="flex space-x-2 items-center">
-          <li>
-            <a href="/" className="hover:text-[#1a2b4d] transition-colors">
-              Home
-            </a>
-          </li>
-          <span className="text-gray-400">
-            <FaChevronRight className="text-xs" />
-          </span>
-          <li>
-            <a href="/" className="hover:text-[#1a2b4d] transition-colors">
-              Program
-            </a>
-          </li>
-          <span className="text-gray-400">
-            <FaChevronRight className="text-xs" />
-          </span>
-          <li className="font-medium text-[#1a2b4d]">
-            IncubeNation
-          </li>
-        </ul>
+      <nav className="flex items-center justify-center space-x-2 text-white/80">
+        <a 
+          href="/" 
+          className="hover:text-white transition-colors duration-200 px-2 py-1 rounded hover:bg-white/10"
+        >
+          Home
+        </a>
+        <FaChevronRight className="text-xs text-white/40" />
+        
+        <span className="text-white font-medium bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
+          IncubeNation
+        </span>
       </nav>
+      
+   
     </div>
   </div>
 );
 
 const CoreValues = () => (
-  <div className="py-20 bg-gray-50">
+  <div 
+    className="py-20"
+    style={{
+      backgroundImage: ` url(${backgroundImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed'
+    }}
+  >
     <div className="max-w-7xl mx-auto px-6 text-center">
-      <h3 className="text-4xl font-semibold text-gray-900 mb-4">Our Core Values</h3>
+      <h3 className="text-4xl font-semibold text-white mb-4">Our Core Values</h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
@@ -172,14 +194,14 @@ const CoreValues = () => (
         ].map((value, index) => (
           <div
             key={index}
-            className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-[#d4af37]/20 relative overflow-hidden"
+            className="bg-white/95 backdrop-blur-md p-8 rounded-lg shadow-lg border border-white/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
           >
             {/* Top border with gradient */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-[#341969]"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#341969] to-[#d4af37]"></div>
             
             <div className="flex justify-center">{value.icon}</div>
             <h4 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h4>
-            <p className="text-gray-600">{value.desc}</p>
+            <p className="text-gray-700">{value.desc}</p>
           </div>
         ))}
       </div>
@@ -188,22 +210,30 @@ const CoreValues = () => (
 );
 
 const CEOSection = () => (
-  <div className="py-20 bg-white">
+  <div 
+    className="py-20"
+    style={{
+      backgroundImage: ` url(${backgroundImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed'
+    }}
+  >
     <div className="max-w-6xl mx-auto px-6">
-      <div className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/30">
         <div className="md:w-2/3 p-10 flex flex-col justify-center">
           <div className="flex items-center mb-6">
             <FaQuoteLeft className="text-3xl text-[#d4af37] mr-3" />
             <h3 className="text-3xl font-semibold text-gray-900">Message from Our CEO</h3>
           </div>
-          <p className="text-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-lg text-gray-800 leading-relaxed mb-6">
             Every startup begins with a simple idea, but with the right
             support, it can grow into something extraordinary. At IncubeNation
             Bengaluru, we're more than just a co-working space; we're a
             nurturing ground for startups to hatch, grow, and eventually take
             flight.
           </p>
-          <p className="text-lg text-gray-700 leading-relaxed mb-8">
+          <p className="text-lg text-gray-800 leading-relaxed mb-8">
             Our goal is to provide the resources, mentorship, and
             network you need to turn your vision into reality. We believe that
             every entrepreneur has the potential to succeed, and we're here to
@@ -228,18 +258,36 @@ const CEOSection = () => (
   </div>
 );
 
+// Main container with background image
+const WebsiteBackground = ({ children }) => (
+  <div 
+    className="min-h-screen"
+    style={{
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      backgroundRepeat: 'no-repeat'
+    }}
+  >
+    {children}
+  </div>
+);
+
 const AboutPage = () => {
   return (
-    <div className="overflow-hidden">
-      <About />
-      <Breadcrumbs />
-      <VisionMission />
-      <CEOSection />
-      <Services />
-      <AwardCarousel />
-      <CoreValues />
-      <Team />
-    </div>
+    <WebsiteBackground>
+      <div className="overflow-hidden">
+        <About />
+        <Breadcrumbs />
+        <VisionMission />
+        <CEOSection />
+        <Services />
+        <AwardCarousel />
+        <CoreValues />
+        <Team />
+      </div>
+    </WebsiteBackground>
   );
 };
 

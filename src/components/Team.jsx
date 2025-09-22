@@ -52,10 +52,10 @@ const team = [
 
 const Team = () => {
   return (
-    <div className="py-16 bg-white">
+    <div className="py-16 ">
       <div className="container mx-auto px-6">
         {/* Section Heading */}
-        <h2 className="text-4xl font-bold text-center text-[#0b081f] mb-12">
+        <h2 className="text-4xl font-bold text-center text-[#ffffff] mb-12">
           Our Team
          
         </h2>
