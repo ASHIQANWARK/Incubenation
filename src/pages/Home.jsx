@@ -1,28 +1,25 @@
 import React from "react";
 import Hero from "./Hero";
-import VisionMission from "./VisionMission";
 import Advisors from "../components/Advisors";
-import Team from "../components/Team";
 import ChatBot from "../components/ChatBot";
 import FAQ from "../pages/FAQ";
 import EcosystemSection from "./Ecosystem";
 import Offerings from "./Offerings";
-
 import Testimonial from "./Testimonials";
 
 
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       <Hero />
-      <VisionMission />
+      <Offerings />
       <Advisors />
       <EcosystemSection />
-      <Offerings />
-      <Testimonial />
+      
       <FAQ />
-      <Team />
+      <Testimonial />
+     
        
       <ChatBot />
       
