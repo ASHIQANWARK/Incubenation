@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaArrowUp, FaWhatsapp, FaTimes } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { FaArrowUp, FaWhatsapp, FaTimes, FaRocket } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FloatingButtons = () => {
-  const [isVisible, setIsVisible] = useState(false); // For ScrollUp button
-  const [isOpen, setIsOpen] = useState(false); // For ChatBot
-  const [messages, setMessages] = useState([]); // For ChatBot messages
-  const chatRef = useRef(null); // For ChatBot outside click detection
+  const [isVisible, setIsVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const chatRef = useRef(null);
 
   // ScrollUp functionality
   useEffect(() => {
@@ -44,18 +44,29 @@ const FloatingButtons = () => {
 
   return (
     <div>
-      {/* ScrollUp Button */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-25 right-8 z-50 bg-[#1d375f] text-white p-3 rounded-full shadow-md transition-transform duration-300 ${
-          isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"
-        } hover:bg-white hover:text-[#1d375f] hover:shadow-lg`}
-        style={{ zIndex: 999 }}
-      >
-        <FaArrowUp className="text-xl" />
-      </button>
+      {/* ScrollUp Button - Design 1: Modern Gradient */}
+      <AnimatePresence>
+        {isVisible && (
+          <motion.button
+            onClick={scrollToTop}
+            initial={{ scale: 0, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0, opacity: 0, y: 20 }}
+            whileHover={{ 
+              scale: 1.1, 
+              y: -2,
+              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+            }}
+            whileTap={{ scale: 0.9 }}
+            className="fixed bottom-24 right-6 z-50 bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-full shadow-2xl border-2 border-white/20 backdrop-blur-sm"
+            style={{ zIndex: 999 }}
+          >
+            <FaArrowUp className="text-lg" />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
-      {/* ChatBot */}
+      {/* Rest of the component remains the same */}
       <div className="fixed bottom-5 right-5 z-50">
         {/* Chat Window */}
         {isOpen && (
@@ -89,7 +100,7 @@ const FloatingButtons = () => {
               ))}
             </div>
             <a
-              href="https://wa.me/9035514812"
+              href="https://wa.me/919035514812"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-center bg-green-500 text-white py-2 rounded-lg mt-4 hover:bg-green-600 transition duration-300"

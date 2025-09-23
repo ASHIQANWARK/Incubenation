@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import HeroImage from "../assets/images/hero5 (3).png";
-
+import { FaFacebookF, FaInstagram, FaLinkedin,  FaWhatsapp } from "react-icons/fa";
+import { FaX } from "react-icons/fa6";
 // Import separate icons for each program
 import IncubationCenterIcon from "../assets/images/incubenation-DP-3.png";
 import IncubationOnlineIcon from "../assets/images/incubenation-DP-3.png";
@@ -164,6 +165,73 @@ const FocusCard = ({ item, index }) => {
   );
 };
 
+const SocialMediaLinks = () => {
+  const socialLinks = [
+    {
+      icon: FaFacebookF,
+      href: "https://www.facebook.com/profile.php?id=61572794128072",
+      color: "hover:text-blue-400",
+      bgColor: "hover:bg-blue-600",
+      label: "Facebook"
+    },
+    {
+      icon: FaInstagram,
+      href: "https://www.instagram.com/incubenation?igsh=MWRtbmxyZHNlYjhyMA==",
+      color: "hover:text-pink-400",
+      bgColor: "hover:bg-pink-600",
+      label: "Instagram"
+    },
+    {
+      icon: FaX,
+      href: "https://x.com/Incubenation",
+      color: "hover:text-white",
+      bgColor: "hover:bg-black",
+      label: "X"
+    },
+    {
+      icon: FaLinkedin,
+      href: "https://www.linkedin.com/company/incubenation",
+      color: "hover:text-blue-300",
+      bgColor: "hover:bg-blue-800",
+      label: "LinkedIn"
+    },
+    {
+      icon: FaWhatsapp,
+      href: "https://wa.me/919035514812",
+      color: "hover:text-green-400",
+      bgColor: "hover:bg-green-600",
+      label: "WhatsApp"
+    }
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 1, duration: 0.8 }}
+      className="flex flex-col items-center lg:items-start space-y-4 mt-8 lg:mt-12"
+    >
+      <p className="text-blue-200 font-semibold text-lg">Follow Us</p>
+      <div className="flex space-x-4">
+        {socialLinks.map((social, index) => (
+          <motion.a
+            key={index}
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+            whileHover={{ scale: 1.2, y: -2 }}
+            whileTap={{ scale: 0.9 }}
+            className={`w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all duration-300 ${social.color} ${social.bgColor} hover:shadow-lg hover:border-transparent`}
+          >
+            <social.icon className="text-lg" />
+          </motion.a>
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -229,7 +297,7 @@ const Hero = () => {
             mentorship, funding access, and strategic partnerships.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -255,7 +323,11 @@ const Hero = () => {
                 </svg>
               </Link>
             </motion.div>
+            
+           
           </div>
+
+         
         </motion.div>
 
         {/* Right: Hero Image - Larger and closer to text */}
@@ -268,19 +340,41 @@ const Hero = () => {
           <div className="relative w-full max-w-2xl group">
             {/* Floating glow effect */}
             
-            
             {/* Image container with glass morphism - Larger size */}
-            <div className="relative rounded-2xl overflow-hidden ">
+            <div className="relative rounded-2xl overflow-hidden">
               <img
                 src={HeroImage}
                 alt="Incubation Hub - Startup Growth Platform"
                 className="w-full h-auto max-h-[600px] object-contain object-center transform group-hover:scale-105 transition-transform duration-1000"
                 loading="eager"
               />
-              
-              {/* Overlay gradient */}
-              
             </div>
+
+            {/* Floating Social Media Links on Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+              className="absolute -right-4 top-1/2 transform -translate-y-1/2 hidden lg:flex flex-col space-y-4"
+            >
+              {[
+                { icon: FaFacebookF, href: "https://www.facebook.com/profile.php?id=61572794128072", color: "bg-blue-600" },
+                { icon: FaInstagram, href: "https://www.instagram.com/incubenation", color: "bg-pink-600" },
+                { icon: FaX, href: "https://x.com/Incubenation", color: "bg-black" },
+                { icon: FaLinkedin, href: "https://www.linkedin.com/company/incubenation", color: "bg-blue-800" }
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, x: -5 }}
+                  className={`w-10 h-10 rounded-full ${social.color} text-white flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl`}
+                >
+                  <social.icon className="text-sm" />
+                </motion.a>
+              ))}
+            </motion.div>
           </div>
         </motion.div>
       </div>
@@ -294,7 +388,6 @@ const Hero = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4">
             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Programs</span>
           </h2>
@@ -309,8 +402,6 @@ const Hero = () => {
             <FocusCard key={index} item={item} index={index} />
           ))}
         </div>
-
-        
       </div>
     </section>
   );

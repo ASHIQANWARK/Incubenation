@@ -10,7 +10,14 @@ import franchisify from "../assets/images/Franchisify.in (1).png";
 import sib from "../assets/images/SIB.jpg";
 import ceosquare from "../assets/images/CEO Square.png";
 import akam from "../assets/images/akam-logo-green.png";
+import wawu from "../assets/images/WAWU.png";
 import mainImage from "../assets/images/img12.jpg";
+import Karumitra from "../assets/images/km.jpg";
+import owlytics from "../assets/images/LOGO_Owlytics by Ique Blue.jpg";
+import legalquotient from "../assets/images/Legal Quotient Logo V.2.png";
+import studyinindia from "../assets/images/siilogo-1.png";
+import careercounsellor from "../assets/images/cc.png";
+import launchecom from "../assets/images/lyec.jpg";
 
 import {
   FaRocket,
@@ -57,15 +64,23 @@ const EcosystemSection = () => {
     }
   }, [controls, inView, scrollDirection]);
 
-  const logos = [
-    { src: CAP, alt: "IQUE CAP" },
-    { src: careerCafe, alt: "Career Cafe" },
-    { src: flyrad, alt: "Flyrad" },
-    { src: franchisify, alt: "Franchisify" },
-    { src: sib, alt: "SIB" },
-    { src: ceosquare, alt: "Ceosquare" },
-    { src: akam, alt: "akam" },
-  ];
+ const logos = [
+  { src: CAP, alt: "IQUE CAP" },
+  { src: wawu, alt: "WAWU FOUNDATION" },
+  { src: legalquotient, alt: "LegalQuotient" },
+  { src: Karumitra, alt: "Karumitra" },
+  { src: ceosquare, alt: "Ceosquare" },
+  { src: owlytics, alt: "Owlytics" },
+  { src: studyinindia, alt: "StudyInIndia" },
+  { src: careercounsellor, alt: "CareerCounsellor Consortium" },
+  { src: launchecom, alt: "Launch Your Ecommerce" },
+  { src: careerCafe, alt: "Career Cafe" },
+  { src: flyrad, alt: "Flyrad" },
+  { src: franchisify, alt: "Franchisify" },
+  { src: sib, alt: "SIB" },
+  { src: akam, alt: "akam" },
+];
+
 
   const stats = [
     {

@@ -7,52 +7,58 @@ import {
   FaGlobe,
   FaIndustry,
   FaCheckCircle,
+  FaRocket,
+  FaLightbulb,
+  FaGraduationCap,
+  FaHandshake,
+  FaChartLine,
+  FaClock,
+  FaMobileAlt
 } from "react-icons/fa";
-import imgLeft from "../assets/images/incube.jpg"; // replace with your left image
+import { motion } from "framer-motion";
+import imgLeft from "../assets/images/incube.jpg";
 
 const HeaderSection = () => (
-  <div className="relative overflow-hidden bg-gradient-to-br from-[#061428] via-[#0A2342] to-[#152C5E] text-white py-20">
-    <div className="absolute inset-0 bg-black/20"></div>
-    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-900/10 to-purple-900/10"></div>
-
-    {/* Animated background blobs */}
-    <div className="absolute top-10 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
-    <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-
-    <div className="container mx-auto px-6 relative z-10">
-      <div className="max-w-4xl mx-auto text-center">
-        <h3 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">
-            IncubeNation Online
-          </span>
-        </h3>
-        <p className="text-xl md:text-2xl text-blue-100 font-light max-w-3xl mx-auto">
-          Empowering Founders Anytime, Anywhere with World-Class Digital
-          Incubation
-        </p>
-
-       
+  <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 py-24">
+    <div className="absolute inset-0 bg-black/40"></div>
+    <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+    
+    <div className="relative z-10 container mx-auto px-6 text-center">
+      <div className="inline-flex items-center space-x-2 text-cyan-400 mb-4">
+        <FaRocket className="text-xl" />
+        <span className="text-sm font-semibold tracking-wider">DIGITAL INCUBATION PROGRAM</span>
       </div>
+      <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+        IncubeNation
+        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+          Online
+        </span>
+      </h1>
+      <div className="flex justify-center mb-6">
+        <div className="w-32 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
+      </div>
+      <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        Empowering Founders Anytime, Anywhere with World-Class Digital Incubation
+      </p>
     </div>
   </div>
 );
 
 const Breadcrumbs = () => (
-  <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-4 border-b border-gray-200">
+  <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200 py-4">
     <div className="container mx-auto px-6">
-      <nav className="text-[#061428] text-sm">
-        <ul className="flex space-x-2 items-center">
-          <li>
-            <a href="/" className="hover:text-blue-600 transition-colors">
-              Home
-            </a>
-          </li>
-          <span className="text-gray-400">/</span>
-          <li className="text-blue-600 font-semibold">IncubeNation Online</li>
-        </ul>
-      </nav>
+      <div className="flex items-center space-x-3 text-sm text-gray-600">
+        <a href="/" className="hover:text-blue-600 transition-colors duration-300">
+          Home
+        </a>
+        <span className="text-gray-400">/</span>
+        <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
+          IncubeNation Online
+        </span>
+      </div>
     </div>
-  </div>
+  </nav>
 );
 
 const MainContent = () => {
@@ -63,192 +69,247 @@ const MainContent = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CiAgPHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPgogIDxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjEiIGZpbGw9IiMwMDc3ZmYiLz4KPC9zdmc+')]"></div>
-
-      <div className="container mx-auto px-6 py-20 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
-          {/* Left Image */}
-          <div
-            className={`transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-x-0" : "-translate-x-10 opacity-0"
-            }`}
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Image Section */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative group"
           >
-            <img
-              src={imgLeft}
-              alt="Left"
-              className="rounded-2xl shadow-2xl w-full object-cover"
-            />
-          </div>
+            <div className="absolute -inset-4 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition duration-500"></div>
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={imgLeft}
+                  alt="IncubeNation Online Digital Platform"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-out"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+            </div>
+          </motion.div>
 
-          {/* Center Text */}
-          <div
-            className={`text-center px-6 transition-all duration-700 delay-200 ${
-              isVisible ? "opacity-100 translate-y-0" : "translate-y-10 opacity-0"
-            }`}
+          {/* Content Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
           >
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              IncubeNation Online – Empowering Founders Anytime, Anywhere
-            </h3>
-            <p className="text-lg text-gray-600 mb-4">
-              IncubeNation Online is our digital-first program designed to make
-              high-quality startup mentoring and entrepreneurship education
-              accessible to founders across India and beyond.It bridges the gap between structured learning and real-world
-              application by combining:
+            <div className="inline-flex items-center space-x-3 text-blue-600">
+              <FaGraduationCap className="text-xl" />
+              <span className="text-sm font-semibold tracking-wider uppercase">DIGITAL-FIRST INCUBATION</span>
+            </div>
+            
+            <h2 className="text-5xl font-bold text-gray-900 leading-tight">
+              Empowering Founders
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
+                Anytime, Anywhere
+              </span>
+            </h2>
+            
+            <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
+              <p>
+                IncubeNation Online is our digital-first program designed to make high-quality startup 
+                mentoring and entrepreneurship education accessible to founders across India and beyond.
+              </p>
+              <p>
+                It bridges the gap between structured learning and real-world application by combining 
+                curated curriculum with live mentoring sessions and on-demand resources.
+              </p>
+            </div>
+
+            {/* Features List */}
+            <div className="space-y-4">
+              {[
+                "Curated curriculum crafted for early-stage founders",
+                "Live mentoring sessions with seasoned entrepreneurs",
+                "On-demand resources including case studies and playbooks",
+                "Certification collaborations with leading institutions"
+              ].map((item, index) => (
+                <div key={index} className="flex items-start space-x-3">
+                  <FaCheckCircle className="text-cyan-600 mt-1 flex-shrink-0" />
+                  <span className="text-gray-700">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Whether you're an aspiring entrepreneur with an idea or a startup founder looking to scale, 
+              IncubeNation Online provides the flexibility of learning remotely while giving you access 
+              to the same networks, mentorship, and growth frameworks as our in-person programs.
             </p>
-            <ul className="space-y-2 text-gray-600 mb-4 text-left inline-block">
-              <li className="flex items-start">
-                <FaCheckCircle className="mt-1 mr-2 text-cyan-500" />
-                Curated curriculum crafted for early-stage founders.
-              </li>
-              <li className="flex items-start">
-                <FaCheckCircle className="mt-1 mr-2 text-cyan-500" />
-                Live mentoring sessions with seasoned entrepreneurs, investors, and domain experts.
-              </li>
-              <li className="flex items-start">
-                <FaCheckCircle className="mt-1 mr-2 text-cyan-500" />
-                On-demand resources including case studies, playbooks, and toolkits.
-              </li>
-              <li className="flex items-start">
-                <FaCheckCircle className="mt-1 mr-2 text-cyan-500" />
-                Certification collaborations with leading institutions for added credibility.
-              </li>
-            </ul>
-            <p className="text-lg text-gray-600">
-              Whether you’re an aspiring entrepreneur with an idea or a startup
-              founder looking to scale, IncubeNation Online provides the
-              flexibility of learning remotely while giving you access to the
-              same networks, mentorship, and growth frameworks as our in-person
-              programs.
-            </p>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 const FeaturesSection = () => {
   const features = [
     {
-      icon: <FaUserTie />,
+      icon: <FaUserTie className="text-3xl" />,
       title: "Virtual One-on-One Mentorship",
-      description:
-        "Personalized guidance from industry experts and successful entrepreneurs tailored to your specific needs.",
+      description: "Personalized guidance from industry experts and successful entrepreneurs tailored to your specific needs.",
+      gradient: "from-blue-500 to-cyan-500"
     },
     {
-      icon: <FaBook />,
+      icon: <FaBook className="text-3xl" />,
       title: "Resource Library Access",
-      description:
-        "Comprehensive library of templates, playbooks, case studies, and tools for every stage of growth.",
+      description: "Comprehensive library of templates, playbooks, case studies, and tools for every stage of growth.",
+      gradient: "from-purple-500 to-pink-500"
     },
     {
-      icon: <FaLaptop />,
+      icon: <FaLaptop className="text-3xl" />,
       title: "Live Workshops & Webinars",
-      description:
-        "Interactive sessions with industry leaders covering the latest trends and practical strategies.",
+      description: "Interactive sessions with industry leaders covering the latest trends and practical strategies.",
+      gradient: "from-green-500 to-teal-500"
     },
     {
-      icon: <FaUsers />,
+      icon: <FaUsers className="text-3xl" />,
       title: "Global Networking",
-      description:
-        "Connect with founders, investors, and experts from around the world through our virtual community.",
+      description: "Connect with founders, investors, and experts from around the world through our virtual community.",
+      gradient: "from-orange-500 to-red-500"
     },
     {
-      icon: <FaGlobe />,
+      icon: <FaGlobe className="text-3xl" />,
       title: "Remote-First Experience",
-      description:
-        "Complete incubation experience accessible from anywhere, designed for the digital age.",
+      description: "Complete incubation experience accessible from anywhere, designed for the digital age.",
+      gradient: "from-indigo-500 to-purple-500"
     },
     {
-      icon: <FaIndustry />,
+      icon: <FaIndustry className="text-3xl" />,
       title: "Industry Expert Access",
-      description:
-        "Direct access to professionals driving innovation across technology, business, and creative sectors.",
-    },
+      description: "Direct access to professionals driving innovation across technology, business, and creative sectors.",
+      gradient: "from-teal-500 to-blue-500"
+    }
   ];
 
   return (
-    <div className="relative py-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-
-      <div className="container mx-auto px-6 relative">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
-            Why Choose Us
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            The Complete{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600">
-              Digital Incubation
-            </span>{" "}
-            Experience
+    <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900">
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 text-cyan-400 mb-4">
+            <FaLightbulb className="text-xl" />
+            <span className="text-sm font-semibold tracking-wider">WHY CHOOSE US</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            The Complete
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+              Digital Incubation Experience
+            </span>
           </h2>
-          <p className="text-xl text-gray-600">
-            Designed for the modern entrepreneur who demands flexibility without
-            compromising on quality
+          <div className="flex justify-center mb-6">
+            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
+          </div>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Designed for the modern entrepreneur who demands flexibility without compromising on quality
           </p>
         </div>
 
+        {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group relative p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-            >
-              <div className="relative z-10">
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <div className="text-2xl text-blue-600">{feature.icon}</div>
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-              </div>
-            </div>
+            <FeatureCard key={index} {...feature} index={index} />
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
+const FeatureCard = ({ icon, title, description, gradient, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: index * 0.1 }}
+    viewport={{ once: true }}
+    className="group relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 hover:transform hover:scale-105"
+  >
+    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+    
+    <div className="relative z-10">
+      <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${gradient} text-white mb-6`}>
+        {icon}
+      </div>
+      
+      <h3 className="text-xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-400 transition-all duration-300">
+        {title}
+      </h3>
+      
+      <p className="text-gray-300 leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </motion.div>
+);
+
 const ProgramShowcase = () => {
   return (
-    <div className="py-20 bg-gradient-to-br from-[#061428] to-[#0A2342] text-white">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-cyan-50/30">
       <div className="container mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center space-x-2 text-blue-600 mb-4">
+            <FaHandshake className="text-xl" />
+            <span className="text-sm font-semibold tracking-wider">READY TO START YOUR JOURNEY?</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Ready to{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
               Talk to an Expert?
             </span>
           </h2>
-          <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
-            Let us guide you through your startup journey — connect with one of
-            our mentors now via WhatsApp.
+          
+          <div className="flex justify-center mb-6">
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
+          </div>
+          
+          <p className="text-xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Let us guide you through your startup journey — connect with one of our mentors now via WhatsApp 
+            and take the first step towards turning your vision into reality.
           </p>
 
-          <a
+          {/* Additional Info Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[
+              { icon: FaClock, text: "Flexible Scheduling", color: "from-blue-500 to-cyan-500" },
+              { icon: FaMobileAlt, text: "Any Device Access", color: "from-purple-500 to-pink-500" },
+              { icon: FaChartLine, text: "Proven Results", color: "from-green-500 to-teal-500" }
+            ].map((item, index) => (
+              <div key={index} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${item.color} text-white mb-4`}>
+                  <item.icon className="text-xl" />
+                </div>
+                <p className="font-semibold text-gray-900">{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <motion.a
             href="https://wa.me/9035514809"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 inline-block"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-12 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl font-semibold text-lg text-white transition-all duration-300 hover:shadow-2xl inline-block"
           >
-            Talk to Expert
-          </a>
+            Talk to Expert on WhatsApp
+          </motion.a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 const Online = () => {
   return (
-    <div className="overflow-hidden">
+    <div className="font-sans antialiased overflow-hidden">
       <HeaderSection />
       <Breadcrumbs />
       <MainContent />

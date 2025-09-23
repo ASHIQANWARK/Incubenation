@@ -96,34 +96,7 @@ const AwardCarousel = () => {
   );
 };
 
-const Breadcrumbs = () => (
-  <div 
-    className="py-6 relative"
-    style={{
-      backgroundImage: ` url(${backgroundImage})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-    }}
-  >
-    <div className="max-w-7xl mx-auto px-6">
-      <nav className="flex items-center justify-center space-x-2 text-white/80">
-        <a 
-          href="/" 
-          className="hover:text-white transition-colors duration-200 px-2 py-1 rounded hover:bg-white/10"
-        >
-          Home
-        </a>
-        <FaChevronRight className="text-xs text-white/40" />
-        
-        <span className="text-white font-medium bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
-          IncubeNation
-        </span>
-      </nav>
-      
-   
-    </div>
-  </div>
-);
+
 
 const CoreValues = () => (
   <div 
@@ -248,7 +221,7 @@ const AboutPage = () => {
   return (
     <WebsiteBackground>
       <div className="overflow-hidden">
-        <Breadcrumbs />
+        
         <VisionMission />
         <CEOSection />
         <Services />
