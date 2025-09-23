@@ -109,7 +109,7 @@ const Navbar = () => {
                   <Link
                     to="/online"
                     onClick={closeAllMenus}
-                    className="block px-4 py-2 text-white hover:bg-white/10 flex items-center justify-between"
+                    className="block px-4 py-2 text-white hover:bg-white/10  items-center justify-between"
                     onMouseEnter={(e) => {
                       e.preventDefault();
                       setIsProgramsOpen(true);

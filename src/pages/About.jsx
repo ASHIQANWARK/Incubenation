@@ -68,7 +68,7 @@ const AwardCarousel = () => {
     <div className="py-20  backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h3 className="text-4xl font-semibold text-white mb-4">Awards & Recognition</h3>
-        
+         <div className="inline-flex items-center justify-center w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mb-6 rounded-full"></div>
         <Slider {...sliderSettings} className="award-slider">
           {awards.map((award, index) => (
             <div key={index} className="px-4 focus:outline-none">
@@ -95,37 +95,6 @@ const AwardCarousel = () => {
     </div>
   );
 };
-
-const About = () => (
-  <div 
-    className="relative py-28 text-white overflow-hidden min-h-[60vh] flex items-center"
-    style={{
-      backgroundImage: ` url(${backgroundImage})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed',
-      backgroundRepeat: 'no-repeat'
-    }}
-  >
-    {/* Overlay for better text readability */}
-    <div className="absolute inset-0 bg-black/20"></div>
-    
-    <div className="absolute inset-0 opacity-10">
-      <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2Utb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNIDAgMCBMIDYwIDYwIE0gNjAgMCBMIDAgNjAiLz48L2c+PC9zdmc+')]"></div>
-    </div>
-    
-    <div className="max-w-5xl mx-auto px-8 text-center relative z-10">
-      <h2 className="text-5xl font-light tracking-wide mb-8">About Us</h2>
-      <div className="w-20 h-1 bg-gradient-to-r from-[#d4af37] to-[#b8941f] mx-auto mb-10"></div>
-      <p className="mt-6 text-xl leading-relaxed max-w-4xl mx-auto font-light">
-        IncubeNation Bengaluru is a startup incubator created by Ique Ventures
-        to support and develop early-stage startups. Our mission is to empower
-        entrepreneurs by providing them with the tools, resources, and
-        mentorship needed to build scalable businesses.
-      </p>
-    </div>
-  </div>
-);
 
 const Breadcrumbs = () => (
   <div 
@@ -168,7 +137,7 @@ const CoreValues = () => (
   >
     <div className="max-w-7xl mx-auto px-6 text-center">
       <h3 className="text-4xl font-semibold text-white mb-4">Our Core Values</h3>
-      
+        <div className="inline-flex items-center justify-center w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mb-6 rounded-full"></div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
           {
@@ -225,6 +194,7 @@ const CEOSection = () => (
           <div className="flex items-center mb-6">
             <FaQuoteLeft className="text-3xl text-[#d4af37] mr-3" />
             <h3 className="text-3xl font-semibold text-gray-900">Message from Our CEO</h3>
+            
           </div>
           <p className="text-lg text-gray-800 leading-relaxed mb-6">
             Every startup begins with a simple idea, but with the right
@@ -278,7 +248,6 @@ const AboutPage = () => {
   return (
     <WebsiteBackground>
       <div className="overflow-hidden">
-        <About />
         <Breadcrumbs />
         <VisionMission />
         <CEOSection />

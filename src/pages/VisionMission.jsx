@@ -11,6 +11,7 @@ const VisionMission = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             About <span className="text-green-700">Us</span>
           </h1>
+           <div className="inline-flex items-center justify-center w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mb-6 rounded-full"></div>
           <p className="text-white text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Empowering Visionaries. Fueling Innovation. Building the Future.
           </p>

@@ -2,51 +2,46 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import HeroImage from "../assets/images/hero4.png";
+import HeroImage from "../assets/images/hero5 (3).png";
 
-// Import separate icons for each program (replace with your actual imports)
+// Import separate icons for each program
 import IncubationCenterIcon from "../assets/images/incubenation-DP-3.png";
 import IncubationOnlineIcon from "../assets/images/incubenation-DP-3.png";
 import IncubationCampusIcon from "../assets/images/incubenation-DP-3.png";
 import BusinessSolutionsIcon from "../assets/images/incubenation-DP-3.png";
 
-// Extracted data with separate icons
 const focuses = [
   {
     title: "Incubation Center",
-    description:
-      "Encouraging and supporting individuals to become entrepreneurs through workshops, mentorship, and access to resources.",
+    description: "Encouraging and supporting individuals to become entrepreneurs through workshops, mentorship, and access to resources.",
     icon: IncubationCenterIcon,
     link: "/center",
-    color: "border-t-blue-500",
+    color: "from-blue-600 to-purple-600",
     hue: 200
   },
   {
     title: "Incubation Online",
-    description:
-      "Providing resources, mentorship, and guidance to help startups grow, pivot, and scale in competitive markets.",
+    description: "Providing resources, mentorship, and guidance to help startups grow, pivot, and scale in competitive markets.",
     icon: IncubationOnlineIcon,
     link: "/online",
-    color: "border-t-purple-500",
+    color: "from-purple-600 to-pink-600",
     hue: 280
   },
   {
     title: "Incubation Campus",
-    description:
-      "Bringing investors and startups together for potential funding, partnerships, and collaboration opportunities.",
+    description: "Bringing investors and startups together for potential funding, partnerships, and collaboration opportunities.",
     icon: IncubationCampusIcon,
     link: "/campus",
-    color: "border-t-amber-500",
+    color: "from-amber-600 to-orange-600",
     hue: 35
   },
   {
     title: "Business Solutions",
-    description:
-      "Fostering partnerships with government bodies and corporate entities to boost innovation and growth.",
+    description: "Fostering partnerships with government bodies and corporate entities to boost innovation and growth.",
     icon: BusinessSolutionsIcon,
     link: "/business",
     tag: "Coming Soon",
-    color: "border-t-emerald-500",
+    color: "from-emerald-600 to-teal-600",
     hue: 160
   },
 ];
@@ -54,7 +49,6 @@ const focuses = [
 const FocusCard = ({ item, index }) => {
   const cardRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.3,
@@ -69,15 +63,6 @@ const FocusCard = ({ item, index }) => {
     }
   }, [controls, inView]);
 
-  const handleMouseMove = (e) => {
-    if (cardRef.current) {
-      const rect = cardRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      setMousePosition({ x, y });
-    }
-  };
-
   const cardVariants = {
     hidden: { opacity: 0, y: 60 },
     visible: {
@@ -91,63 +76,50 @@ const FocusCard = ({ item, index }) => {
     },
   };
 
-  const calculateTilt = () => {
-    if (!cardRef.current) return { rotateX: 0, rotateY: 0 };
-    
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = mousePosition.x - rect.width / 2;
-    const y = mousePosition.y - rect.height / 2;
-    
-    return {
-      rotateX: isHovered ? -y / 20 : 0,
-      rotateY: isHovered ? x / 20 : 0,
-    };
-  };
-
   return (
     <motion.div
       ref={ref}
       variants={cardVariants}
       initial="hidden"
       animate={controls}
-      className="h-full"
+      className="h-full group relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onMouseMove={handleMouseMove}
     >
       <motion.div
         ref={cardRef}
-        animate={calculateTilt()}
-        transition={{ type: "spring", damping: 15, stiffness: 100 }}
-        className="relative h-full overflow-hidden group rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
-        style={{
-          transformStyle: "preserve-3d",
-        }}
+        className="relative h-full overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/80 border border-slate-700/50 backdrop-blur-sm transition-all duration-500 hover:border-blue-400/30 hover:transform hover:scale-105"
+        style={{ transformStyle: "preserve-3d" }}
       >
-        {/* Colored top border */}
-        <div className={`h-3 w-full bg-green-800`}></div>
+        {/* Background Glow Effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         
-        <div className="relative h-full rounded-b-xl p-6 flex flex-col items-center text-center">
+        {/* Colored top border */}
+        <div className={`h-2 w-full bg-gradient-to-r ${item.color}`}></div>
+        
+        <div className="relative h-full rounded-b-2xl p-6 flex flex-col items-center text-center z-20">
           {/* Icon */}
-          <div className="mb-5 p-3 rounded-xl">
+          <div className="mb-5 p-4 rounded-xl bg-slate-700/30 border border-slate-600/50">
             <img
               src={item.icon}
               alt={`Icon for ${item.title}`}
-              className="w-16 h-16 object-contain"
+              className="w-14 h-14 object-contain"
             />
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-bold text-slate-800 mb-4">{item.title}</h3>
+          <h3 className="text-xl font-bold text-white mb-4 group-hover:text-blue-100 transition-colors duration-300">
+            {item.title}
+          </h3>
 
           {/* Description */}
-          <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
+          <p className="text-slate-300 text-sm leading-relaxed mb-6 flex-grow">
             {item.description}
           </p>
 
           {/* Tag */}
           {item.tag && (
-            <span className="absolute top-4 right-4 bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full">
+            <span className="absolute top-4 right-4 bg-slate-700/80 text-slate-200 text-xs font-bold px-3 py-1 rounded-full border border-slate-600/50">
               {item.tag}
             </span>
           )}
@@ -160,7 +132,7 @@ const FocusCard = ({ item, index }) => {
           >
             <Link
               to={item.link}
-              className="inline-flex items-center justify-center px-6 py-3 bg-[#2A3F80] text-white rounded-lg hover:bg-slate-900 transition-all duration-300 group/btn"
+              className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 group/btn border border-blue-500/30"
             >
               Know More
               <svg
@@ -180,7 +152,14 @@ const FocusCard = ({ item, index }) => {
             </Link>
           </motion.div>
         </div>
+
+        {/* Decorative Corner */}
+        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-blue-400/50 rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-purple-400/50 rounded-bl-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </motion.div>
+
+      {/* Floating Animation */}
+      <div className={`absolute -inset-2 bg-gradient-to-r ${item.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500 -z-10`}></div>
     </motion.div>
   );
 };
@@ -198,48 +177,54 @@ const Hero = () => {
   }, []);
 
   const backgroundStyle = {
-    background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.1) 0%, transparent 80%)`,
+    background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.15) 0%, transparent 80%)`,
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center px-6 py-16 lg:py-24 overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 "></div>
-      
+    <section className="relative min-h-screen flex flex-col justify-center items-center px-4 py-12 lg:py-20 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-1 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></div>
+      </div>
+
       {/* Dynamic gradient that follows mouse */}
-      <div className="absolute inset-0 opacity-60" style={backgroundStyle}></div>
+      <div className="absolute inset-0 opacity-40" style={backgroundStyle}></div>
       
       {/* Animated particles/glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl animate-pulse-medium"></div>
-      <div className="absolute top-2/3 left-1/3 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute top-2/3 left-1/3 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
 
-      <div className="relative container mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16 z-10">
-        {/* Left: Hero Text */}
+      {/* Hero Content - Reduced gap and centered alignment */}
+      <div className="relative container mx-auto flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-6 z-8">
+        {/* Left: Hero Text - Centered with image */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="lg:w-1/2 text-center lg:text-left"
+          className="lg:w-3/5 text-center lg:text-left"
         >
-          
+          <div className="inline-flex items-center justify-center w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mb-6 rounded-full lg:justify-start"></div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight text-white mb-6">
-            Where Startups <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Hatch</span>, 
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <span className="text-white">Where Startups </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">Hatch</span>
             <br />
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-400"
+              className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-teal-300"
             >
               Grow & Soar!
             </motion.span>
           </h1>
 
-          <p className="text-lg text-gray-300 font-light leading-relaxed mb-8 max-w-lg">
+          <p className="text-lg text-blue-200 font-light leading-relaxed mb-8 max-w-xl">
             Ignite your entrepreneurial journey with{" "}
-            <span className="font-semibold text-green-400">IncubeNation</span>,
+            <span className="font-semibold text-green-300">IncubeNation</span>,
             where ideas transform into thriving businesses through expert
             mentorship, funding access, and strategic partnerships.
           </p>
@@ -251,7 +236,7 @@ const Hero = () => {
             >
               <Link
                 to="/contact"
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl border text-center border-green-400/30"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:from-green-600 hover:to-teal-600 border border-green-400/30"
               >
                 Connect with us
                 <svg
@@ -270,58 +255,51 @@ const Hero = () => {
                 </svg>
               </Link>
             </motion.div>
-            
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-             
-            </motion.div>
           </div>
         </motion.div>
-{/* Right: Hero Image - Minimalist Luxury */}
-<motion.div
-  initial={{ opacity: 0, x: 50 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-  className="lg:w-1/2 flex justify-center relative"
->
-  <div className="relative w-full max-w-2xl">
-    {/* Main image with elegant frame */}
-    <div className="relative group">
-      {/* Elegant border effect */}
-      <div className="absolute -inset-4  transform group-hover:scale-105 transition-transform duration-700"></div>
-      
-      {/* Image container */}
-      <div className="relative rounded-2xl overflow-hidden">
-        <img
-          src={HeroImage}
-          alt="Incubation Hub - Startup Growth Platform"
-          className="w-full h-auto max-h-[650px] object-cover object-center rounded-2xl transform group-hover:scale-102 transition-transform duration-1000"
-          loading="eager"
-        />
-      
+
+        {/* Right: Hero Image - Larger and closer to text */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+          className="lg:w-3/5 flex justify-center lg:justify-end relative"
+        >
+          <div className="relative w-full max-w-2xl group">
+            {/* Floating glow effect */}
+            
+            
+            {/* Image container with glass morphism - Larger size */}
+            <div className="relative rounded-2xl overflow-hidden ">
+              <img
+                src={HeroImage}
+                alt="Incubation Hub - Startup Growth Platform"
+                className="w-full h-auto max-h-[600px] object-contain object-center transform group-hover:scale-105 transition-transform duration-1000"
+                loading="eager"
+              />
+              
+              {/* Overlay gradient */}
+              
+            </div>
+          </div>
+        </motion.div>
       </div>
-    </div>
-    
-    
-  </div>
-</motion.div>
-</div>
 
       {/* Focus Areas Section */}
-      <div className="relative mt-28 w-full max-w-7xl mx-auto px-4 z-10">
+      <div className="relative mt-24 w-full max-w-7xl mx-auto px-4 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4">
             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Programs</span>
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <div className="inline-flex items-center justify-center w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mb-6 rounded-full"></div>
+          <p className="text-lg text-blue-200 max-w-2xl mx-auto">
             Discover our comprehensive incubation programs designed to support startups at every stage of their journey.
           </p>
         </motion.div>
@@ -331,6 +309,8 @@ const Hero = () => {
             <FocusCard key={index} item={item} index={index} />
           ))}
         </div>
+
+        
       </div>
     </section>
   );

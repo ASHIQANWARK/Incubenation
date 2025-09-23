@@ -60,12 +60,7 @@ const Testimonial = () => {
         >
           Voices of Partnership
         </motion.h2>
-        <motion.div 
-          className="w-20 h-1 bg-gradient-to-r from-[#d4af37] to-[#b8941f] mx-auto"
-          initial={{ width: 0 }}
-          animate={{ width: 80 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        ></motion.div>
+         <div className="inline-flex items-center justify-center w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mb-6 rounded-full"></div>
       </div>
 
       <Slider {...settings}>
