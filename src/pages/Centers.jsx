@@ -21,17 +21,7 @@ import Bangalore from "../assets/images/banglore.webp";
 import Kochi from "../assets/images/kochi.jpg";
 import Dubai from "../assets/images/dubai.jpg";
 import img20 from "../assets/images/incube.jpg";
-import art1 from "../assets/images/art1.jpg";
-import art2 from "../assets/images/art2.jpg";
-import art4 from "../assets/images/art4.jpg";
-import art5 from "../assets/images/art5.jpg";
-import art6 from "../assets/images/art6.jpg";
-import art7 from "../assets/images/art7.jpg.jpg";
-import art8 from "../assets/images/art8.jpg";
-import art9 from "../assets/images/art9.jpg";
-import art10 from "../assets/images/art10.jpg";
-import art11 from "../assets/images/art11.jpg";
-import art12 from "../assets/images/art12.jpg";
+
 
 const Center = () => {
   useEffect(() => {
@@ -45,7 +35,7 @@ const Center = () => {
       <MainContent />
       <FeatureSection />
       <LocationCards />
-      <Gallery />
+     
     
     </div>
   );
@@ -295,88 +285,8 @@ const LocationCard = ({ city, image, comingSoon, description }) => (
   </motion.div>
 );
 
-const images = [
-  { src: art1, alt: "Innovation Space" },
-  { src: art2, alt: "Collaboration Area" },
-  { src: art4, alt: "Meeting Room" },
-  { src: art5, alt: "Workshop Session" },
-  { src: art6, alt: "Networking Event" },
-  { src: art7, alt: "Startup Pitch" },
-  { src: art8, alt: "Mentorship Session" },
-  { src: art9, alt: "Community Gathering" },
-  { src: art10, alt: "Technology Lab" },
-  { src: art11, alt: "Creative Space" },
-  { src: art12, alt: "Success Celebration" },
-];
 
-const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 text-blue-600 mb-4">
-            <FaLightbulb className="text-xl" />
-            <span className="text-sm font-semibold tracking-wider">BEHIND THE SCENES</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Center Gallery
-            
-          </h2>
-          <div className="flex justify-center mb-6">
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-          </div>
-        </div>
-
-        {/* Masonry Grid */}
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-          {images.map((image, index) => (
-            <motion.div
-              key={index}
-              className="relative overflow-hidden rounded-xl shadow-lg cursor-pointer group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
-                onClick={() => setSelectedImage(image.src)}
-              />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Lightbox Modal */}
-        {selectedImage && (
-          <motion.div 
-            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <div className="relative max-w-4xl max-h-full">
-              <button
-                className="absolute -top-16 right-0 text-white text-3xl hover:text-gray-300 transition-colors"
-                onClick={() => setSelectedImage(null)}
-              >
-                <FaTimes />
-              </button>
-              <motion.img
-                src={selectedImage}
-                alt="Selected"
-                className="rounded-lg shadow-2xl"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              />
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </section>
-  );
-};
+ 
 
 
 
