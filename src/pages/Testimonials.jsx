@@ -7,23 +7,23 @@ import "slick-carousel/slick/slick-theme.css";
 const testimonials = [
   {
     name: "Mazin Arbaz",
-    text: "I Que Ventures' comprehensive support has been a cornerstone of our success. Their commitment to fostering collaboration with key stakeholders has significantly accelerated our growth and market presence.",
+    text: "IncubeNation' comprehensive support has been a cornerstone of our success. Their commitment to fostering collaboration with key stakeholders has significantly accelerated our growth and market presence.",
   },
   {
     name: "Hashir",
-    text: "I Que Ventures has been instrumental in our startup's growth journey. Their tailored programs and insightful mentorship connected us with the right investors, propelling us from concept to market success.",
+    text: "IncubeNation has been instrumental in our startup's growth journey. Their tailored programs and insightful mentorship connected us with the right investors, propelling us from concept to market success.",
   },
   {
     name: "Keerthi",
-    text: "The collaborative environment fostered by I Que Ventures is unparalleled. Their ability to bridge the gap between startups and key stakeholders has opened doors we never thought possible.",
+    text: "The collaborative environment fostered by IncubeNation is unparalleled. Their ability to bridge the gap between startups and key stakeholders has opened doors we never thought possible.",
   },
   {
     name: "Abhirami",
-    text: "Partnering with I Que Ventures has been a rewarding experience. Their curated network of innovative startups provides a steady stream of high-potential investment opportunities.",
+    text: "Partnering with IncubeNation has been a rewarding experience. Their curated network of innovative startups provides a steady stream of high-potential investment opportunities.",
   },
   {
     name: "Jino Joseph",
-    text: "The mentorship and funding support from I Que Ventures have helped us scale beyond expectations. We highly recommend them to any startup looking for a solid foundation.",
+    text: "The mentorship and funding support from IncubeNation have helped us scale beyond expectations. We highly recommend them to any startup looking for a solid foundation.",
   },
 ];
 
