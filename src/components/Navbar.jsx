@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isProgramsOpen, setIsProgramsOpen] = useState(false);
   const [isMobileProgramsOpen, setIsMobileProgramsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeLink, setActiveLink] = useState("");
   const dropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
   const onlineLinkRef = useRef(null);
@@ -89,6 +90,22 @@ const Navbar = () => {
     setIsMobileProgramsOpen(false);
   };
 
+  const handleLinkClick = (linkName) => {
+    setActiveLink(linkName);
+    closeAllMenus();
+  };
+
+  // Navigation links data for consistency
+  const navLinks = [
+    { to: "/", name: "Home" },
+    { to: "/about", name: "About" },
+    { to: "/career", name: "Career" },
+  ];
+
+  const rightNavLinks = [
+    { to: "/blog", name: "Blog" },
+  ];
+
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${
@@ -100,39 +117,34 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center px-4 lg:px-8">
         {/* Left side links - Desktop */}
         <div className="hidden lg:flex items-center space-x-9 pl-38">
-          <Link 
-            to="/" 
-            className="text-white hover:text-cyan-300 font-medium transition-all duration-300 transform hover:scale-105"
-          >
-            Home
-          </Link>
-          <Link 
-            to="/about" 
-            className="text-white hover:text-cyan-300 font-medium transition-all duration-300 transform hover:scale-105"
-          >
-            About
-          </Link>
-          <Link 
-            to="/career" 
-            className="text-white hover:text-cyan-300 font-medium transition-all duration-300 transform hover:scale-105"
-          >
-            Career
-          </Link>
+          {navLinks.map((link) => (
+            <Link 
+              key={link.name}
+              to={link.to} 
+              className="relative text-white font-medium transition-all duration-300 group"
+              onClick={() => handleLinkClick(link.name)}
+            >
+              {link.name}
+              {/* Animated Underline */}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-500 group-hover:w-full group-hover:delay-100"></span>
+            </Link>
+          ))}
         </div>
 
         {/* Centered Logo */}
-        <div className="flex items-center z-50 absolute left-1/2 transform -translate-x-1/2  ">
+        <div className="flex items-center z-50 absolute left-1/2 transform -translate-x-1/2">
           <Link to="/" aria-label="Go to homepage" className="transition-transform duration-300 hover:scale-105">
             <img src={logo} alt="Incubenation Logo" className="h-10 lg:h-12" />
           </Link>
         </div>
 
         {/* Right side links - Desktop */}
-        <div className="hidden lg:flex items-left space-x-9 ml-auto pr-38">
+        <div className="hidden lg:flex items-center space-x-9 ml-auto pr-38">
           {/* Dropdown for Programs */}
           <div className="relative" ref={dropdownRef}>
             <button
-              className="text-white hover:text-cyan-300 flex items-center font-medium transition-all duration-300 transform hover:scale-105"
+              className="relative text-white hover:text-cyan-300 flex items-center font-medium transition-all duration-300 group"
               onClick={toggleDropdown}
             >
               Programs
@@ -142,6 +154,9 @@ const Navbar = () => {
                 }`}
                 size={14}
               />
+              {/* Animated Underline for Programs */}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-500 group-hover:w-full group-hover:delay-100"></span>
             </button>
 
             {/* Dropdown Menu */}
@@ -153,7 +168,7 @@ const Navbar = () => {
                     ref={onlineLinkRef}
                     to="/online"
                     onClick={handleOnlineClick}
-                    className="flex items-center justify-between px-5 py-3 text-white hover:bg-cyan-500/10 cursor-pointer transition-all duration-300 rounded-lg mx-2"
+                    className="flex items-center justify-between px-5 py-3 text-white hover:bg-cyan-500/10 cursor-pointer transition-all duration-300 rounded-lg mx-2 relative group"
                     title="Double click to go to Online page"
                   >
                     <span className="font-medium">Incubenation Online</span>
@@ -163,6 +178,8 @@ const Navbar = () => {
                       }`}
                       size={12}
                     />
+                    {/* Animated Underline for dropdown items */}
+                    <span className="absolute bottom-2 left-5 right-5 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </Link>
 
                   {/* Nested Dropdown */}
@@ -175,27 +192,22 @@ const Navbar = () => {
                       <div className="px-5 py-3 text-cyan-300 text-sm font-semibold border-b border-cyan-500/20 mb-2">
                         Program Durations
                       </div>
-                      <Link
-                        to="/online#foundation"
-                        onClick={closeAllMenus}
-                        className="block w-full text-right px-5 py-3 text-white hover:bg-cyan-500/10 transition-all duration-300 rounded-lg mx-2"
-                      >
-                        Founder's Foundation (3 months)
-                      </Link>
-                      <Link
-                        to="/online#edge"
-                        onClick={closeAllMenus}
-                        className="block w-full text-left px-5 py-3 text-white hover:bg-cyan-500/10 transition-all duration-300 rounded-lg mx-2"
-                      >
-                        Founder's Edge (6 months)
-                      </Link>
-                      <Link
-                        to="/online#mastery"
-                        onClick={closeAllMenus}
-                        className="block w-full text-left px-5 py-3 text-white hover:bg-cyan-500/10 transition-all duration-300 rounded-lg mx-2"
-                      >
-                        Founder's Mastery (12 months)
-                      </Link>
+                      {[
+                        { to: "/online#foundation", text: "Founder's Foundation (3 months)" },
+                        { to: "/online#edge", text: "Founder's Edge (6 months)" },
+                        { to: "/online#mastery", text: "Founder's Mastery (12 months)" }
+                      ].map((item) => (
+                        <Link
+                          key={item.to}
+                          to={item.to}
+                          onClick={closeAllMenus}
+                          className="block w-full text-left px-5 py-3 text-white hover:bg-cyan-500/10 transition-all duration-300 rounded-lg mx-2 relative group"
+                        >
+                          {item.text}
+                          {/* Animated Underline for nested dropdown items */}
+                          <span className="absolute bottom-2 left-5 right-5 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+                        </Link>
+                      ))}
                     </div>
                   )}
                 </div>
@@ -206,24 +218,37 @@ const Navbar = () => {
                     key={item}
                     to={`/${item}`}
                     onClick={closeAllMenus}
-                    className="block px-5 py-3 text-white hover:bg-cyan-500/10 transition-all duration-300 rounded-lg mx-2 font-medium"
+                    className="block px-5 py-3 text-white hover:bg-cyan-500/10 transition-all duration-300 rounded-lg mx-2 font-medium relative group"
                   >
                     Incubenation {item.charAt(0).toUpperCase() + item.slice(1)}
+                    {/* Animated Underline for dropdown items */}
+                    <span className="absolute bottom-2 left-5 right-5 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </Link>
                 ))}
               </div>
             )}
           </div>
 
-          <Link 
-            to="/blog" 
-            className="text-white hover:text-cyan-300 font-medium transition-all duration-300 transform hover:scale-105"
-          >
-            Blog
-          </Link>
+          {/* Blog Link with Animated Underline */}
+          {rightNavLinks.map((link) => (
+            <Link 
+              key={link.name}
+              to={link.to} 
+              className="relative text-white font-medium transition-all duration-300 group"
+              onClick={() => handleLinkClick(link.name)}
+            >
+              {link.name}
+              {/* Animated Underline */}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-500 group-hover:w-full group-hover:delay-100"></span>
+            </Link>
+          ))}
+          
+          {/* Contact Link with Transparent Button and White Border */}
           <Link 
             to="/contact" 
-            className="text-white hover:text-cyan-300 font-medium transition-all duration-300 transform hover:scale-105"
+            className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-6 py-1 font-medium transition-all duration-300 transform hover:scale-105 hover:border-cyan-300 hover:text-cyan-300 rounded-lg"
+            onClick={() => handleLinkClick("Contact")}
           >
             Contact
           </Link>
@@ -242,7 +267,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Remains exactly the same */}
       <div
         ref={mobileMenuRef}
         className={`lg:hidden fixed inset-0 z-40 pt-24 px-6 pb-10 transition-all duration-500 ease-in-out ${
@@ -252,27 +277,24 @@ const Navbar = () => {
         }`}
       >
         <div className="flex flex-col space-y-6 text-center h-full justify-start mt-8">
-          <Link 
-            onClick={closeAllMenus} 
-            to="/" 
-            className="text-white text-2xl py-4 font-medium transition-all duration-300 transform hover:scale-105 hover:text-cyan-300"
-          >
-            Home
-          </Link>
-          
-          <Link 
-            onClick={closeAllMenus} 
-            to="/about" 
-            className="text-white text-2xl py-4 font-medium transition-all duration-300 transform hover:scale-105 hover:text-cyan-300"
-          >
-            About
-          </Link>
+          {[...navLinks, ...rightNavLinks, { to: "/contact", name: "Contact" }].map((link) => (
+            <Link 
+              key={link.name}
+              onClick={() => handleLinkClick(link.name)} 
+              to={link.to} 
+              className="text-white text-2xl py-4 font-medium transition-all duration-300 transform hover:scale-105 hover:text-cyan-300 relative group"
+            >
+              {link.name}
+              {/* Mobile Animated Underline */}
+              <span className="absolute bottom-3 left-1/4 right-1/4 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
+            </Link>
+          ))}
 
           {/* Mobile Programs Dropdown */}
           <div className="border-b border-cyan-500/20 pb-4">
             <button
               onClick={() => setIsMobileProgramsOpen(!isMobileProgramsOpen)}
-              className="text-white text-2xl py-4 flex items-center justify-center w-full font-medium transition-all duration-300 hover:text-cyan-300"
+              className="text-white text-2xl py-4 flex items-center justify-center w-full font-medium transition-all duration-300 hover:text-cyan-300 relative group"
             >
               Programs
               <FaChevronDown
@@ -280,6 +302,8 @@ const Navbar = () => {
                   isMobileProgramsOpen ? "rotate-180" : ""
                 }`}
               />
+              {/* Mobile Animated Underline */}
+              <span className="absolute bottom-3 left-1/4 right-1/4 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </button>
 
             <div className={`overflow-hidden transition-all duration-500 ${
@@ -289,9 +313,11 @@ const Navbar = () => {
                 <Link
                   to="/online"
                   onClick={closeAllMenus}
-                  className="block py-3 text-white hover:text-cyan-300 text-xl font-medium transition-all duration-300 transform hover:scale-105"
+                  className="block py-3 text-white hover:text-cyan-300 text-xl font-medium transition-all duration-300 transform hover:scale-105 relative group"
                 >
                   Incubenation Online
+                  {/* Mobile Animated Underline */}
+                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                 </Link>
 
                 {["center", "campus", "business"].map((item) => (
@@ -299,38 +325,16 @@ const Navbar = () => {
                     key={item}
                     to={`/${item}`}
                     onClick={closeAllMenus}
-                    className="block py-3 text-white hover:text-cyan-300 text-xl font-medium transition-all duration-300 transform hover:scale-105"
+                    className="block py-3 text-white hover:text-cyan-300 text-xl font-medium transition-all duration-300 transform hover:scale-105 relative group"
                   >
                     Incubenation {item.charAt(0).toUpperCase() + item.slice(1)}
+                    {/* Mobile Animated Underline */}
+                    <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </Link>
                 ))}
               </div>
             </div>
           </div>
-
-          <Link 
-            onClick={closeAllMenus} 
-            to="/blog" 
-            className="text-white text-2xl py-4 font-medium transition-all duration-300 transform hover:scale-105 hover:text-cyan-300"
-          >
-            Blog
-          </Link>
-          
-          <Link 
-            onClick={closeAllMenus} 
-            to="/career" 
-            className="text-white text-2xl py-4 font-medium transition-all duration-300 transform hover:scale-105 hover:text-cyan-300"
-          >
-            Career
-          </Link>
-          
-          <Link 
-            onClick={closeAllMenus} 
-            to="/contact" 
-            className="text-white text-2xl py-4 font-medium transition-all duration-300 transform hover:scale-105 hover:text-cyan-300"
-          >
-            Contact
-          </Link>
         </div>
       </div>
 
