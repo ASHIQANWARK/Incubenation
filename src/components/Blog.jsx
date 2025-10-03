@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PenTool, X } from "lucide-react";
 import startupImg from "../assets/images/startup.jpg";
-import successImg from "../assets/images/sucess.jpg";
+import successImg from "../assets/images/success.jpg";
 import fundingImg from "../assets/images/funding.jpeg";
 import teamworkImg from "../assets/images/teamwoek.jpg";
 import marketingImg from "../assets/images/marketing.jpeg";
