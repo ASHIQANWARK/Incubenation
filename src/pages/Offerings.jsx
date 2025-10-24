@@ -182,4 +182,4 @@ const Offerings = () => {
   );
 };
 
-export default Offerings;
+export default Offerings; 

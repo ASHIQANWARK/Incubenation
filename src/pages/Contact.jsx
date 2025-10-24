@@ -16,7 +16,7 @@ const Contact = () => {
   const sendWhatsAppMessage = (e) => {
     e.preventDefault();
     const whatsappMessage = `Name: ${formData.name}%0AEmail: ${formData.email}%0ASubject: ${formData.subject}%0AMessage: ${formData.message}`;
-    window.open(`https://wa.me/919035514812?text=${whatsappMessage}`, "_blank");
+    window.open(`https://wa.me/919035064018?text=${whatsappMessage}`, "_blank");
   };
 
   const socialLinks = [
@@ -62,8 +62,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white">Phone Number</h4>
-                    <a href="tel:+919035514812" className="text-gray-300 hover:text-[#ffab00] transition-colors">
-                      +91-9035514812
+                    <a href="tel:+919035064018" className="text-gray-300 hover:text-[#ffab00] transition-colors">
+                      +91-9035064018
                     </a>
                   </div>
                 </div>
