@@ -274,7 +274,7 @@ const Blog = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-[#061428] to-[#0b1c3a] pt-24 pb-16 px-4 md:px-8 lg:px-16 relative">
+    <div className="w-full min-h-screen  pt-24 pb-16 px-4 md:px-8 lg:px-16 relative">
       <h2 className="text-4xl font-bold text-center text-white mb-12 font-serif">
         Our Blog <PenTool className="inline-block w-8 h-8 ml-2" />
       </h2>

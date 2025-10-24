@@ -6,8 +6,7 @@ import FAQ from "../pages/FAQ";
 import EcosystemSection from "./Ecosystem";
 import Offerings from "./Offerings";
 import Testimonial from "./Testimonials";
-
-
+import Blog from "../components/Blog";
 
 const Home = () => {
   return (
@@ -16,13 +15,10 @@ const Home = () => {
       <Offerings />
       <Advisors />
       <EcosystemSection />
-      
       <FAQ />
       <Testimonial />
-     
-       
+      <Blog />
       <ChatBot />
-      
     </div>
   );
 };

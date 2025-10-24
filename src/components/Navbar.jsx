@@ -11,6 +11,7 @@ const Navbar = () => {
   const [isMobileProgramsOpen, setIsMobileProgramsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState("");
+  
   const dropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
   const onlineLinkRef = useRef(null);
@@ -70,14 +71,11 @@ const Navbar = () => {
   };
 
   const handleOnlineClick = (e) => {
-    // If it's a double click, navigate to /online
     if (e.detail === 2) {
       closeAllMenus();
-      // Navigation will be handled by the Link component
       return;
     }
     
-    // If it's a single click, toggle the nested dropdown
     e.preventDefault();
     e.stopPropagation();
     setIsProgramsOpen(!isProgramsOpen);
@@ -95,15 +93,32 @@ const Navbar = () => {
     closeAllMenus();
   };
 
-  // Navigation links data for consistency
-  const navLinks = [
+  // Navigation data
+  const leftNavLinks = [
     { to: "/", name: "Home" },
     { to: "/about", name: "About" },
-    { to: "/career", name: "Career" },
   ];
 
   const rightNavLinks = [
-    { to: "/blog", name: "Blog" },
+    { to: "/career", name: "Career" },
+  ];
+
+  const programLinks = [
+    { to: "/center", name: "Center" },
+    { to: "/campus", name: "Campus" },
+    { to: "/business", name: "Business" },
+  ];
+
+  const onlineProgramLinks = [
+    { to: "/online#foundation", text: "Founder's Foundation (3 months)" },
+    { to: "/online#edge", text: "Founder's Edge (6 months)" },
+    { to: "/online#mastery", text: "Founder's Mastery (12 months)" },
+  ];
+
+  const mobileNavLinks = [
+    ...leftNavLinks,
+    ...rightNavLinks,
+    { to: "/contact", name: "Contact" },
   ];
 
   return (
@@ -116,8 +131,8 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center px-4 lg:px-8">
         {/* Left side links - Desktop */}
-        <div className="hidden lg:flex items-center space-x-9 pl-38">
-          {navLinks.map((link) => (
+        <div className="hidden lg:flex items-center space-x-9 pl-88">
+          {leftNavLinks.map((link) => (
             <Link 
               key={link.name}
               to={link.to} 
@@ -125,7 +140,6 @@ const Navbar = () => {
               onClick={() => handleLinkClick(link.name)}
             >
               {link.name}
-              {/* Animated Underline */}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-300 group-hover:w-full"></span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-500 group-hover:w-full group-hover:delay-100"></span>
             </Link>
@@ -134,14 +148,19 @@ const Navbar = () => {
 
         {/* Centered Logo */}
         <div className="flex items-center z-50 absolute left-1/2 transform -translate-x-1/2">
-          <Link to="/" aria-label="Go to homepage" className="transition-transform duration-300 hover:scale-105">
+          <Link 
+            to="/" 
+            aria-label="Go to homepage" 
+            className="transition-transform duration-300 hover:scale-105"
+            onClick={() => handleLinkClick("Home")}
+          >
             <img src={logo} alt="Incubenation Logo" className="h-10 lg:h-12" />
           </Link>
         </div>
 
         {/* Right side links - Desktop */}
         <div className="hidden lg:flex items-center space-x-9 ml-auto pr-38">
-          {/* Dropdown for Programs */}
+          {/* Programs Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
               className="relative text-white hover:text-cyan-300 flex items-center font-medium transition-all duration-300 group"
@@ -154,7 +173,6 @@ const Navbar = () => {
                 }`}
                 size={14}
               />
-              {/* Animated Underline for Programs */}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-300 group-hover:w-full"></span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-500 group-hover:w-full group-hover:delay-100"></span>
             </button>
@@ -162,7 +180,7 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             {isDropdownOpen && (
               <div className="absolute left-0 mt-4 w-64 bg-black/95 backdrop-blur-xl rounded-2xl py-4 z-20 border border-cyan-500/20 shadow-2xl animate-fadeIn">
-                {/* Online Programs with nested dropdown - Double click functionality */}
+                {/* Online Programs with nested dropdown */}
                 <div className="relative group">
                   <Link
                     ref={onlineLinkRef}
@@ -178,25 +196,16 @@ const Navbar = () => {
                       }`}
                       size={12}
                     />
-                    {/* Animated Underline for dropdown items */}
                     <span className="absolute bottom-2 left-5 right-5 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </Link>
 
                   {/* Nested Dropdown */}
                   {isProgramsOpen && (
-                    <div
-                      className="absolute right-full top-0 ml-2 w-72 bg-black/95 backdrop-blur-xl rounded-2xl py-4 z-30 border border-cyan-500/20 shadow-2xl animate-slideInRight"
-                      onMouseEnter={() => setIsProgramsOpen(true)}
-                      onMouseLeave={() => setIsProgramsOpen(false)}
-                    >
+                    <div className="absolute right-full top-0 ml-2 w-72 bg-black/95 backdrop-blur-xl rounded-2xl py-4 z-30 border border-cyan-500/20 shadow-2xl animate-slideInRight">
                       <div className="px-5 py-3 text-cyan-300 text-sm font-semibold border-b border-cyan-500/20 mb-2">
                         Program Durations
                       </div>
-                      {[
-                        { to: "/online#foundation", text: "Founder's Foundation (3 months)" },
-                        { to: "/online#edge", text: "Founder's Edge (6 months)" },
-                        { to: "/online#mastery", text: "Founder's Mastery (12 months)" }
-                      ].map((item) => (
+                      {onlineProgramLinks.map((item) => (
                         <Link
                           key={item.to}
                           to={item.to}
@@ -204,7 +213,6 @@ const Navbar = () => {
                           className="block w-full text-left px-5 py-3 text-white hover:bg-cyan-500/10 transition-all duration-300 rounded-lg mx-2 relative group"
                         >
                           {item.text}
-                          {/* Animated Underline for nested dropdown items */}
                           <span className="absolute bottom-2 left-5 right-5 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                         </Link>
                       ))}
@@ -213,15 +221,14 @@ const Navbar = () => {
                 </div>
 
                 {/* Other program links */}
-                {["center", "campus", "business"].map((item) => (
+                {programLinks.map((item) => (
                   <Link
-                    key={item}
-                    to={`/${item}`}
+                    key={item.to}
+                    to={item.to}
                     onClick={closeAllMenus}
                     className="block px-5 py-3 text-white hover:bg-cyan-500/10 transition-all duration-300 rounded-lg mx-2 font-medium relative group"
                   >
-                    Incubenation {item.charAt(0).toUpperCase() + item.slice(1)}
-                    {/* Animated Underline for dropdown items */}
+                    Incubenation {item.name}
                     <span className="absolute bottom-2 left-5 right-5 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </Link>
                 ))}
@@ -229,7 +236,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Blog Link with Animated Underline */}
+          {/* Right side navigation links */}
           {rightNavLinks.map((link) => (
             <Link 
               key={link.name}
@@ -238,13 +245,12 @@ const Navbar = () => {
               onClick={() => handleLinkClick(link.name)}
             >
               {link.name}
-              {/* Animated Underline */}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-300 group-hover:w-full"></span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-300 transition-all duration-500 group-hover:w-full group-hover:delay-100"></span>
             </Link>
           ))}
           
-          {/* Contact Link with Transparent Button and White Border */}
+          {/* Contact Link */}
           <Link 
             to="/contact" 
             className="border-2 border-white text-white bg-transparent hover:bg-white/10 px-6 py-1 font-medium transition-all duration-300 transform hover:scale-105 hover:border-cyan-300 hover:text-cyan-300 rounded-lg"
@@ -261,23 +267,25 @@ const Navbar = () => {
             className={`text-white p-3 rounded-2xl transition-all duration-300 ${
               scrolled ? "bg-cyan-500/20 backdrop-blur-lg" : "bg-black/20 backdrop-blur-lg"
             } transform hover:scale-110`}
+            aria-label="Toggle menu"
           >
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu - Remains exactly the same */}
+      {/* Mobile Menu */}
       <div
         ref={mobileMenuRef}
-        className={`lg:hidden fixed inset-0 z-40 pt-24 px-6 pb-10 transition-all duration-500 ease-in-out ${
+        className={`lg:hidden fixed inset-0 z-40 pt-24 px-6 pb-10 transition-all duration-500 ease-in-out overflow-y-auto ${
           isOpen 
             ? "bg-[#061428] opacity-100 backdrop-blur-xl" 
             : "opacity-0 pointer-events-none"
         }`}
       >
         <div className="flex flex-col space-y-6 text-center h-full justify-start mt-8">
-          {[...navLinks, ...rightNavLinks, { to: "/contact", name: "Contact" }].map((link) => (
+          {/* Regular mobile links */}
+          {mobileNavLinks.map((link) => (
             <Link 
               key={link.name}
               onClick={() => handleLinkClick(link.name)} 
@@ -285,7 +293,6 @@ const Navbar = () => {
               className="text-white text-2xl py-4 font-medium transition-all duration-300 transform hover:scale-105 hover:text-cyan-300 relative group"
             >
               {link.name}
-              {/* Mobile Animated Underline */}
               <span className="absolute bottom-3 left-1/4 right-1/4 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </Link>
           ))}
@@ -302,7 +309,6 @@ const Navbar = () => {
                   isMobileProgramsOpen ? "rotate-180" : ""
                 }`}
               />
-              {/* Mobile Animated Underline */}
               <span className="absolute bottom-3 left-1/4 right-1/4 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
             </button>
 
@@ -316,19 +322,17 @@ const Navbar = () => {
                   className="block py-3 text-white hover:text-cyan-300 text-xl font-medium transition-all duration-300 transform hover:scale-105 relative group"
                 >
                   Incubenation Online
-                  {/* Mobile Animated Underline */}
                   <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                 </Link>
 
-                {["center", "campus", "business"].map((item) => (
+                {programLinks.map((item) => (
                   <Link
-                    key={item}
-                    to={`/${item}`}
+                    key={item.to}
+                    to={item.to}
                     onClick={closeAllMenus}
                     className="block py-3 text-white hover:text-cyan-300 text-xl font-medium transition-all duration-300 transform hover:scale-105 relative group"
                   >
-                    Incubenation {item.charAt(0).toUpperCase() + item.slice(1)}
-                    {/* Mobile Animated Underline */}
+                    Incubenation {item.name}
                     <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-cyan-300 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
                   </Link>
                 ))}
