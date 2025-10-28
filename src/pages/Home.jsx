@@ -10,7 +10,7 @@ import Blog from "../components/Blog";
 
 const Home = () => {
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
       <Hero />
       <Offerings />
       <Advisors />

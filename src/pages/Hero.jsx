@@ -93,7 +93,7 @@ const FocusCard = ({ item, index }) => {
         style={{ transformStyle: "preserve-3d" }}
       >
         {/* Background Glow Effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         
         {/* Colored top border */}
         <div className={`h-2 w-full bg-gradient-to-r ${item.color}`}></div>

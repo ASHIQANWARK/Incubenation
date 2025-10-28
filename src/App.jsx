@@ -19,6 +19,7 @@ import Career from "./pages/Career";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsandConditions";
 import RefundPolicy from "./pages/Refundpolicy";
+import AdvisorsPage from "./pages/AdvisorsPage";
 
 const MainLayout = () => (
   <>
@@ -47,6 +48,7 @@ function App() {
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
           <Route path="/refundpolicy" element={<RefundPolicy />} />
+          <Route path="/advisors" element={<AdvisorsPage />} />
         </Route>
          
         {/* Catch-All Route */}
