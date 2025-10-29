@@ -130,7 +130,7 @@ const AdvisorCard = ({ advisor, index }) => {
       }`}>
         
         {/* Front of Card */}
-        <div className="absolute inset-0 w-full h-full bg-white rounded-2xl shadow-xl backface-hidden overflow-hidden">
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 rounded-2xl shadow-xl backface-hidden overflow-hidden">
           <div className="flex flex-col items-center p-4 h-full">
             {/* Badge */}
             <div className="absolute -top-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-1 rounded-full shadow-md z-10">
@@ -139,7 +139,7 @@ const AdvisorCard = ({ advisor, index }) => {
             
             {/* Profile Image */}
             <div className="relative mt-6 mb-3">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#2A3F80] shadow-lg">
+              <div className="w-34 h-34 rounded-b-4xl overflow-hidden border-4 border-[#ffffff] shadow-lg">
                 <img
                   src={advisor.image}
                   alt={advisor.name}
@@ -155,10 +155,10 @@ const AdvisorCard = ({ advisor, index }) => {
             </div>
             
             {/* Name and Title */}
-            <h3 className="text-lg font-bold text-gray-900 text-center mb-1 leading-tight">
+            <h3 className="text-lg font-bold text-white text-center mb-1 leading-tight">
               {advisor.name}
             </h3>
-            <p className="text-blue-600 text-xs font-medium text-center mb-2 leading-tight px-2">
+            <p className="text-white text-xs font-medium text-center mb-2 leading-tight px-2">
               {advisor.title}
             </p>
             
@@ -170,13 +170,13 @@ const AdvisorCard = ({ advisor, index }) => {
             </div>
             
             {/* Short Description Preview */}
-            <p className="text-gray-600 text-xs text-center flex-grow overflow-hidden px-2">
+            <p className="text-white text-xs text-center flex-grow overflow-hidden px-2">
               {advisor.description.substring(0, 80)}...
             </p>
             
             {/* Hover Indicator */}
             <div className="mt-2 pt-2">
-              <div className="flex justify-center items-center text-blue-500">
+              <div className="flex justify-center items-center text-white">
                 <span className="text-xs mr-1">Hover to learn more</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
