@@ -78,7 +78,7 @@ const EcosystemSection = () => {
   { src: flyrad, alt: "Flyrad" },
   { src: franchisify, alt: "Franchisify" },
   { src: sib, alt: "SIB" },
-  { src: akam, alt: "akam" },
+
 ];
 
 
