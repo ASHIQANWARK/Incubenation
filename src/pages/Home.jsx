@@ -15,9 +15,9 @@ const Home = () => {
       <Offerings />
       <Advisors />
       <EcosystemSection />
-      <FAQ />
       <Testimonial />
       <Blog />
+      <FAQ />
       <ChatBot />
     </div>
   );
