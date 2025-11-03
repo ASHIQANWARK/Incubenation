@@ -1,5 +1,5 @@
-import React from "react";
-import { HashRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
 
 // Layout Components
 import Navbar from "./components/Navbar";
@@ -21,9 +21,22 @@ import TermsAndConditions from "./pages/TermsandConditions";
 import RefundPolicy from "./pages/Refundpolicy";
 import AdvisorsPage from "./pages/AdvisorsPage";
 
+// ScrollToTop component that will handle scrolling to top on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Scroll to top instantly when route changes
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 const MainLayout = () => (
   <>
     <Navbar />
+    <ScrollToTop />
     <Outlet />
     <Footer />
   </>
