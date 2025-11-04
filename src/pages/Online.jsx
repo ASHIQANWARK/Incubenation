@@ -29,7 +29,7 @@ const HeaderSection = () => (
         <FaRocket className="text-xl" />
         <span className="text-sm font-semibold tracking-wider">DIGITAL INCUBATION PROGRAM</span>
       </div>
-      <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+      <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
         IncubeNation
         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
           Online

@@ -52,7 +52,7 @@ const HeaderSection = () => (
         <FaBuilding className="text-xl" />
         <span className="text-sm font-semibold tracking-wider">PREMIER INCUBATION CENTER</span>
       </div>
-      <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+      <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
         IncubeNation
         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
           Center
@@ -241,7 +241,7 @@ const LocationCards = () => (
         </div>
         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
           Strategic
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+          <span className=" text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
             Locations
           </span>
         </h2>

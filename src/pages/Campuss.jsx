@@ -24,7 +24,7 @@ const HeaderSection = () => (
         <FaLightbulb className="text-xl" />
         <span className="text-sm font-semibold tracking-wider">CAMPUS INCUBATION PROGRAM</span>
       </div>
-      <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+      <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
         IncubeNation
         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
           Campus
