@@ -8,7 +8,6 @@ import {
   FaNetworkWired,
   FaLaptop,
   FaBuilding,
-  FaArrowRight
 } from "react-icons/fa";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -27,69 +26,75 @@ const offeringsData = [
   {
     title: "Co-Working Spaces",
     description: "Fully furnished co-working spaces with high-speed internet, conference rooms, and breakout areas.",
-    icon: <FaUsers className="text-2xl" />,
+    icon: <FaUsers className="text-lg sm:text-xl" />,
     bgImage: coworking,
     color: "from-blue-500 to-cyan-500"
   },
   {
     title: "Incubation Programs",
     description: "Mentorship and support for startups, including business model refinement, networking, and funding assistance.",
-    icon: <FaLightbulb className="text-2xl" />,
+    icon: <FaLightbulb className="text-lg sm:text-xl" />,
     bgImage: programs,
     color: "from-amber-500 to-orange-500"
   },
   {
     title: "Business Support Services",
     description: "Legal, accounting, and marketing support for startups and entrepreneurs.",
-    icon: <FaCogs className="text-2xl" />,
+    icon: <FaCogs className="text-lg sm:text-xl" />,
     bgImage: business,
     color: "from-purple-500 to-pink-500"
   },
   {
     title: "Training & Workshops",
     description: "Regular workshops and training sessions on various topics such as entrepreneurship, leadership, and technology.",
-    icon: <FaChartLine className="text-2xl" />,
+    icon: <FaChartLine className="text-lg sm:text-xl" />,
     bgImage: training,
     color: "from-green-500 to-teal-500"
   },
   {
     title: "Funding Assistance",
     description: "Support in securing investments and grants for startups.",
-    icon: <FaHandshake className="text-2xl" />,
+    icon: <FaHandshake className="text-lg sm:text-xl" />,
     bgImage: fund,
     color: "from-red-500 to-rose-500"
   },
   {
     title: "Networking Opportunities",
     description: "Access to a strong network of industry experts, investors, and fellow entrepreneurs.",
-    icon: <FaNetworkWired className="text-2xl" />,
+    icon: <FaNetworkWired className="text-lg sm:text-xl" />,
     bgImage: networking,
     color: "from-indigo-500 to-blue-500"
   },
   {
     title: "Tech & Innovation Support",
     description: "Access to R&D facilities, prototyping labs, and expert guidance on technology adoption.",
-    icon: <FaLaptop className="text-2xl" />,
+    icon: <FaLaptop className="text-lg sm:text-xl" />,
     bgImage: it,
     color: "from-cyan-500 to-blue-500"
   },
   {
     title: "Customized Office Solutions",
     description: "Flexible office spaces tailored to the needs of businesses.",
-    icon: <FaBuilding className="text-2xl" />,
+    icon: <FaBuilding className="text-lg sm:text-xl" />,
     bgImage: office,
     color: "from-slate-600 to-slate-800"
   },
 ];
 
+// Preload images for faster loading
+const preloadImages = () => {
+  offeringsData.forEach(offering => {
+    const img = new Image();
+    img.src = offering.bgImage;
+  });
+};
+
 const OfferingsCard = ({ offering, index }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    threshold: 0.2,
+    threshold: 0.05, // Lower threshold for mobile
     triggerOnce: true,
   });
-
-  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     if (inView) {
@@ -98,15 +103,28 @@ const OfferingsCard = ({ offering, index }) => {
   }, [controls, inView]);
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { 
+      opacity: 0, 
+      y: 20,
+      scale: 0.98
+    },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.6,
-        delay: index * 0.1,
+        duration: 0.5,
+        delay: index * 0.08,
         ease: "easeOut"
       }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { scale: 1 },
+    hover: { 
+      scale: 1.05,
+      transition: { duration: 0.4 }
     }
   };
 
@@ -116,70 +134,135 @@ const OfferingsCard = ({ offering, index }) => {
       variants={cardVariants}
       initial="hidden"
       animate={controls}
-      className="relative bg-[#2A3F80] rounded-xl shadow-lg overflow-hidden group h-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      whileHover="hover"
+      className="relative bg-[#2A3F80] rounded-lg sm:rounded-xl shadow-lg sm:shadow-xl overflow-hidden group h-full cursor-pointer min-h-[280px] sm:min-h-[320px] md:min-h-[340px] lg:min-h-[360px]"
     >
       {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
+      <motion.div 
+        className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${offering.bgImage})` }}
+        variants={imageVariants}
       >
-        <div className="absolute inset-0 bg-black/65"></div>
-      </div>
+        <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-all duration-300"></div>
+        {/* Loading shimmer effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 animate-pulse opacity-50"></div>
+      </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 p-6 flex flex-col h-full">
+      <div className="relative z-10 p-4 sm:p-5 md:p-6 flex flex-col h-full">
         {/* Icon */}
-        <div className="mb-4">
-          <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${offering.color} flex items-center justify-center text-white shadow-lg`}>
+        <motion.div 
+          className="mb-3 sm:mb-4"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-gradient-to-r ${offering.color} flex items-center justify-center text-white shadow-lg`}>
             {offering.icon}
           </div>
-        </div>
+        </motion.div>
 
         {/* Title & Description */}
-        <h3 className="text-xl font-bold text-white mb-3">{offering.title}</h3>
-        <p className="text-white text-sm mb-6 flex-grow">{offering.description}</p>
+        <h3 className="text-lg sm:text-xl md:text-xl font-bold text-white mb-2 sm:mb-3 leading-tight">
+          {offering.title}
+        </h3>
+        <p className="text-white/90 text-xs sm:text-sm md:text-sm mb-3 sm:mb-4 flex-grow leading-relaxed sm:leading-relaxed">
+          {offering.description}
+        </p>
 
         
       </div>
 
       {/* Accent Bar */}
-      <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${offering.color}`}></div>
+      <motion.div 
+        className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${offering.color}`}
+        whileHover={{ scaleX: 1.1 }}
+        transition={{ duration: 0.3 }}
+      />
     </motion.div>
   );
 };
 
 const Offerings = () => {
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  useEffect(() => {
+    // Preload images on component mount
+    preloadImages();
+    const timer = setTimeout(() => {
+      setImagesLoaded(true);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.08,
+        duration: 0.6
+      }
+    }
+  };
+
   return (
-    <section className="py-16  px-4">
-      <div className="container mx-auto max-w-6xl">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-3 xs:px-4 sm:px-6 md:px-8 min-h-screen flex items-center">
+      <div className="container mx-auto max-w-6xl xl:max-w-7xl 2xl:max-w-8xl w-full">
         {/* Header */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ 
+            duration: 0.6,
+            ease: "easeOut"
+          }}
+          viewport={{ once: true, margin: "-30px" }}
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            What We <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">Offer</span>?
-          </h2>
-          <p className="text-lg text-white max-w-2xl mx-auto">
+          <motion.h2 
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 md:mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            What We <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Offer</span>?
+          </motion.h2>
+          <motion.p 
+            className="text-sm sm:text-base md:text-lg lg:text-lg text-white/80 max-w-xl sm:max-w-2xl mx-auto leading-relaxed px-2 sm:px-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
             We provide tailored support for startups, ensuring you receive the guidance and resources necessary for growth.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Offerings Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div 
+          className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-30px" }}
+        >
           {offeringsData.map((offering, index) => (
-            <OfferingsCard key={index} offering={offering} index={index} />
+            <OfferingsCard 
+              key={index} 
+              offering={offering} 
+              index={index} 
+            />
           ))}
-        </div>
-       
+        </motion.div>
+
+        {/* Additional spacing for very large screens */}
+        <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20"></div>
       </div>
     </section>
   );
 };
 
-export default Offerings; 
+export default Offerings;

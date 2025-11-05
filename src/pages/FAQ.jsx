@@ -32,43 +32,44 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16 ">
-      {/* Section Heading */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12 lg:py-16">
+      {/* Section Heading - Reduced spacing */}
+      <div className="text-center mb-6 sm:mb-8 md:mb-10">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
           Frequently Asked Questions
         </h2>
-        <p className="text-lg text-white max-w-2xl mx-auto">
+        <p className="text-sm sm:text-base text-white/90 max-w-md mx-auto leading-relaxed">
           Find answers to common questions about our equity-based model and Incubenation program
         </p>
       </div>
 
       {/* FAQ List */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {faqs.map((faq, index) => (
           <motion.div
             key={index}
-            className="rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300"
+            className="rounded-lg sm:rounded-xl overflow-hidden border border-white/20 bg-white/5 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300"
             initial={false}
-            animate={{ backgroundColor: activeIndex === index ? '#f8fafc' : '#ffffff' }}
+            animate={{ backgroundColor: activeIndex === index ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.05)' }}
             transition={{ duration: 0.2 }}
           >
             <motion.button
               onClick={() => toggleFAQ(index)}
-              className="w-full text-left p-6 flex justify-between items-center"
-              whileHover={{ backgroundColor: '#f1f5f9' }}
-              transition={{ duration: 0.2 }}
+              className="w-full text-left p-4 sm:p-5 md:p-6 flex justify-between items-center gap-4 hover:bg-white/5 transition-colors duration-200"
+              whileTap={{ scale: 0.98 }}
             >
-              <span className="text-lg font-semibold text-slate-800 pr-4">
+              <span className="text-base sm:text-lg md:text-xl font-semibold text-white pr-2 flex-1 leading-tight">
                 {faq.question}
               </span>
               <motion.span
-                className="flex-shrink-0 w-6 h-6 rounded-full 0 flex items-center justify-center"
-                animate={{ rotate: activeIndex === index ? 180 : 0 }}
+                className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-400/30"
+                animate={{ 
+                  rotate: activeIndex === index ? 180 : 0,
+                }}
                 transition={{ duration: 0.3 }}
               >
                 <svg 
-                  className="w-4 h-4 text-blue-600" 
+                  className="w-3 h-3 sm:w-4 sm:h-4 text-blue-400" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24" 
@@ -88,7 +89,7 @@ const FAQ = () => {
                     opacity: 1,
                     transition: {
                       height: { duration: 0.3 },
-                      opacity: { duration: 0.3, delay: 0.1 }
+                      opacity: { duration: 0.2, delay: 0.1 }
                     }
                   }}
                   exit={{ 
@@ -101,7 +102,7 @@ const FAQ = () => {
                   }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-6 text-slate-600 leading-relaxed">
+                  <div className="px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6 text-white/80 leading-relaxed text-sm sm:text-base">
                     {faq.answer}
                   </div>
                 </motion.div>
@@ -111,7 +112,7 @@ const FAQ = () => {
         ))}
       </div>
 
-      
+     
     </div>
   );
 };

@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { PenTool, X } from "lucide-react";
 import startupImg from "../assets/images/startup.jpg";
 import successImg from "../assets/images/success.jpg";
-import fundingImg from "../assets/images/funding.jpeg";
-import teamworkImg from "../assets/images/teamwoek.jpg";
-import marketingImg from "../assets/images/marketing.jpeg";
 
 // Blog data with full content
 const blogs = [
@@ -274,31 +271,49 @@ const Blog = () => {
   };
 
   return (
-    <div className="w-full min-h-screen  pt-24 pb-16 px-4 md:px-8 lg:px-16 relative">
-      <h2 className="text-4xl font-bold text-center text-white mb-12 font-serif">
-        Our Blog <PenTool className="inline-block w-8 h-8 ml-2" />
-      </h2>
+   <div className="w-full pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 px-4 sm:px-6 md:px-8 lg:px-12">
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Header - Minimal spacing */}
+      <div className="text-center mb-4 sm:mb-6 md:mb-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-3 font-serif">
+          Our Blog 
+          <PenTool className="inline-block w-5 h-5 sm:w-6 sm:h-6 ml-2" />
+        </h2>
+        <p className="text-blue-100 text-sm sm:text-base max-w-xs sm:max-w-md mx-auto">
+          Insights, stories, and guidance from our entrepreneurial journey
+        </p>
+      </div>
+
+      {/* Blog Grid - Tight layout */}
+      <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
         {sortedBlogs.map((blog, index) => (
           <div 
             key={blog.id} 
-            className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:scale-105"
+            className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] flex flex-col h-full"
           >
             <img 
               src={blog.image} 
               alt={blog.title} 
-              className="w-full h-48 object-cover"
+              className="w-full h-32 sm:h-36 md:h-40 object-cover"
             />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-[#1d375f]">{blog.title}</h3>
-              <p className="text-gray-500 text-sm">{blog.date} | {blog.author}</p>
-              <p className="mt-3 text-gray-600">{blog.excerpt}</p>
+            <div className="p-3 sm:p-4 flex-1 flex flex-col">
+              <h3 className="text-base sm:text-lg font-semibold text-[#1d375f] mb-1 line-clamp-2">
+                {blog.title}
+              </h3>
+              <div className="flex items-center text-gray-500 text-xs mb-1">
+                <span>{blog.date}</span>
+                <span className="mx-1">•</span>
+                <span className="truncate">By {blog.author}</span>
+              </div>
+              <p className="text-gray-600 text-xs sm:text-sm mb-2 flex-1 line-clamp-3">
+                {blog.excerpt}
+              </p>
               <button 
                 onClick={() => handleReadMore(blog)}
-                className="mt-4 text-[#1d375f] font-semibold hover:underline"
+                className="mt-auto text-[#1d375f] font-semibold hover:underline text-xs sm:text-sm w-fit flex items-center gap-1"
               >
-                Read More →
+                Read More 
+                <span className="text-base">→</span>
               </button>
             </div>
           </div>
@@ -308,23 +323,23 @@ const Blog = () => {
       {/* Disclaimer Modal */}
       {showDisclaimer && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-md w-full p-6">
-            <h3 className="text-xl font-bold text-[#1d375f] mb-4">Disclaimer</h3>
-            <p className="text-gray-700 mb-6">
+          <div className="bg-white rounded-lg max-w-sm w-full p-5 mx-4">
+            <h3 className="text-xl font-bold text-[#1d375f] mb-3">Disclaimer</h3>
+            <p className="text-gray-700 text-sm mb-4 leading-relaxed">
               The content provided in our blog is for informational purposes only. 
               We make no representations as to the accuracy or completeness of any information 
               and will not be liable for any errors or omissions in this information.
             </p>
-            <div className="flex justify-end space-x-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button 
                 onClick={() => setShowDisclaimer(false)}
-                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
+                className="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-100 text-sm flex-1"
               >
                 Cancel
               </button>
               <button 
                 onClick={acceptDisclaimer}
-                className="px-4 py-2 bg-[#1d375f] text-white rounded-md hover:bg-[#15294d]"
+                className="px-4 py-2 bg-[#1d375f] text-white rounded hover:bg-[#15294d] text-sm flex-1"
               >
                 I Understand
               </button>
@@ -335,47 +350,57 @@ const Blog = () => {
 
       {/* Blog Detail View */}
       {selectedBlog && !showDisclaimer && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 overflow-y-auto z-50 p-4">
-          <div className="bg-white rounded-lg max-w-4xl mx-auto my-8">
-            <div className="sticky top-0 bg-white flex justify-between items-center p-4 border-b">
-              <h2 className="text-2xl font-bold text-[#1d375f]">{selectedBlog.title}</h2>
+        <div className="fixed inset-0 bg-black bg-opacity-70 overflow-y-auto z-50 p-3 sm:p-4">
+          <div className="bg-white rounded-lg max-w-2xl md:max-w-3xl mx-auto my-4">
+            {/* Sticky Header */}
+            <div className="sticky top-0 bg-white flex justify-between items-center p-4 border-b z-10">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#1d375f] pr-4 line-clamp-2 flex-1">
+                {selectedBlog.title}
+              </h2>
               <button 
                 onClick={closeBlogDetail}
-                className="text-gray-500 hover:text-gray-700"
+                className="flex-shrink-0 text-gray-500 hover:text-gray-700 p-1"
+                aria-label="Close blog"
               >
-                <X size={24} />
+                <X size={20} />
               </button>
             </div>
             
+            {/* Blog Image */}
             <img 
               src={selectedBlog.image} 
               alt={selectedBlog.title} 
-              className="w-full h-64 object-cover"
+              className="w-full h-40 sm:h-48 object-cover"
             />
             
-            <div className="p-6">
-              <div className="flex items-center text-gray-500 mb-6">
+            {/* Blog Content */}
+            <div className="p-4 sm:p-5">
+              <div className="flex items-center text-gray-500 text-sm mb-3 flex-wrap">
                 <span>{selectedBlog.date}</span>
                 <span className="mx-2">•</span>
                 <span>By {selectedBlog.author}</span>
               </div>
               
-              <div className="prose max-w-none">
+              <div className="prose prose-sm max-w-none">
                 {selectedBlog.content.split('\n').map((paragraph, index) => (
                   paragraph.trim() ? (
-                    <p key={index} className="mb-4">{paragraph}</p>
+                    <p key={index} className="mb-2 text-gray-700 leading-relaxed text-sm">
+                      {paragraph}
+                    </p>
                   ) : (
-                    <div key={index} className="mb-4"></div>
+                    <div key={index} className="mb-2"></div>
                   )
                 ))}
               </div>
               
-              <button 
-                onClick={closeBlogDetail}
-                className="mt-8 px-4 py-2 bg-[#1d375f] text-white rounded-md hover:bg-[#15294d]"
-              >
-                Back to Blog
-              </button>
+              <div className="flex justify-center mt-4">
+                <button 
+                  onClick={closeBlogDetail}
+                  className="px-5 py-2 bg-[#1d375f] text-white rounded hover:bg-[#15294d] text-sm w-full sm:w-auto text-center"
+                >
+                  Back to Blog
+                </button>
+              </div>
             </div>
           </div>
         </div>
