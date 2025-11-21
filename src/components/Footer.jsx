@@ -28,7 +28,7 @@ const Footer = () => {
                 <div className="flex items-center space-x-3">
                   <FaMapMarkerAlt className="text-[#ffab00] flex-shrink-0" />
                   <span className="text-gray-300 text-sm">
-                    Koramangala, Bengaluru, Karnataka 560095
+                    Startup Park, Sidharata Colony, Santhosapuram, Koramangala 2nd Block, Koramangala, Bengaluru, Karnataka 560068
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
