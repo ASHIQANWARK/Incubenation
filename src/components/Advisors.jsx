@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Users, ArrowRight, Star } from "lucide-react";
+import { Users, ArrowRight, Star, Sparkles, Network, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const AdvisorsSection = () => {
@@ -10,69 +10,96 @@ const AdvisorsSection = () => {
     navigate("/advisors");
   };
 
+  const features = [
+    {
+      icon: <Star className="text-amber-500 w-5 h-5 sm:w-6 sm:h-6" />,
+      title: "Expert Guidance",
+      description: "Access industry-specific mentorship and practical founder advice.",
+      color: "from-amber-400 to-orange-500",
+    },
+    {
+      icon: <Network className="text-cyan-600 w-5 h-5 sm:w-6 sm:h-6" />,
+      title: "Network Access",
+      description: "Connect with mentors, investors, partners, and ecosystem leaders.",
+      color: "from-cyan-500 to-blue-600",
+    },
+    {
+      icon: <TrendingUp className="text-violet-600 w-5 h-5 sm:w-6 sm:h-6" />,
+      title: "Growth Support",
+      description: "Get strategic direction for startup growth, traction, and scale.",
+      color: "from-violet-500 to-fuchsia-600",
+    },
+  ];
+
   return (
-    <section className="py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-7xl">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+    <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
+      {/* Background Glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-10 left-10 h-64 w-64 rounded-full bg-cyan-300/20 blur-3xl"></div>
+        <div className="absolute top-1/3 right-0 h-72 w-72 rounded-full bg-violet-300/20 blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-emerald-300/20 blur-3xl"></div>
+      </div>
+
+      <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
           className="text-center"
         >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-white/80 px-4 py-2 text-xs sm:text-sm font-medium text-cyan-700 shadow-sm backdrop-blur-md">
+            <Sparkles size={15} />
+            Advisory Ecosystem
+          </div>
+
           {/* Icon */}
-          <div className="mb-4 sm:mb-6 lg:mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-blue-500/20 rounded-2xl border border-blue-500/30">
-              <Users className="text-blue-400 w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10" />
+          <div className="mt-6 mb-6 sm:mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-3xl bg-white/80 border border-slate-200 shadow-sm backdrop-blur-xl">
+              <Users className="text-cyan-600 w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10" />
             </div>
           </div>
 
           {/* Heading */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 lg:mb-6 px-2 sm:px-0">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Advisory Board</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
+            Meet Our
+            <span className="block bg-gradient-to-r from-cyan-600 via-blue-600 to-violet-600 bg-clip-text text-transparent">
+              Advisory Board
+            </span>
           </h2>
-          
+
           {/* Description */}
-          <p className="text-base sm:text-lg lg:text-xl text-blue-200 mb-6 sm:mb-8 lg:mb-12 max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto px-2 sm:px-0 leading-relaxed">
-            We're building a network of industry experts and successful entrepreneurs 
-            to guide our startups towards success.
+          <p className="mt-5 text-sm sm:text-base md:text-lg text-slate-600 max-w-3xl mx-auto px-2 sm:px-0 leading-8">
+            We are building a powerful network of industry experts, mentors, and successful entrepreneurs
+            to help startups navigate challenges, unlock opportunities, and scale with confidence.
           </p>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-10 lg:mb-12 max-w-6xl mx-auto">
-            {[
-              {
-                icon: <Star className="text-yellow-400 w-5 h-5 sm:w-6 sm:h-6" />,
-                title: "Expert Guidance",
-                description: "Industry-specific insights and mentorship"
-              },
-              {
-                icon: <Users className="text-green-400 w-5 h-5 sm:w-6 sm:h-6" />,
-                title: "Network Access",
-                description: "Connect with investors and partners"
-              },
-              {
-                icon: <ArrowRight className="text-purple-400 w-5 h-5 sm:w-6 sm:h-6" />,
-                title: "Growth Support",
-                description: "Strategic advice for scaling businesses"
-              }
-            ].map((feature, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 mt-12 mb-10 sm:mb-12 max-w-6xl mx-auto">
+            {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.55, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-5 lg:p-6 border border-white/10 hover:border-white/20 transition-all duration-300"
+                className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-xl p-6 shadow-sm hover:-translate-y-1.5 hover:shadow-xl transition-all duration-500"
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="mb-2 sm:mb-3 lg:mb-4">
+                {/* Glow */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 blur-2xl transition-all duration-500 group-hover:opacity-10`}></div>
+
+                {/* Top line */}
+                <div className={`absolute top-0 left-0 h-1 w-full bg-gradient-to-r ${feature.color}`}></div>
+
+                <div className="relative flex flex-col items-center text-center">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 border border-slate-200">
                     {feature.icon}
                   </div>
-                  <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg mb-1 sm:mb-2">
+                  <h3 className="text-slate-900 font-semibold text-base sm:text-lg mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-blue-200 text-xs sm:text-sm lg:text-base leading-tight sm:leading-relaxed">
+                  <p className="text-slate-600 text-sm leading-7">
                     {feature.description}
                   </p>
                 </div>
@@ -83,9 +110,9 @@ const AdvisorsSection = () => {
           {/* CTA Button */}
           <motion.button
             onClick={handleViewAdvisors}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-lg sm:rounded-xl lg:rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-blue-500/25 text-sm sm:text-base lg:text-lg w-full sm:w-auto justify-center max-w-xs sm:max-w-none mx-auto"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.96 }}
+            className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-600 to-blue-600 px-7 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:shadow-xl"
           >
             <Users className="w-4 h-4 sm:w-5 sm:h-5" />
             <span>Meet Our Advisors</span>

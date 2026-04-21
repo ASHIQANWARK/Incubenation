@@ -20,6 +20,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsandConditions";
 import RefundPolicy from "./pages/Refundpolicy";
 import AdvisorsPage from "./pages/AdvisorsPage";
+import ThankYou from "./pages/ThankYou";
 
 // ScrollToTop component that will handle scrolling to top on route change
 const ScrollToTop = () => {
@@ -62,6 +63,7 @@ function App() {
           <Route path="/termsandconditions" element={<TermsAndConditions />} />
           <Route path="/refundpolicy" element={<RefundPolicy />} />
           <Route path="/advisors" element={<AdvisorsPage />} />
+          <Route path="/thank-you" element={<ThankYou />} />
         </Route>
          
         {/* Catch-All Route */}
