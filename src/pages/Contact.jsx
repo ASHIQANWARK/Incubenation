@@ -220,7 +220,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="text-white text-sm font-semibold mb-2 block flex items-center space-x-2">
+                <label className="text-white text-sm font-semibold mb-2 flex items-center space-x-2">
                   <FaBuilding className="text-[#ffab00]" />
                   <span>Startup Details</span>
                 </label>
@@ -261,7 +261,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="text-white text-sm font-semibold mb-2 block flex items-center space-x-2">
+                <label className="text-white text-sm font-semibold mb-2  flex items-center space-x-2">
                   <FaDollarSign className="text-[#ffab00]" />
                   <span>Requirements</span>
                 </label>
