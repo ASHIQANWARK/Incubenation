@@ -241,7 +241,7 @@ const WebsiteBackground = ({ children }) => (
     className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat relative"
    
   >
-    <div className="absolute inset-0 bg-slate-950/45 backdrop-[blur(1px)]"></div>
+    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 backdrop-[blur(1px)]"></div>
     <div className="relative z-10">{children}</div>
   </div>
 );

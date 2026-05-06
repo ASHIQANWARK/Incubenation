@@ -13,7 +13,7 @@ import Contact from "./pages/Contact";
 import Center from "./pages/Centers";
 import Online from "./pages/Online"
 import Campus from "./pages/Campuss";
-import Business from "./pages/Business";
+import LittleFounders from "./pages/Business";
 import Blog from "./components/Blog";
 import Career from "./pages/Career";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -56,7 +56,7 @@ function App() {
           <Route path="/center" element={<Center/>} />
           <Route path="/online" element={<Online />} />
           <Route path="/campus" element={<Campus />} />
-          <Route path="/business" element={<Business />} />
+          <Route path="/littlefounders" element={<LittleFounders />} />
           <Route path="/career" element={<Career />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />

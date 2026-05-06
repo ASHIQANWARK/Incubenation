@@ -112,7 +112,7 @@ const Contact = () => {
                     <FaUsers className="text-white text-lg" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white">100+ Successful Startups</h4>
+                    <h4 className="font-semibold text-white">20+ Successful Startups</h4>
                     <p className="text-gray-300 text-sm mt-1">Join our thriving community of innovators</p>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ const Contact = () => {
                     <FaDollarSign className="text-white text-lg" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white">₹50Cr+ Funding Raised</h4>
+                    <h4 className="font-semibold text-white">₹10Cr+ Funding Raised</h4>
                     <p className="text-gray-300 text-sm mt-1">Connected with top VCs and angel investors</p>
                   </div>
                 </div>

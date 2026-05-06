@@ -106,7 +106,7 @@ const Navbar = () => {
   const programLinks = [
     { to: "/center", name: "Center" },
     { to: "/campus", name: "Campus" },
-    { to: "/business", name: "Business" },
+    { to: "/littlefounders", name: "Business" },
   ];
 
   const onlineProgramLinks = [

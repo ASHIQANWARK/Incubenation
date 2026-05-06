@@ -128,7 +128,7 @@ Thank you for choosing Incube Nation!
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-heading">
-              Thank You, {founderName}! 🚀
+              Thank You, {founderName}! 
             </h1>
             
             <p className="text-xl text-gray-300">
@@ -141,33 +141,7 @@ Thank you for choosing Incube Nation!
             </div>
           </div>
 
-          {/* Quick Actions Bar */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            <button
-              onClick={handleDownloadSummary}
-              className="bg-white/10 hover:bg-[#ffab00] text-white hover:text-black px-4 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 text-sm"
-            >
-              <FaDownload size={14} />
-              <span>Download Summary</span>
-            </button>
-            
-            <button
-              onClick={handleShare}
-              className="bg-white/10 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 text-sm"
-            >
-              <FaShare size={14} />
-              <span>Share</span>
-            </button>
-            
-            <button
-              onClick={handleCopyReference}
-              className="bg-white/10 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 text-sm"
-            >
-              {copied ? <FaCheck size={14} /> : <FaCopy size={14} />}
-              <span>{copied ? 'Copied!' : 'Copy Reference ID'}</span>
-            </button>
-          </div>
-
+        
           {/* Application Summary Card */}
           <div className="bg-gradient-to-r from-[#ffab00]/10 to-transparent border border-[#ffab00]/30 rounded-xl p-6 mb-8">
             <div className="flex items-center justify-between mb-4">
@@ -357,10 +331,7 @@ Thank you for choosing Incube Nation!
             </button>
           </div>
 
-          {/* Reference Note */}
-          <p className="text-center text-gray-500 text-xs mt-6">
-            Reference ID will be sent to your registered email address
-          </p>
+          
         </div>
       </div>
 

@@ -10,7 +10,12 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
-import { ArrowRight, Sparkles, ChevronRight } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  ChevronRight,
+  BadgeCheck,
+} from "lucide-react";
 
 // Program icons
 import IncubationCenterIcon from "../assets/images/incubenation-DP-3.png";
@@ -97,11 +102,16 @@ const FocusCard = ({ item, index }) => {
       className="group h-full"
     >
       <div className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-6 transition-all duration-500 hover:-translate-y-2 hover:border-white/20 hover:shadow-2xl overflow-hidden">
-        {/* Top Gradient Line */}
-        <div className={`absolute top-0 left-0 h-1 w-full bg-gradient-to-r ${item.gradient}`}></div>
+        
+        {/* Top Gradient */}
+        <div
+          className={`absolute top-0 left-0 h-1 w-full bg-gradient-to-r ${item.gradient}`}
+        ></div>
 
-        {/* Glow Effect */}
-        <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 blur-xl transition-all duration-500 group-hover:opacity-10`}></div>
+        {/* Glow */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 blur-xl transition-all duration-500 group-hover:opacity-10`}
+        ></div>
 
         {/* Tag */}
         {item.tag && (
@@ -111,7 +121,9 @@ const FocusCard = ({ item, index }) => {
         )}
 
         {/* Icon */}
-        <div className={`relative mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r ${item.gradient} p-2.5 shadow-lg`}>
+        <div
+          className={`relative mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r ${item.gradient} p-2.5 shadow-lg`}
+        >
           <img
             src={item.icon}
             alt={item.title}
@@ -135,7 +147,10 @@ const FocusCard = ({ item, index }) => {
           className="relative inline-flex items-center gap-2 text-sm font-medium text-cyan-300 transition-all duration-300 hover:text-white group/btn"
         >
           Explore
-          <ChevronRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+          <ChevronRight
+            size={16}
+            className="transition-transform duration-300 group-hover/btn:translate-x-1"
+          />
         </Link>
       </div>
     </motion.div>
@@ -151,6 +166,7 @@ const Hero = () => {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
+
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
@@ -161,7 +177,7 @@ const Hero = () => {
   return (
     <>
       {/* HERO SECTION */}
-      <section 
+      <section
         className="relative overflow-hidden text-white min-h-[90vh] lg:min-h-screen flex items-center"
         style={{
           backgroundImage: `url(${HeroImage})`,
@@ -173,20 +189,21 @@ const Hero = () => {
       >
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-white/30" />
-        
-        {/* Mouse-following light effect */}
+
+        {/* Mouse Effect */}
         <div className="absolute inset-0" style={backgroundStyle}></div>
 
         {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.06),_transparent_50%),radial-gradient(circle_at_bottom_right,_rgba(168,85,247,0.06),_transparent_50%)]" />
 
-        {/* Animated Blur Shapes */}
+        {/* Blur Shapes */}
         <div className="absolute -top-20 left-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl animate-pulse" />
         <div className="absolute top-1/3 right-0 h-80 w-80 rounded-full bg-violet-500/10 blur-3xl animate-pulse delay-1000" />
         <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl animate-pulse delay-700" />
 
         <div className="relative w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-28">
           <div className="max-w-4xl mx-auto text-center">
+
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -199,8 +216,8 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* Heading - Made Smaller */}
-            <motion.h1 
+            {/* Heading */}
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -223,7 +240,7 @@ const Hero = () => {
             </motion.h1>
 
             {/* Description */}
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -235,8 +252,8 @@ const Hero = () => {
               opportunities.
             </motion.p>
 
-            {/* CTA Buttons */}
-            <motion.div 
+            {/* Buttons */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -259,7 +276,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Social Links */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -285,21 +302,63 @@ const Hero = () => {
                 ))}
               </div>
             </motion.div>
+
+            {/* DPIIT Registration Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-10 flex justify-center"
+            >
+              <div className="group relative overflow-hidden rounded-2xl border border-emerald-400/30 bg-white/5 backdrop-blur-md px-6 py-4 shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-emerald-400/50">
+
+                {/* Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
+
+                <div className="relative flex items-center gap-4">
+                  
+                  {/* Icon */}
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg">
+                    <BadgeCheck className="text-white" size={28} />
+                  </div>
+
+                  {/* Content */}
+                  <div className="text-left">
+                    <p className="text-lg font-bold text-white">
+                      DPIIT Registered Startup
+                    </p>
+
+                    <p className="text-sm text-emerald-300 font-medium">
+                      Recognized by Startup India, Government of India
+                    </p>
+
+                    <p className="mt-1 text-xs tracking-wide text-slate-300">
+                      DPIIT Recognition No:
+                      <span className="ml-1 font-semibold text-white">
+                        DIPP259673
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
       {/* PROGRAMS SECTION */}
       <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
-        {/* Background Elements */}
+
+        {/* Background */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-cyan-500/8 blur-3xl rounded-full" />
           <div className="absolute bottom-0 right-1/4 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] bg-violet-500/8 blur-3xl rounded-full" />
-          <div className="absolute top-1/3 left-0 w-48 sm:w-64 h-48 sm:h-64 bg-emerald-500/8 blur-3xl rounded-full" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
+
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -324,7 +383,7 @@ const Hero = () => {
             </p>
           </motion.div>
 
-          {/* Cards Grid */}
+          {/* Cards */}
           <div className="relative rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 sm:p-5 md:p-6 lg:p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
               {focuses.map((item, index) => (
