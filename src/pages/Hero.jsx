@@ -10,11 +10,11 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
+import { SlBadge } from "react-icons/sl";
 import {
   ArrowRight,
   Sparkles,
   ChevronRight,
-  BadgeCheck,
 } from "lucide-react";
 
 // Program icons
@@ -201,6 +201,98 @@ const Hero = () => {
         <div className="absolute top-1/3 right-0 h-80 w-80 rounded-full bg-violet-500/10 blur-3xl animate-pulse delay-1000" />
         <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl animate-pulse delay-700" />
 
+        {/* DPIIT Certificate Badge - Large Modern Design */}
+        <motion.div
+          initial={{ opacity: 0, x: 30, scale: 0.9 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 200 }}
+          className="absolute top-14 sm:top-15 md:top-20 right-6 sm:right-8 md:right-10 z-20"
+        >
+          <div className="group relative">
+            {/* Outer Glow */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-teal-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+            
+            {/* Main Badge Container */}
+            <div className="relative bg-gradient-to-br from-black/60 via-black/50 to-black/60 backdrop-blur-md border border-emerald-400/40 rounded-2xl shadow-2xl overflow-hidden">
+              
+              {/* Inner Gradient Border Animation */}
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/0 via-emerald-500/30 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:translate-x-full -translate-x-full"></div>
+              
+              {/* Content */}
+              <div className="relative px-4 py-3 sm:px-5 sm:py-4 md:px-6 md:py-4">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  
+                  {/* Icon Section */}
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full blur-md opacity-60"></div>
+                    <div className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg">
+                      <SlBadge className="text-white" size={24} strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  
+                  {/* Text Section */}
+                  <div className="flex flex-col">
+                    <span className="text-sm sm:text-base md:text-lg font-bold text-white tracking-tight">
+                      DPIIT Registered
+                    </span>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <span className="text-[11px] sm:text-xs md:text-sm text-emerald-300 font-semibold">
+                        Startup India
+                      </span>
+                      <span className="w-1 h-1 rounded-full bg-emerald-400"></span>
+                      <span className="text-[10px] sm:text-[11px] md:text-xs text-slate-300 font-mono">
+                        DIPP259673
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1.5 mt-1.5">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                      </span>
+                      <span className="text-[9px] sm:text-[10px] text-slate-400 font-medium">
+                        Government Recognized
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Chevron Indicator */}
+                  <div className="ml-1 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hover Tooltip with Certificate Details */}
+            <div className="absolute right-0 top-full mt-3 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none z-30">
+              <div className="bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-xl p-3 shadow-2xl">
+                <div className="flex items-start gap-2">
+                  <div className="flex-shrink-0 mt-0.5">
+                    <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                      <SlBadge className="text-emerald-400" size={12} />
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-white mb-1">Certificate of Recognition</p>
+                    <p className="text-[10px] text-slate-300 leading-relaxed">
+                      Recognized by the Department for Promotion of Industry and Internal Trade, Government of India
+                    </p>
+                    <div className="mt-2 pt-2 border-t border-slate-700/50">
+                      <p className="text-[9px] text-slate-400">
+                        Registration No: <span className="text-emerald-400 font-mono">DIPP259673</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {/* Tooltip Arrow */}
+                <div className="absolute -top-1 right-4 w-2 h-2 rotate-45 bg-slate-900/95 border-l border-t border-slate-700"></div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         <div className="relative w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-28">
           <div className="max-w-4xl mx-auto text-center">
 
@@ -302,47 +394,6 @@ const Hero = () => {
                 ))}
               </div>
             </motion.div>
-
-            {/* DPIIT Registration Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="mt-10 flex justify-center"
-            >
-              <div className="group relative overflow-hidden rounded-2xl border border-emerald-400/30 bg-white/5 backdrop-blur-md px-6 py-4 shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:border-emerald-400/50">
-
-                {/* Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"></div>
-
-                <div className="relative flex items-center gap-4">
-                  
-                  {/* Icon */}
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg">
-                    <BadgeCheck className="text-white" size={28} />
-                  </div>
-
-                  {/* Content */}
-                  <div className="text-left">
-                    <p className="text-lg font-bold text-white">
-                      DPIIT Registered Startup
-                    </p>
-
-                    <p className="text-sm text-emerald-300 font-medium">
-                      Recognized by Startup India, Government of India
-                    </p>
-
-                    <p className="mt-1 text-xs tracking-wide text-slate-300">
-                      DPIIT Recognition No:
-                      <span className="ml-1 font-semibold text-white">
-                        DIPP259673
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
           </div>
         </div>
       </section>

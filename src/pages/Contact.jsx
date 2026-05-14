@@ -8,6 +8,7 @@ import {
 import { FaX } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
+
 const Contact = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -296,7 +297,22 @@ const Contact = () => {
                   onChange={handleChange}
                 ></textarea>
               </div>
+               <div>
+          {/* className="mt-10 bg-black border border-emerald-200 rounded-2xl p-5"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        > */}
+          <h3 className="text-lg font-semibold text-emerald-800 mb-2">
+            Consent Notice for Enquiry Forms
+          </h3>
 
+              <p className="text-gray-700 leading-relaxed">
+            “I agree to be contacted by Ique Cap regarding my enquiry and
+            consent to the collection and use of my information as per the
+            Privacy Policy.”
+               </p>
+              </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
