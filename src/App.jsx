@@ -21,6 +21,7 @@ import TermsAndConditions from "./pages/TermsandConditions";
 import RefundPolicy from "./pages/Refundpolicy";
 import AdvisorsPage from "./pages/AdvisorsPage";
 import ThankYou from "./pages/Thankyou";
+import ZeroToHundredPage from "./pages/Zth";
 
 // ScrollToTop component that will handle scrolling to top on route change
 const ScrollToTop = () => {
@@ -64,6 +65,7 @@ function App() {
           <Route path="/refundpolicy" element={<RefundPolicy />} />
           <Route path="/advisors" element={<AdvisorsPage />} />
           <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/zerotohundered" element ={<ZeroToHundredPage />} />
         </Route>
          
         {/* Catch-All Route */}
