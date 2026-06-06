@@ -1,37 +1,209 @@
-import React, { useState, useEffect } from 'react';
-import { Calendar, Target, TrendingUp, Users, Award, Clock, CheckCircle, ArrowRight, Play, Star, Zap, Shield, BookOpen, BarChart3, Rocket, Lightbulb, Sparkles, Globe, HeartHandshake, MessageCircle, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Calendar, Target, TrendingUp, Users, Award, Clock, CheckCircle, ArrowRight, Play, Star, Zap, Shield, BookOpen, BarChart3, Rocket, Lightbulb, Sparkles, Globe, HeartHandshake, MessageCircle, ChevronRight, Timer, Bell } from 'lucide-react';
 // Import mentor images - make sure these files exist in your assets/mentors folder
 import vikrantImage from '../assets/images/Vikrant.jpeg';
 import anjaliImage from '../assets/images/anjali.jpg';
 import shubhamImage from '../assets/images/shubham.jpeg';
 import girishImage from '../assets/images/girish.jpg';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const ZeroToHundredPage = () => {
   const [activeTab, setActiveTab] = useState('curriculum');
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+  const heroRef = useRef(null);
+  const timelineRef = useRef(null);
+  const curriculumRef = useRef(null);
+  const mentorsRef = useRef(null);
+  const benefitsRef = useRef(null);
+  const ctaRef = useRef(null);
+  const countdownRef = useRef(null);
 
+  // Fixed launch date: June 10, 2026 at 6:30:10 PM
+  const launchDate = new Date(2026, 5, 10, 18, 30, 10);
+
+  // Check for mobile screen
   useEffect(() => {
-    const handleScroll = () => {
-      const elements = document.querySelectorAll('.animate-on-scroll');
-      elements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight - 100;
-        if (isVisible) {
-          el.classList.add('animated');
-        }
-      });
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date();
+      const difference = launchDate.getTime() - now.getTime();
+      
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        
+        setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    // Hero animations
+    const heroCtx = gsap.context(() => {
+      gsap.fromTo('.hero-title', 
+        { y: 80, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1.2, ease: "power4.out" }
+      );
+      gsap.fromTo('.hero-subtitle', 
+        { y: 50, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
+      );
+      gsap.fromTo('.hero-badge', 
+        { scale: 0, opacity: 0 }, 
+        { scale: 1, opacity: 1, duration: 0.8, delay: 0.5, ease: "back.out(1.7)" }
+      );
+      gsap.fromTo('.hero-cta', 
+        { y: 40, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8, delay: 0.8, ease: "power2.out" }
+      );
+      
+      gsap.to('.floating-orb-1', {
+        y: -30,
+        x: 20,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+      gsap.to('.floating-orb-2', {
+        y: 30,
+        x: -20,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 0.5
+      });
+    }, heroRef);
+
+    // Timeline animations
+    const timelineCtx = gsap.context(() => {
+      if (!isMobile) {
+        gsap.fromTo('.timeline-line', {
+          scaleY: 0,
+          transformOrigin: 'top center'
+        }, {
+          scaleY: 1,
+          duration: 2,
+          ease: "power3.inOut",
+          scrollTrigger: {
+            trigger: '.timeline-container',
+            start: 'top 60%',
+            end: 'bottom 60%',
+            scrub: 0.5
+          }
+        });
+      }
+
+      gsap.utils.toArray('.milestone-card').forEach((card, i) => {
+        const xOffset = isMobile ? 0 : (i % 2 === 0 ? -100 : 100);
+        const rotateY = isMobile ? 0 : (i % 2 === 0 ? 15 : -15);
+        
+        gsap.fromTo(card, {
+          opacity: 0,
+          x: xOffset,
+          rotateY: rotateY,
+        }, {
+          opacity: 1,
+          x: 0,
+          rotateY: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+      });
+    }, timelineRef);
+
+    // Curriculum cards animation
+    gsap.fromTo('.curriculum-card', {
+      opacity: 0,
+      scale: 0.8,
+      rotateX: -15,
+    }, {
+      opacity: 1,
+      scale: 1,
+      rotateX: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: '.curriculum-grid',
+        start: 'top 80%',
+      }
+    });
+
+    // Mentors cards animation
+    gsap.fromTo('.mentor-card', {
+      opacity: 0,
+      y: 50,
+      scale: 0.9,
+    }, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.6,
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: '.mentors-grid',
+        start: 'top 80%',
+      }
+    });
+
+    // Countdown timer animation
+    const countdownCtx = gsap.context(() => {
+      gsap.fromTo('.countdown-number', {
+        scale: 1,
+        opacity: 0.5
+      }, {
+        scale: 1.05,
+        opacity: 1,
+        duration: 1,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.1
+      });
+    }, countdownRef);
+
+    return () => {
+      heroCtx.revert();
+      timelineCtx.revert();
+      countdownCtx.revert();
+    };
+  }, [isMobile]);
+
   const milestones = [
-    { week: 0, title: "Discovery & Mindset", icon: <Lightbulb className="w-6 h-6" />, color: "from-purple-500 to-pink-500" },
-    { week: 4, title: "MVP Development", icon: <Rocket className="w-6 h-6" />, color: "from-blue-500 to-cyan-500" },
-    { week: 8, title: "Market Fit & Traction", icon: <Target className="w-6 h-6" />, color: "from-green-500 to-emerald-500" },
-    { week: 12, title: "Scaling & Investment", icon: <TrendingUp className="w-6 h-6" />, color: "from-orange-500 to-red-500" },
-    { week: 16, title: "Demo Day & Launch", icon: <Award className="w-6 h-6" />, color: "from-yellow-500 to-amber-500" }
+    { week: 0, title: "Discovery & Mindset", icon: <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />, color: "from-purple-500 to-pink-500", desc: "Ideation, problem validation, and founder mindset development" },
+    { week: 4, title: "MVP Development", icon: <Rocket className="w-5 h-5 md:w-6 md:h-6" />, color: "from-blue-500 to-cyan-500", desc: "Rapid prototyping, user testing, and product iteration" },
+    { week: 8, title: "Market Fit & Traction", icon: <Target className="w-5 h-5 md:w-6 md:h-6" />, color: "from-green-500 to-emerald-500", desc: "Customer acquisition, growth experiments, and metrics optimization" },
+    { week: 12, title: "Scaling & Investment", icon: <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />, color: "from-orange-500 to-red-500", desc: "Fundraising preparation, financial modeling, and pitch refinement" },
+    { week: 16, title: "Demo Day & Launch", icon: <Award className="w-5 h-5 md:w-6 md:h-6" />, color: "from-yellow-500 to-amber-500", desc: "Present to investors, secure funding, and go-to-market strategy" }
   ];
 
   const weeklyCurriculum = [
@@ -93,92 +265,210 @@ const ZeroToHundredPage = () => {
   ];
 
   const benefits = [
-    { icon: <Zap className="w-6 h-6" />, title: "$100K Investment Ready", desc: "Pitch to 50+ angels & VCs" },
-    { icon: <Users className="w-6 h-6" />, title: "Founder Community", desc: "Join 500+ successful alumni" },
-    { icon: <Star className="w-6 h-6" />, title: "1-on-1 Mentorship", desc: "Weekly sessions with industry experts" },
-    { icon: <Globe className="w-6 h-6" />, title: "Global Network", desc: "Access to partner ecosystems" }
+    { icon: <Zap className="w-5 h-5 md:w-6 md:h-6" />, title: "Investment Readiness", desc: "Pitch preparation, financial modeling, and direct access to our investor network" },
+    { icon: <Users className="w-5 h-5 md:w-6 md:h-6" />, title: "Founder Community", desc: "Join a curated cohort of ambitious founders and build your support network" },
+    { icon: <Star className="w-5 h-5 md:w-6 md:h-6" />, title: "1-on-1 Mentorship", desc: "Weekly deep-dive sessions with industry veterans and domain experts" },
+    { icon: <Globe className="w-5 h-5 md:w-6 md:h-6" />, title: "Ecosystem Access", desc: "Connect with corporate partners, technology providers, and service partners" }
   ];
 
-  const stats = [
-    { value: "90%", label: "Alumni raise funding" },
-    { value: "4.9", label: "Founder satisfaction rating" },
-    { value: "8+", label: "Startups accelerated" },
-    { value: "100+", label: "Investor Network" }
-  ];
+  const formattedLaunchDate = launchDate.toLocaleDateString('en-US', { 
+    day: 'numeric', 
+    month: 'long', 
+    year: 'numeric' 
+  });
+
+  const padNumber = (num) => String(num).padStart(2, '0');
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#0A0A0F] text-white overflow-x-hidden">
+      <style>{`
+        @keyframes hue-shift {
+          0%, 100% { filter: hue-rotate(0deg); }
+          25% { filter: hue-rotate(15deg); }
+          50% { filter: hue-rotate(30deg); }
+          75% { filter: hue-rotate(15deg); }
+        }
+        @keyframes text-color-shift {
+          0%, 100% { color: #c084fc; }
+          20% { color: #f472b6; }
+          40% { color: #fb923c; }
+          60% { color: #facc15; }
+          80% { color: #f472b6; }
+        }
+        @keyframes gradient-shift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes countdown-pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+        .animate-hue-shift {
+          animation: hue-shift 6s ease-in-out infinite;
+        }
+        .animate-text-color {
+          animation: text-color-shift 6s ease-in-out infinite;
+        }
+        .animate-gradient-shift {
+          background-size: 200% 200%;
+          animation: gradient-shift 6s ease infinite;
+        }
+        .gradient-text-shift {
+          background: linear-gradient(270deg, #c084fc, #f472b6, #fb923c, #facc15, #f472b6, #c084fc);
+          background-size: 400% 400%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: gradient-shift 6s ease infinite;
+        }
+        .countdown-pulse {
+          animation: countdown-pulse 2s ease-in-out infinite;
+        }
+      `}</style>
+
       {/* Hero Section */}
-      <section className="relative pt-20 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-pink-900/20 to-orange-900/20"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center">
-            <div className="inline-flex items-center space-x-2 bg-gray-800/50 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-gray-700">
-              <Sparkles className="w-4 h-4 text-yellow-400" />
-              <span className="text-sm">Limited seats for Spring 2025 cohort</span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent animate-gradient">
-              From Zero to $100M
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              A 4-month intensive incubation program that transforms founders into CEOs. 
-              Launch, scale, and raise capital.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center gap-2">
-                Apply for Cohort <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="px-8 py-3 border border-gray-600 rounded-lg font-semibold hover:bg-gray-800 transition flex items-center justify-center gap-2">
-                <Play className="w-5 h-5" /> Watch Intro
-              </button>
-            </div>
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20 md:py-0">
+        {/* Animated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-purple-600/20 rounded-full blur-[80px] md:blur-[120px] floating-orb-1 animate-hue-shift"></div>
+          <div className="absolute bottom-0 right-1/4 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-pink-600/20 rounded-full blur-[60px] md:blur-[100px] floating-orb-2 animate-hue-shift"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-blue-600/5 rounded-full blur-[80px] md:blur-[150px]"></div>
+          
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:30px_30px] md:bg-[size:60px_60px]"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10 text-center w-full">
+          <h1 className="hero-title text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black mb-4 md:mb-6 leading-none tracking-tighter px-2">
+            <span className="gradient-text-shift">
+              Zero to 100
+            </span>
+          </h1>
+          <p className="hero-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-gray-400 mb-3 md:mb-4 max-w-xl md:max-w-3xl mx-auto font-light px-4">
+            The Ultimate Founder Incubation Program
+          </p>
+          <p className="hero-subtitle text-sm sm:text-base md:text-lg text-gray-500 mb-6 md:mb-10 max-w-md md:max-w-2xl mx-auto px-4">
+            A 16-week intensive journey to transform your startup idea into an investment-ready venture
+          </p>
+          
+          <div className="hero-cta flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-4">
+            <button className="group relative w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-base md:text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] animate-hue-shift">
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Join the Launch Cohort <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 blur-xl transition-opacity"></div>
+            </button>
+            <button className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 border border-white/10 rounded-full font-semibold text-base md:text-lg hover:bg-white/5 transition-all backdrop-blur-sm">
+              Explore Program
+            </button>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="text-center animate-on-scroll">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  {stat.value}
-                </div>
-                <div className="text-gray-400 mt-2">{stat.label}</div>
+          <div className="hero-cta flex flex-wrap justify-center gap-2 md:gap-4 mt-8 md:mt-16 px-4">
+            {['16-Week Intensive', 'Expert Mentorship', 'Investor Access', 'Peer Community'].map((feature, i) => (
+              <div key={i} className="px-3 md:px-6 py-2 md:py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-xs md:text-sm text-gray-300 hover:border-purple-500/50 transition-all duration-300">
+                <span className="animate-text-color">{feature.split(' ')[0]}</span> {feature.split(' ').slice(1).join(' ')}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Program Timeline */}
-      <section id="program" className="py-20 bg-gray-800/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Your 16-Week Journey</h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              From idea to investment-ready startup with weekly milestones and expert guidance
-            </p>
+      {/* Launch Countdown Section */}
+      <section className="py-12 md:py-20 bg-white/[0.02] border-y border-white/5">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <div className="inline-flex items-center gap-2 text-purple-400 mb-3 md:mb-4">
+            <Timer className="w-4 h-4 md:w-5 md:h-5 animate-text-color" />
+            <span className="text-xs md:text-sm font-semibold uppercase tracking-widest animate-text-color">Program Launch</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4 gradient-text-shift">June 10th, 2026</h2>
+          <p className="text-base md:text-xl text-gray-400 mb-6 md:mb-8 max-w-lg md:max-w-2xl mx-auto px-2">
+            Be among the first founders to experience the Zero to 100 journey. 
+            Applications are now open for our founding cohort.
+          </p>
+          
+          {/* Responsive Countdown Timer */}
+          <div ref={countdownRef} className="inline-flex gap-3 sm:gap-4 md:gap-6 lg:gap-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
+            <div className="text-center">
+              <div className="countdown-number countdown-pulse text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black gradient-text-shift mb-1 md:mb-2">
+                {padNumber(timeLeft.days)}
+              </div>
+              <div className="text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-500 uppercase tracking-wider md:tracking-widest font-medium">Days</div>
+            </div>
+            <div className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-gray-700 self-start mt-1 md:mt-2">:</div>
+            <div className="text-center">
+              <div className="countdown-number countdown-pulse text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black gradient-text-shift mb-1 md:mb-2" style={{ animationDelay: '0.2s' }}>
+                {padNumber(timeLeft.hours)}
+              </div>
+              <div className="text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-500 uppercase tracking-wider md:tracking-widest font-medium">Hours</div>
+            </div>
+            <div className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-gray-700 self-start mt-1 md:mt-2">:</div>
+            <div className="text-center">
+              <div className="countdown-number countdown-pulse text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black gradient-text-shift mb-1 md:mb-2" style={{ animationDelay: '0.4s' }}>
+                {padNumber(timeLeft.minutes)}
+              </div>
+              <div className="text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-500 uppercase tracking-wider md:tracking-widest font-medium">Minutes</div>
+            </div>
+            <div className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-gray-700 self-start mt-1 md:mt-2">:</div>
+            <div className="text-center">
+              <div className="countdown-number countdown-pulse text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black gradient-text-shift mb-1 md:mb-2" style={{ animationDelay: '0.6s' }}>
+                {padNumber(timeLeft.seconds)}
+              </div>
+              <div className="text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-500 uppercase tracking-wider md:tracking-widest font-medium">Seconds</div>
+            </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-500 via-pink-500 to-orange-500 hidden md:block"></div>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            <div className="text-center">
+              <div className="text-xl md:text-3xl font-bold animate-text-color">Limited</div>
+              <div className="text-xs md:text-sm text-gray-500">Founding Seats</div>
+            </div>
+            <div className="text-center">
+              <div className="text-xl md:text-3xl font-bold animate-text-color">16</div>
+              <div className="text-xs md:text-sm text-gray-500">Intensive Weeks</div>
+            </div>
+            <div className="text-center">
+              <div className="text-xl md:text-3xl font-bold animate-text-color">4</div>
+              <div className="text-xs md:text-sm text-gray-500">Expert Mentors</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Program Journey / Timeline */}
+      <section ref={timelineRef} id="program" className="py-16 md:py-32 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 tracking-tight">The Journey</h2>
+            <p className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto px-2">A structured path from concept to company</p>
+          </div>
+
+          <div className="timeline-container relative">
+            {/* Timeline line - hidden on mobile */}
+            <div className="timeline-line absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-purple-500 via-pink-500 to-amber-500 hidden md:block animate-hue-shift"></div>
+            
+            {/* Mobile timeline line */}
+            <div className="absolute left-4 md:hidden w-0.5 h-full bg-gradient-to-b from-purple-500 via-pink-500 to-amber-500 animate-hue-shift"></div>
             
             {milestones.map((milestone, idx) => (
-              <div key={idx} className={`relative flex flex-col md:flex-row items-center mb-16 animate-on-scroll`}>
-                <div className={`md:w-1/2 ${idx % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:ml-auto'}`}>
-                  <div className={`bg-gradient-to-r ${milestone.color} p-6 rounded-2xl shadow-xl border border-gray-700 transform transition hover:scale-105`}>
-                    <div className="flex items-center gap-3 mb-3 justify-center md:justify-start">
-                      {milestone.icon}
-                      <h3 className="text-xl font-bold">{milestone.title}</h3>
-                    </div>
-                    <p className="text-gray-200">
-                      Week {milestone.week} - Focus on validating, building, and scaling your startup
-                    </p>
-                  </div>
+              <div key={idx} className="milestone-card relative flex items-start mb-12 md:mb-24 last:mb-0 pl-10 md:pl-0">
+                {/* Mobile timeline dot */}
+                <div className="absolute left-[10px] md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 md:w-6 md:h-6 bg-gray-900 border-2 border-purple-500 rounded-full flex items-center justify-center z-10 animate-hue-shift mt-6 md:mt-0">
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-purple-400 rounded-full"></div>
                 </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gray-900 border-4 border-purple-500 rounded-full flex items-center justify-center hidden md:flex z-10">
-                  <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+
+                <div className={`w-full md:w-1/2 ${idx % 2 === 0 ? 'md:pr-8 lg:pr-16 md:text-right' : 'md:pl-8 lg:pl-16 md:ml-auto'}`}>
+                  <div className="bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 hover:bg-white/[0.06] transition-all duration-500 group">
+                    <div className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold mb-2 md:mb-3">
+                      <span className="animate-text-color">WEEK {milestone.week}</span>
+                    </div>
+                    <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 md:justify-start justify-start">
+                      <div className={`p-1.5 md:p-2 rounded-lg bg-gradient-to-r ${milestone.color} bg-opacity-10 animate-hue-shift`}>
+                        {milestone.icon}
+                      </div>
+                      <h3 className="text-lg md:text-xl lg:text-2xl font-bold">{milestone.title}</h3>
+                    </div>
+                    <p className="text-sm md:text-base text-gray-400 leading-relaxed">{milestone.desc}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -186,46 +476,41 @@ const ZeroToHundredPage = () => {
         </div>
       </section>
 
-      {/* Curriculum Tabs */}
-      <section id="curriculum" className="py-20">
+      {/* Curriculum Section */}
+      <section id="curriculum" className="py-16 md:py-32 bg-white/[0.02]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Comprehensive Curriculum</h2>
-            <p className="text-gray-400 text-lg">Week-by-week mastery of startup fundamentals</p>
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 tracking-tight">The Curriculum</h2>
+            <p className="text-base md:text-xl text-gray-400">Master every aspect of building a successful startup</p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            <button
-              onClick={() => setActiveTab('curriculum')}
-              className={`px-6 py-2 rounded-lg transition ${activeTab === 'curriculum' ? 'bg-purple-600' : 'bg-gray-800 hover:bg-gray-700'}`}
-            >
-              Weekly Topics
-            </button>
-            <button
-              onClick={() => setActiveTab('mentors')}
-              className={`px-6 py-2 rounded-lg transition ${activeTab === 'mentors' ? 'bg-purple-600' : 'bg-gray-800 hover:bg-gray-700'}`}
-            >
-              Expert Mentors
-            </button>
-            <button
-              onClick={() => setActiveTab('benefits')}
-              className={`px-6 py-2 rounded-lg transition ${activeTab === 'benefits' ? 'bg-purple-600' : 'bg-gray-800 hover:bg-gray-700'}`}
-            >
-              Program Benefits
-            </button>
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12">
+            {['curriculum', 'mentors', 'benefits'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
+                  activeTab === tab 
+                    ? 'bg-white text-black shadow-lg shadow-purple-500/20' 
+                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                {tab === 'curriculum' ? 'Weekly Modules' : tab === 'mentors' ? 'Our Mentors' : 'Program Benefits'}
+              </button>
+            ))}
           </div>
 
-          <div className="animate-fadeIn">
+          <div className="transition-all duration-500">
             {activeTab === 'curriculum' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="curriculum-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
                 {weeklyCurriculum.map((week, idx) => (
-                  <div key={idx} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition group">
-                    <div className="text-purple-400 text-sm mb-2">Week {week.week}</div>
-                    <h3 className="font-bold text-lg mb-3 group-hover:text-purple-400 transition">{week.title}</h3>
-                    <ul className="space-y-2">
+                  <div key={idx} className="curriculum-card bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-6 hover:border-purple-500/50 transition-all duration-300 group">
+                    <div className="text-purple-400 text-xs md:text-sm font-semibold mb-2 md:mb-3 animate-text-color">Week {week.week}</div>
+                    <h3 className="font-bold text-sm md:text-lg mb-3 md:mb-4 group-hover:text-purple-300 transition-colors">{week.title}</h3>
+                    <ul className="space-y-1.5 md:space-y-2">
                       {week.topics.map((topic, tidx) => (
-                        <li key={tidx} className="flex items-start gap-2 text-gray-300 text-sm">
-                          <CheckCircle className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                        <li key={tidx} className="flex items-start gap-1.5 md:gap-2 text-gray-400 text-xs md:text-sm">
+                          <CheckCircle className="w-3 h-3 md:w-4 md:h-4 text-purple-500 mt-0.5 flex-shrink-0 animate-text-color" />
                           <span>{topic}</span>
                         </li>
                       ))}
@@ -236,19 +521,22 @@ const ZeroToHundredPage = () => {
             )}
 
             {activeTab === 'mentors' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="mentors-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
                 {mentors.map((mentor, idx) => (
-                  <div key={idx} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 text-center border border-gray-700 hover:border-purple-500 transition group">
-                    <img 
-                      src={mentor.image} 
-                      alt={mentor.name} 
-                      className="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-2 border-purple-500 group-hover:scale-105 transition duration-300" 
-                    />
-                    <h3 className="font-bold text-lg">{mentor.name}</h3>
-                    <p className="text-purple-400 text-sm mb-2">{mentor.title}</p>
-                    <div className="flex flex-wrap gap-1 justify-center mt-2">
-                      {mentor.expertise.slice(0, 2).map((exp, i) => (
-                        <span key={i} className="inline-block px-2 py-1 bg-gray-700 rounded-full text-xs">
+                  <div key={idx} className="mentor-card bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-6 text-center hover:border-purple-500/50 transition-all duration-300 group">
+                    <div className="relative inline-block mb-3 md:mb-4">
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity animate-hue-shift"></div>
+                      <img 
+                        src={mentor.image} 
+                        alt={mentor.name} 
+                        className="relative w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto object-cover border-2 border-white/20" 
+                      />
+                    </div>
+                    <h3 className="font-bold text-sm md:text-lg mb-1">{mentor.name}</h3>
+                    <p className="text-purple-400 text-xs md:text-sm mb-2 md:mb-3 animate-text-color">{mentor.role}</p>
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {mentor.expertise.slice(0, 3).map((exp, i) => (
+                        <span key={i} className="px-2 md:px-3 py-0.5 md:py-1 bg-white/5 rounded-full text-[10px] md:text-xs text-gray-300">
                           {exp}
                         </span>
                       ))}
@@ -259,12 +547,14 @@ const ZeroToHundredPage = () => {
             )}
 
             {activeTab === 'benefits' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 {benefits.map((benefit, idx) => (
-                  <div key={idx} className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl p-8 border border-purple-500/30 hover:scale-105 transition duration-300">
-                    <div className="text-purple-400 mb-4">{benefit.icon}</div>
-                    <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                    <p className="text-gray-300">{benefit.desc}</p>
+                  <div key={idx} className="bg-gradient-to-br from-purple-500/5 to-pink-500/5 border border-purple-500/20 rounded-xl md:rounded-2xl p-6 md:p-8 hover:border-purple-500/50 transition-all duration-300 group">
+                    <div className="w-10 h-10 md:w-14 md:h-14 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg md:rounded-xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform animate-hue-shift">
+                      <div className="animate-text-color">{benefit.icon}</div>
+                    </div>
+                    <h3 className="text-lg md:text-2xl font-bold mb-2 md:mb-3">{benefit.title}</h3>
+                    <p className="text-sm md:text-base text-gray-400 leading-relaxed">{benefit.desc}</p>
                   </div>
                 ))}
               </div>
@@ -273,84 +563,33 @@ const ZeroToHundredPage = () => {
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-20 bg-gray-800/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 animate-on-scroll">
-              <div className="w-16 h-16 bg-purple-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-purple-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">16 Intensive Weeks</h3>
-              <p className="text-gray-400">Weekly sprints, workshops, and 1-on-1 mentorship sessions</p>
-            </div>
-            <div className="text-center p-6 animate-on-scroll">
-              <div className="w-16 h-16 bg-pink-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-pink-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Peer Community</h3>
-              <p className="text-gray-400">Join a cohort of ambitious founders building together</p>
-            </div>
-            <div className="text-center p-6 animate-on-scroll">
-              <div className="w-16 h-16 bg-orange-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="w-8 h-8 text-orange-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Demo Day</h3>
-              <p className="text-gray-400">Present to 100+ investors, get feedback and potential term sheets</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section id="apply" className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Build Your Empire?</h2>
-          <p className="text-xl text-gray-300 mb-8">
-            Join the next cohort of founders building billion-dollar companies
+      <section ref={ctaRef} className="relative py-16 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20 animate-hue-shift"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-purple-600/10 rounded-full blur-[80px] md:blur-[150px] animate-hue-shift"></div>
+        
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-4 md:mb-6 tracking-tighter px-2">
+            Ready to Build<br/>
+            <span className="gradient-text-shift">
+              Something Great?
+            </span>
+          </h2>
+          <p className="text-sm sm:text-base md:text-xl text-gray-400 mb-6 md:mb-10 max-w-lg md:max-w-2xl mx-auto px-2">
+            Applications are now open for our June 10th launch cohort. 
+            Secure your spot among the founding members.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg font-semibold text-lg hover:shadow-xl transition transform hover:scale-105">
-              Apply for Zero to 100
-            </button>
-            <button className="px-8 py-3 border-2 border-purple-500 rounded-lg font-semibold text-lg hover:bg-purple-500/20 transition">
-              Download Brochure
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
+           
+            <button className="w-full sm:w-auto px-6 md:px-10 py-4 md:py-5 border border-white/10 rounded-full font-bold text-base md:text-lg hover:bg-white/5 transition-all backdrop-blur-sm">
+              Download Info Pack
             </button>
           </div>
-          <p className="text-gray-400 mt-6 text-sm">
-            * Rolling admissions. Only 30 spots available per cohort.
+          <p className="text-gray-500 mt-6 md:mt-8 text-xs md:text-sm px-2">
+            Founding cohort with limited seats · Program begins June 10, 2026
           </p>
         </div>
       </section>
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out;
-        }
-        .animate-on-scroll {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animate-on-scroll.animated {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient {
-          background-size: 200% auto;
-          animation: gradient 3s linear infinite;
-        }
-      `}</style>
     </div>
   );
 };
