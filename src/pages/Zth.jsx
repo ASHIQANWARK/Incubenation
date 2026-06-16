@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Calendar, Target, TrendingUp, Users, Award, Clock, CheckCircle, ArrowRight, Play, Star, Zap, Shield, BookOpen, BarChart3, Rocket, Lightbulb, Sparkles, Globe, HeartHandshake, MessageCircle, ChevronRight, Timer, Bell } from 'lucide-react';
+import { Target, TrendingUp, Users, Award, CheckCircle, ArrowRight, Star, Globe, Timer } from 'lucide-react';
 // Import mentor images - make sure these files exist in your assets/mentors folder
 import vikrantImage from '../assets/images/Vikrant.jpeg';
 import anjaliImage from '../assets/images/anjali.jpg';
@@ -10,20 +10,43 @@ import girishImage from '../assets/images/girish.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Replace with your actual Google Form link
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfo84Pz9SuT4jalRnNFFoxlJxsere-Rp7CurAA-HV6wdPEe1g/viewform?usp=sharing&ouid=103863545385166536972";
+
+// Custom icon components to avoid naming conflicts
+const ZapIcon = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+  </svg>
+);
+
+const RocketIcon = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+  </svg>
+);
+
+const LightbulbIcon = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+    <path d="M9 18h6"/>
+    <path d="M10 22h4"/>
+  </svg>
+);
+
 const ZeroToHundredPage = () => {
   const [activeTab, setActiveTab] = useState('curriculum');
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const heroRef = useRef(null);
   const timelineRef = useRef(null);
-  const curriculumRef = useRef(null);
-  const mentorsRef = useRef(null);
-  const benefitsRef = useRef(null);
-  const ctaRef = useRef(null);
   const countdownRef = useRef(null);
 
-  // Fixed launch date: June 10, 2026 at 6:30:10 PM
-  const launchDate = new Date(2026, 5, 10, 18, 30, 10);
+  // Fixed launch date: June 22, 2026 at 6:30:10 PM
+  const launchDate = new Date(2026, 5, 22, 18, 30, 10);
 
   // Check for mobile screen
   useEffect(() => {
@@ -71,10 +94,6 @@ const ZeroToHundredPage = () => {
         { y: 50, opacity: 0 }, 
         { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
       );
-      gsap.fromTo('.hero-badge', 
-        { scale: 0, opacity: 0 }, 
-        { scale: 1, opacity: 1, duration: 0.8, delay: 0.5, ease: "back.out(1.7)" }
-      );
       gsap.fromTo('.hero-cta', 
         { y: 40, opacity: 0 }, 
         { y: 0, opacity: 1, duration: 0.8, delay: 0.8, ease: "power2.out" }
@@ -120,16 +139,13 @@ const ZeroToHundredPage = () => {
 
       gsap.utils.toArray('.milestone-card').forEach((card, i) => {
         const xOffset = isMobile ? 0 : (i % 2 === 0 ? -100 : 100);
-        const rotateY = isMobile ? 0 : (i % 2 === 0 ? 15 : -15);
         
         gsap.fromTo(card, {
           opacity: 0,
           x: xOffset,
-          rotateY: rotateY,
         }, {
           opacity: 1,
           x: 0,
-          rotateY: 0,
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
@@ -145,11 +161,9 @@ const ZeroToHundredPage = () => {
     gsap.fromTo('.curriculum-card', {
       opacity: 0,
       scale: 0.8,
-      rotateX: -15,
     }, {
       opacity: 1,
       scale: 1,
-      rotateX: 0,
       duration: 0.6,
       stagger: 0.1,
       scrollTrigger: {
@@ -199,8 +213,8 @@ const ZeroToHundredPage = () => {
   }, [isMobile]);
 
   const milestones = [
-    { week: 0, title: "Discovery & Mindset", icon: <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />, color: "from-purple-500 to-pink-500", desc: "Ideation, problem validation, and founder mindset development" },
-    { week: 4, title: "MVP Development", icon: <Rocket className="w-5 h-5 md:w-6 md:h-6" />, color: "from-blue-500 to-cyan-500", desc: "Rapid prototyping, user testing, and product iteration" },
+    { week: 0, title: "Discovery & Mindset", icon: <LightbulbIcon className="w-5 h-5 md:w-6 md:h-6" />, color: "from-purple-500 to-pink-500", desc: "Ideation, problem validation, and founder mindset development" },
+    { week: 4, title: "MVP Development", icon: <RocketIcon className="w-5 h-5 md:w-6 md:h-6" />, color: "from-blue-500 to-cyan-500", desc: "Rapid prototyping, user testing, and product iteration" },
     { week: 8, title: "Market Fit & Traction", icon: <Target className="w-5 h-5 md:w-6 md:h-6" />, color: "from-green-500 to-emerald-500", desc: "Customer acquisition, growth experiments, and metrics optimization" },
     { week: 12, title: "Scaling & Investment", icon: <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />, color: "from-orange-500 to-red-500", desc: "Fundraising preparation, financial modeling, and pitch refinement" },
     { week: 16, title: "Demo Day & Launch", icon: <Award className="w-5 h-5 md:w-6 md:h-6" />, color: "from-yellow-500 to-amber-500", desc: "Present to investors, secure funding, and go-to-market strategy" }
@@ -265,19 +279,17 @@ const ZeroToHundredPage = () => {
   ];
 
   const benefits = [
-    { icon: <Zap className="w-5 h-5 md:w-6 md:h-6" />, title: "Investment Readiness", desc: "Pitch preparation, financial modeling, and direct access to our investor network" },
+    { icon: <ZapIcon className="w-5 h-5 md:w-6 md:h-6" />, title: "Investment Readiness", desc: "Pitch preparation, financial modeling, and direct access to our investor network" },
     { icon: <Users className="w-5 h-5 md:w-6 md:h-6" />, title: "Founder Community", desc: "Join a curated cohort of ambitious founders and build your support network" },
     { icon: <Star className="w-5 h-5 md:w-6 md:h-6" />, title: "1-on-1 Mentorship", desc: "Weekly deep-dive sessions with industry veterans and domain experts" },
     { icon: <Globe className="w-5 h-5 md:w-6 md:h-6" />, title: "Ecosystem Access", desc: "Connect with corporate partners, technology providers, and service partners" }
   ];
 
-  const formattedLaunchDate = launchDate.toLocaleDateString('en-US', { 
-    day: 'numeric', 
-    month: 'long', 
-    year: 'numeric' 
-  });
-
   const padNumber = (num) => String(num).padStart(2, '0');
+
+  const openGoogleForm = () => {
+    window.open(GOOGLE_FORM_URL, '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-[#0A0A0F] text-white overflow-x-hidden">
@@ -352,13 +364,22 @@ const ZeroToHundredPage = () => {
           </p>
           
           <div className="hero-cta flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-4">
-            <button className="group relative w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-base md:text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] animate-hue-shift">
+            <button 
+              onClick={openGoogleForm}
+              className="group relative w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-semibold text-base md:text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] animate-hue-shift"
+            >
               <span className="relative z-10 flex items-center justify-center gap-2">
-                Join the Launch Cohort <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                Apply Now <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 blur-xl transition-opacity"></div>
             </button>
-            <button className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 border border-white/10 rounded-full font-semibold text-base md:text-lg hover:bg-white/5 transition-all backdrop-blur-sm">
+            <button 
+              onClick={() => {
+                const programSection = document.getElementById('program');
+                programSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 border border-white/10 rounded-full font-semibold text-base md:text-lg hover:bg-white/5 transition-all backdrop-blur-sm"
+            >
               Explore Program
             </button>
           </div>
@@ -380,7 +401,7 @@ const ZeroToHundredPage = () => {
             <Timer className="w-4 h-4 md:w-5 md:h-5 animate-text-color" />
             <span className="text-xs md:text-sm font-semibold uppercase tracking-widest animate-text-color">Program Launch</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4 gradient-text-shift">June 10th, 2026</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4 gradient-text-shift">June 22nd, 2026</h2>
           <p className="text-base md:text-xl text-gray-400 mb-6 md:mb-8 max-w-lg md:max-w-2xl mx-auto px-2">
             Be among the first founders to experience the Zero to 100 journey. 
             Applications are now open for our founding cohort.
@@ -564,7 +585,7 @@ const ZeroToHundredPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section ref={ctaRef} className="relative py-16 md:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20 animate-hue-shift"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-purple-600/10 rounded-full blur-[80px] md:blur-[150px] animate-hue-shift"></div>
         
@@ -576,17 +597,34 @@ const ZeroToHundredPage = () => {
             </span>
           </h2>
           <p className="text-sm sm:text-base md:text-xl text-gray-400 mb-6 md:mb-10 max-w-lg md:max-w-2xl mx-auto px-2">
-            Applications are now open for our June 10th launch cohort. 
+            Applications are now open for our June 22nd launch cohort. 
             Secure your spot among the founding members.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
-           
-            <button className="w-full sm:w-auto px-6 md:px-10 py-4 md:py-5 border border-white/10 rounded-full font-bold text-base md:text-lg hover:bg-white/5 transition-all backdrop-blur-sm">
+            <button 
+              onClick={openGoogleForm}
+              className="group relative w-full sm:w-auto px-6 md:px-10 py-4 md:py-5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-base md:text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] animate-hue-shift"
+            >
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Apply Now <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 blur-xl transition-opacity"></div>
+            </button>
+            <button 
+              onClick={() => {
+                // Create a dummy link to download info pack
+                const link = document.createElement('a');
+                link.href = '#';
+                link.download = 'ZeroTo100_InfoPack.pdf';
+                link.click();
+              }}
+              className="w-full sm:w-auto px-6 md:px-10 py-4 md:py-5 border border-white/10 rounded-full font-bold text-base md:text-lg hover:bg-white/5 transition-all backdrop-blur-sm"
+            >
               Download Info Pack
             </button>
           </div>
           <p className="text-gray-500 mt-6 md:mt-8 text-xs md:text-sm px-2">
-            Founding cohort with limited seats · Program begins June 10, 2026
+            Founding cohort with limited seats · Program begins June 22, 2026
           </p>
         </div>
       </section>

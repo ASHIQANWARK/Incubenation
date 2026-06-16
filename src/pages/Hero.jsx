@@ -48,7 +48,7 @@ const focuses = [
     icon: IncubationOnlineIcon,
     link: "/online",
     gradient: "from-emerald-500 to-teal-500",
-    stats: "1000+ Members",
+    stats: "100+ Members",
     feature: "Virtual Learning",
   },
   {
@@ -245,7 +245,7 @@ const FocusCard = ({ item, index }) => {
           to={item.link}
           className="relative inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm font-medium text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 group/btn overflow-hidden"
         >
-          <span className="relative z-10 flex items-center gap-2">
+          <span className="relative z-10 flex items-center gap-2 ">
             Explore Program
             <ChevronRight
               size={16}
@@ -502,7 +502,7 @@ const Hero = () => {
         }}
       >
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-black/60" />
 
         {/* Animated Orbs */}
         <div className="absolute inset-0 overflow-hidden">
@@ -511,19 +511,7 @@ const Hero = () => {
           <div className="floating-orb-hero-3 absolute bottom-10 left-[20%] w-[350px] h-[350px] md:w-[600px] md:h-[600px] bg-blue-500/10 rounded-full blur-[120px]" />
         </div>
 
-        {/* Floating Particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className={`absolute w-1 h-1 md:w-2 md:h-2 bg-white/30 rounded-full animate-float-particle${i % 3 === 1 ? '-delayed' : i % 3 === 2 ? '-slow' : ''}`}
-              style={{
-                left: `${Math.random() * 80 + 10}%`,
-                top: `${Math.random() * 80 + 10}%`,
-              }}
-            />
-          ))}
-        </div>
+       
 
         {/* DPIIT Certificate Badge */}
         <div ref={badgeRef} className="hero-badge absolute top-16 sm:top-20 md:top-24 right-4 sm:right-8 md:right-12 lg:right-16 z-20">
@@ -644,16 +632,6 @@ const Hero = () => {
                   </a>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block">
-          <div className="flex flex-col items-center gap-2 text-slate-400">
-            <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
-            <div className="w-5 h-8 border-2 border-slate-500/50 rounded-full flex justify-center">
-              <div className="w-1 h-2 bg-cyan-400 rounded-full mt-1 animate-bounce" />
             </div>
           </div>
         </div>
