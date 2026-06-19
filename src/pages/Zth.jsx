@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Target, TrendingUp, Users, Award, CheckCircle, ArrowRight, Star, Globe, Timer } from 'lucide-react';
+import { Target, TrendingUp, Users, Award, CheckCircle, ArrowRight, Star, Globe, Timer, Mic, Video } from 'lucide-react';
 // Import mentor images - make sure these files exist in your assets/mentors folder
 import vikrantImage from '../assets/images/Vikrant.jpeg';
 import anjaliImage from '../assets/images/anjali.jpg';
@@ -45,8 +45,8 @@ const ZeroToHundredPage = () => {
   const timelineRef = useRef(null);
   const countdownRef = useRef(null);
 
-  // Fixed launch date: June 22, 2026 at 6:30:10 PM
-  const launchDate = new Date(2026, 5, 22, 18, 30, 10);
+  // Fixed launch date: June 27, 2026 at 18:30:00
+  const launchDate = new Date(2026, 5, 27, 18, 30, 0);
 
   // Check for mobile screen
   useEffect(() => {
@@ -217,7 +217,7 @@ const ZeroToHundredPage = () => {
     { week: 4, title: "MVP Development", icon: <RocketIcon className="w-5 h-5 md:w-6 md:h-6" />, color: "from-blue-500 to-cyan-500", desc: "Rapid prototyping, user testing, and product iteration" },
     { week: 8, title: "Market Fit & Traction", icon: <Target className="w-5 h-5 md:w-6 md:h-6" />, color: "from-green-500 to-emerald-500", desc: "Customer acquisition, growth experiments, and metrics optimization" },
     { week: 12, title: "Scaling & Investment", icon: <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />, color: "from-orange-500 to-red-500", desc: "Fundraising preparation, financial modeling, and pitch refinement" },
-    { week: 16, title: "Demo Day & Launch", icon: <Award className="w-5 h-5 md:w-6 md:h-6" />, color: "from-yellow-500 to-amber-500", desc: "Present to investors, secure funding, and go-to-market strategy" }
+    { week: 16, title: "Online Pitch Session", icon: <Mic className="w-5 h-5 md:w-6 md:h-6" />, color: "from-yellow-500 to-amber-500", desc: "Present to investors virtually, secure funding, and go-to-market strategy" }
   ];
 
   const weeklyCurriculum = [
@@ -236,7 +236,7 @@ const ZeroToHundredPage = () => {
     { week: 13, title: "Team Building", topics: ["Hiring Strategy", "Company Culture", "Equity Distribution", "Leadership Skills"] },
     { week: 14, title: "Legal & Operations", topics: ["IP Protection", "Contract Templates", "Regulatory Compliance", "Operational Systems"] },
     { week: 15, title: "Investor Readiness", topics: ["Due Diligence Prep", "Term Sheets", "Valuation Methods", "Networking Strategy"] },
-    { week: 16, title: "Demo Day Preparation", topics: ["Pitch Perfection", "Storytelling", "Live Demo Setup", "Investor Q&A"] }
+    { week: 16, title: "Online Pitch Session Prep", topics: ["Virtual Pitch Mastery", "Digital Storytelling", "Live Demo Setup", "Virtual Investor Q&A"] }
   ];
 
   const mentors = [
@@ -282,7 +282,7 @@ const ZeroToHundredPage = () => {
     { icon: <ZapIcon className="w-5 h-5 md:w-6 md:h-6" />, title: "Investment Readiness", desc: "Pitch preparation, financial modeling, and direct access to our investor network" },
     { icon: <Users className="w-5 h-5 md:w-6 md:h-6" />, title: "Founder Community", desc: "Join a curated cohort of ambitious founders and build your support network" },
     { icon: <Star className="w-5 h-5 md:w-6 md:h-6" />, title: "1-on-1 Mentorship", desc: "Weekly deep-dive sessions with industry veterans and domain experts" },
-    { icon: <Globe className="w-5 h-5 md:w-6 md:h-6" />, title: "Ecosystem Access", desc: "Connect with corporate partners, technology providers, and service partners" }
+    { icon: <Video className="w-5 h-5 md:w-6 md:h-6" />, title: "Virtual Pitch Access", desc: "Pitch to investors via our online platform and connect with global stakeholders" }
   ];
 
   const padNumber = (num) => String(num).padStart(2, '0');
@@ -304,7 +304,7 @@ const ZeroToHundredPage = () => {
           0%, 100% { color: #c084fc; }
           20% { color: #f472b6; }
           40% { color: #fb923c; }
-          60% { color: #facc15; }
+          50% { color: #facc15; }
           80% { color: #f472b6; }
         }
         @keyframes gradient-shift {
@@ -360,7 +360,7 @@ const ZeroToHundredPage = () => {
             The Ultimate Founder Incubation Program
           </p>
           <p className="hero-subtitle text-sm sm:text-base md:text-lg text-gray-500 mb-6 md:mb-10 max-w-md md:max-w-2xl mx-auto px-4">
-            A 16-week intensive journey to transform your startup idea into an investment-ready venture
+            A 16-week intensive journey to transform your startup idea into an investment-ready venture, culminating in a live online pitch session
           </p>
           
           <div className="hero-cta flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-4">
@@ -385,7 +385,7 @@ const ZeroToHundredPage = () => {
           </div>
 
           <div className="hero-cta flex flex-wrap justify-center gap-2 md:gap-4 mt-8 md:mt-16 px-4">
-            {['16-Week Intensive', 'Expert Mentorship', 'Investor Access', 'Peer Community'].map((feature, i) => (
+            {['16-Week Intensive', 'Expert Mentorship', 'Investor Access', 'Online Pitch Session'].map((feature, i) => (
               <div key={i} className="px-3 md:px-6 py-2 md:py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-xs md:text-sm text-gray-300 hover:border-purple-500/50 transition-all duration-300">
                 <span className="animate-text-color">{feature.split(' ')[0]}</span> {feature.split(' ').slice(1).join(' ')}
               </div>
@@ -394,16 +394,16 @@ const ZeroToHundredPage = () => {
         </div>
       </section>
 
-      {/* Launch Countdown Section */}
+      {/* Online Pitch Session Countdown Section */}
       <section className="py-12 md:py-20 bg-white/[0.02] border-y border-white/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center gap-2 text-purple-400 mb-3 md:mb-4">
-            <Timer className="w-4 h-4 md:w-5 md:h-5 animate-text-color" />
-            <span className="text-xs md:text-sm font-semibold uppercase tracking-widest animate-text-color">Program Launch</span>
+            <Mic className="w-4 h-4 md:w-5 md:h-5 animate-text-color" />
+            <span className="text-xs md:text-sm font-semibold uppercase tracking-widest animate-text-color">Online Pitch Session</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4 gradient-text-shift">June 22nd, 2026</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-4 gradient-text-shift">June 27th, 2026</h2>
           <p className="text-base md:text-xl text-gray-400 mb-6 md:mb-8 max-w-lg md:max-w-2xl mx-auto px-2">
-            Be among the first founders to experience the Zero to 100 journey. 
+            Present your startup to a panel of investors and industry experts in our flagship virtual pitch event.
             Applications are now open for our founding cohort.
           </p>
           
@@ -441,11 +441,11 @@ const ZeroToHundredPage = () => {
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             <div className="text-center">
               <div className="text-xl md:text-3xl font-bold animate-text-color">Limited</div>
-              <div className="text-xs md:text-sm text-gray-500">Founding Seats</div>
+              <div className="text-xs md:text-sm text-gray-500">Pitch Slots</div>
             </div>
             <div className="text-center">
               <div className="text-xl md:text-3xl font-bold animate-text-color">16</div>
-              <div className="text-xs md:text-sm text-gray-500">Intensive Weeks</div>
+              <div className="text-xs md:text-sm text-gray-500">Prep Weeks</div>
             </div>
             <div className="text-center">
               <div className="text-xl md:text-3xl font-bold animate-text-color">4</div>
@@ -460,7 +460,7 @@ const ZeroToHundredPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 tracking-tight">The Journey</h2>
-            <p className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto px-2">A structured path from concept to company</p>
+            <p className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto px-2">A structured path from concept to online pitch session</p>
           </div>
 
           <div className="timeline-container relative">
@@ -591,14 +591,14 @@ const ZeroToHundredPage = () => {
         
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-4 md:mb-6 tracking-tighter px-2">
-            Ready to Build<br/>
+            Ready to Pitch to<br/>
             <span className="gradient-text-shift">
-              Something Great?
+              Top Investors?
             </span>
           </h2>
           <p className="text-sm sm:text-base md:text-xl text-gray-400 mb-6 md:mb-10 max-w-lg md:max-w-2xl mx-auto px-2">
-            Applications are now open for our June 22nd launch cohort. 
-            Secure your spot among the founding members.
+            Join our online pitch session on June 27th. 
+            Secure your slot and present to a curated panel of investors and industry leaders.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
             <button 
@@ -606,7 +606,7 @@ const ZeroToHundredPage = () => {
               className="group relative w-full sm:w-auto px-6 md:px-10 py-4 md:py-5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-base md:text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] animate-hue-shift"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
-                Apply Now <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                Apply to Pitch <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 blur-xl transition-opacity"></div>
             </button>
@@ -624,7 +624,7 @@ const ZeroToHundredPage = () => {
             </button>
           </div>
           <p className="text-gray-500 mt-6 md:mt-8 text-xs md:text-sm px-2">
-            Founding cohort with limited seats · Program begins June 22, 2026
+            Limited pitch slots available · Online pitch session on June 27, 2026
           </p>
         </div>
       </section>
